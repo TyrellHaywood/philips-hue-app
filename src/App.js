@@ -8,7 +8,8 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 
-import './App.scss' // imports stylesheet
+import './App.scss' // imports stylesheet;
+import Home from './Home';
 
 const API_URL = 'https://192.168.0.235/api/s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOxaBt/scenes';
 
@@ -54,8 +55,10 @@ const App = () => {
 
       <div className='button'>
         <button
-        onClick={() => getScenes()}
-        >
+        onClick={() => {
+          getScenes();
+          Home();
+        }}>
           GO
         </button>
       </div>
