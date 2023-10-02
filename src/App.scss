@@ -1,17 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
-
+// colors
+$medium-brown : #986B38;
 
 * {
     font-family: 'Noto Sans';
 }
 
-/*-------------------------------main-page styles----------------------------- */
+body {
+    background-image: linear-gradient(45deg, black 46.35%, $medium-brown 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+// main page styles
+
+
 
 .header {
     width: 100%;
     text-align: center;
-    background-color: grey;
     margin-bottom: 125px;
     margin-top: 250px;
 }
@@ -22,7 +30,7 @@
 }
 
 .ip-address, .id-key {
-    width: 850px;
+    width: 1000px;
     height:75px;
     margin-left: auto;
     margin-right: auto;
@@ -30,37 +38,44 @@
     border-radius: 50px;
     display: flex;
     align-items: center;
-    justify-content: right;
-    
-    background-color: blue;
-}
+    justify-content: left;
 
-.ip-address p, .id-key p {
-    margin-right: 14px;
-    font-size: 24px;
-}
+    &__textarea{ 
+        width: 700px;
+        height: 75px;
+        border-radius: 50px;
+        background-color: rgba(250,250,250, 0.5);
+    }
+    &__title {
+        width: 136px; // compensate for margin-right below to keep container centered
+        height: 75px;
+        border-radius: 50px;
+        text-align: right;
+        margin-right: 14px;
+    }
 
-.main-text-area {
-    width: 700px;
-    height: 75px;
-    border-radius: 50px;
-    background-color: grey;
+    & p {
+        font-size: 24px;
+        color: white;
+    }
 }
 
 .button {
     width: 128px;
     height: 128px;
     border-radius: 50%;
-    background-color: gray;
+    background-color: rgba(250,250,250, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
-}
 
-.button button {
-    border: none;
-    background-color: gray;
+    & button {
+        border: none;
+        background-color: transparent;
+        color: white;
+        font-size: 24px;
+    }
 }

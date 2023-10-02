@@ -37,14 +37,21 @@ const App = () => {
       <header className='header'>
         <h1>Hue for Desktop</h1>
       </header>
+
       <div className='ip-address'>
-        <p>ip address</p>
-        <div className='main-text-area'></div>
+        <div className="id-key__title">
+          <p>ip address</p>
+        </div>
+        <div className='ip-address__textarea'></div>
       </div>
+
       <div className='id-key'>
-        <p>id key</p>
-        <div className='main-text-area'></div>
+        <div className="id-key__title">
+          <p>id key</p>
+        </div>
+        <div className='id-key__textarea'></div>
       </div>
+
       <div className='button'>
         <button
         onClick={() => getScenes()}
@@ -52,6 +59,7 @@ const App = () => {
           GO
         </button>
       </div>
+      
     </div>
   )
 };
