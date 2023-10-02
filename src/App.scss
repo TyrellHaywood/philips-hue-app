@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
+
+
 * {
     font-family: 'Noto Sans';
 }
@@ -19,7 +21,7 @@
     color:white;
 }
 
-.ip-address-container, .id-key-container {
+.ip-address, .id-key {
     width: 850px;
     height:75px;
     margin-left: auto;
@@ -33,7 +35,7 @@
     background-color: blue;
 }
 
-.ip-address-container p, .id-key-container p {
+.ip-address p, .id-key p {
     margin-right: 14px;
     font-size: 24px;
 }

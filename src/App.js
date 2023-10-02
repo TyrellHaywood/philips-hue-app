@@ -8,7 +8,7 @@
 import React from "react";
 import { useState, useEffect } from 'react';
 
-import './App.css' // imports stylesheet
+import './App.scss' // imports stylesheet
 
 const API_URL = 'https://192.168.0.235/api/s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOxaBt/scenes';
 
@@ -37,11 +37,11 @@ const App = () => {
       <header className='header'>
         <h1>Hue for Desktop</h1>
       </header>
-      <div className='ip-address-container'>
+      <div className='ip-address'>
         <p>ip address</p>
         <div className='main-text-area'></div>
       </div>
-      <div className='id-key-container'>
+      <div className='id-key'>
         <p>id key</p>
         <div className='main-text-area'></div>
       </div>
