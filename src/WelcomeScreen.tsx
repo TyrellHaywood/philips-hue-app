@@ -6,26 +6,13 @@ import { useState, useEffect } from "react";
 const API_URL =
   "https://192.168.0.235/api/s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOxaBt/scenes";
 
-const WelcomeScreen = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+interface WelcomeScreenProps {
+  handleLoginClick: () => void; // Define the type of handleLoginClick
+}
 
-  const handleLoginClick = () => {
-    setIsLoggedIn(true);
-  };
+// uses React.FC to ensure type safety
 
-  const [scenesData, setScenesData] = useState(null);
-
-  const getScenes = async () => {
-    try {
-      const response = await fetch(`${API_URL}`);
-      const data = await response.json();
-      setScenesData(data);
-      console.log(data);
-    } catch (error) {
-      console.error("Error fetching scenes data:", error);
-    }
-  };
-
+const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
   return (
     <div className="main-page">
       <header className="header">
@@ -47,14 +34,7 @@ const WelcomeScreen = () => {
       </div>
 
       <div className="button">
-        <button
-          onClick={() => {
-            getScenes();
-            handleLoginClick();
-          }}
-        >
-          GO
-        </button>
+        <button onClick={handleLoginClick}>GO</button>
       </div>
     </div>
   );
