@@ -10,62 +10,61 @@ import { useState, useEffect } from 'react';
 
 import './App.scss' // imports stylesheet;
 import Home from './Home';
+import WelcomeScreen from './WelcomeScreen'
 
 const API_URL = 'https://192.168.0.235/api/s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOxaBt/scenes';
+  
+const content = ''
+
 
 const App = () => {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [scenesData, setScenesData] = useState(null);
 
-  const getScenes = async () => {
-    try{
-      const response = await fetch(`${API_URL}`);
+  
+  const handleLoginClick = async () => {
+    try {
+      const response = await fetch(API_URL);
       const data = await response.json();
       setScenesData(data);
-      console.log(data)
-    
+      setIsLoggedIn(true);
+      console.log(data);
     } catch (error) {
-      console.error('Error fetching scenes data:', error)
+      console.error('Error fetching scenes data:', error);
     }
-  }
+  };
 
-  useEffect(() => {
-    
-  }, []);
 
   return (
     <div className='main-page'>
-      <header className='header'>
-        <h1>Hue for Desktop</h1>
-      </header>
-
-      <div className='ip-address'>
-        <div className="id-key__title">
-          <p>ip address</p>
-        </div>
-        <div className='ip-address__textarea'></div>
-      </div>
-
-      <div className='id-key'>
-        <div className="id-key__title">
-          <p>id key</p>
-        </div>
-        <div className='id-key__textarea'></div>
-      </div>
-
-      <div className='button'>
-        <button
-        onClick={() => {
-          getScenes();
-          Home();
-        }}>
-          GO
-        </button>
-      </div>
       
+      {isLoggedIn ? (
+        <Home scenesData={scenesData} />
+      ) : (
+        <div>
+          <header className='header'>
+            <h1>Hue for Desktop</h1>
+          </header>
+          <div className='ip-address'>
+            <div className="id-key__title">
+              <p>ip address</p>
+            </div>
+            <div className='ip-address__textarea'></div>
+          </div>
+          <div className='id-key'>
+            <div className="id-key__title">
+              <p>id key</p>
+            </div>
+            <div className='id-key__textarea'></div>
+          </div>
+          <div className='button'>
+            <button onClick={handleLoginClick}>GO</button>
+          </div>
+        </div>
+      )}
     </div>
-  )
+  );
 };
-
 
 export default App;
