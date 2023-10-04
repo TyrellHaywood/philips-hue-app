@@ -2,7 +2,14 @@ import React from "react";
 import "./Rooms.scss";
 
 const Rooms = () => {
-  return <h1>Home</h1>;
+  return (
+    <div className="rooms-page">
+      <header className="header">
+        <h1>Home</h1>
+      </header>
+      <div></div>
+    </div>
+  );
 };
 
 export default Rooms;

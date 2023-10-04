@@ -10,7 +10,7 @@ import { useState, useEffect } from 'react';
 
 import './App.scss' // imports stylesheet;
 import Rooms from './Rooms';
-import WelcomeScreen from './WelcomeScreen'
+import WelcomeScreen from './WelcomeScreen';
 
 const API_URL = 'https://192.168.0.235/api/s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOxaBt/scenes';
 

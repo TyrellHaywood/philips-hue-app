@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.scss"; // imports stylesheet;
+import "./WelcomeScreen.scss"; // imports stylesheet;
 
 import { useState, useEffect } from "react";
 
@@ -15,7 +15,7 @@ interface WelcomeScreenProps {
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
   return (
     <div className="main-page">
-      <header className="header">
+      <header className="main-header">
         <h1>Hue for Desktop</h1>
       </header>
 
