@@ -23,14 +23,27 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
         <div className="id-key__title">
           <p>ip address</p>
         </div>
-        <div className="ip-address__textarea"></div>
+        <div className="ip-address__textarea">
+          <textarea
+            className="ip-address__textarea__text"
+            placeholder="ip address"
+            contentEditable="true"
+            autoFocus
+          ></textarea>
+        </div>
       </div>
 
       <div className="id-key">
         <div className="id-key__title">
           <p>id key</p>
         </div>
-        <div className="id-key__textarea"></div>
+        <div className="id-key__textarea">
+          <textarea
+            className="id-key__textarea__text"
+            placeholder="authentorization key"
+            contentEditable="true"
+          ></textarea>
+        </div>
       </div>
 
       <div className="button">
