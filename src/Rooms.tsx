@@ -29,7 +29,11 @@ const Rooms = () => {
         </div>
 
         <div className="room-component__brightness">
-          <div className="room-component__brightness__slider"></div>
+          <div className="room-component__brightness__slider">
+            <div className="room-component__brightness__slider__inner">
+              <div className="room-component__brightness__slider__inner__circle"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

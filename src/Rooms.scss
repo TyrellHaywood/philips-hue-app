@@ -127,10 +127,28 @@ $light-brown : #F8B363;
         &__slider {
             width: 800px;
             height: 15px;
-            background-image: linear-gradient(90deg, #C8BDB0 6.43%, rgba(227, 216, 203, 0.65) 74.38%);
+            background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
             border-radius: 50px;
             margin-top: 35px;
+            display: flex;
+            align-items: center;
 
+            &__inner {
+                width: 607px;
+                height: 15px;
+                background-image: linear-gradient(90deg, #C8BDB0 6.43%, rgba(227, 216, 203, 0.65) 74.38%);
+                border-radius: 50px;
+                display: flex;
+                align-items: center;
+
+                &__circle{
+                    width: 25px;
+                    height: 25px;
+                    margin-left: 581px;
+                    background-color: white;
+                    border-radius: 50%;
+                }
+            }
         }
     }
 
