@@ -16,7 +16,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
   return (
     <div className="main-page">
       <header className="main-header">
-        <h1>Hue for Desktop</h1>
+        <h1 className="main-header__title">Hue for Desktop</h1>
       </header>
 
       <div className="ip-address">
