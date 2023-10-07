@@ -38,12 +38,53 @@ $light-brown : #F8B363;
 
 }
 
+.room-section {
+    width: 950px;
+    height: calc(100vh - 300px);
+    margin: 20px auto 0px auto;
+    // background-color: green;
+    display: flex;
+    justify-content: right;
+    // flex-direction: column; /* Stack the child components vertically */
+    // overflow-y: auto; /* Enable vertical scrolling for overflow content */
+}
+    
+// scroll bar---------***--*-------
+
+.room-scrollbar {
+    width: 25px;
+    height: 100%;
+    margin-left: 25px;
+    // background-color: green;
+    display: flex;
+    justify-content: center;
+    
+
+    &__bar {
+        width: 15px;
+        height: 100%;
+        background-color: green;
+        border-radius: 30px;
+
+        &__cursor {
+            width: 25px;
+            height: 45px;
+            background-color: white;
+            border-radius: 30px;
+        }
+    }
+    
+}
+
+// room component---------***--*-------
+
 .room-component {
     width: 900px;
-    margin: 20px auto 0px auto;
     height: 200px;
     border-radius: 50px;
     background-image: linear-gradient(90deg, $light-brown 28.79%, $medium-brown 88.97%);
+    
+
 
 
     // component info---------***--*-------
