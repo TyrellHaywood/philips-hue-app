@@ -1,6 +1,3 @@
-//philips hue bridge ip address: 192.168.0.22 (192.168.0.235 - ottawa)
-//debugger ip address: https://192.168.0.235/debug/clip.html
-//newest user id: s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOxaBt
 
 //sample scene = cSt4xDglSTLR9lp (homework)
 //green bug = g3Y6E1wtnkUZJV8
