@@ -20,6 +20,7 @@ const App = () => {
 
   
   const handleLoginClick = async () => {
+    
     try {
       const response = await fetch(API_URL);
       const data = await response.json();

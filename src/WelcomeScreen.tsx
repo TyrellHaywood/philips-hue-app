@@ -7,12 +7,27 @@ const API_URL =
   "https://192.168.0.235/api/s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOxaBt/scenes";
 
 interface WelcomeScreenProps {
-  handleLoginClick: () => void; // Define the type of handleLoginClick
+  handleLoginClick: (ipAddress: string, idKey: string) => void; // Define the type of handleLoginClick
 }
 
 // uses React.FC to ensure type safety
 
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
+  const [ipAddress, setIpAddress] = useState("");
+  const [idKey, setIdKey] = useState("");
+
+  const onIpAddressChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIpAddress(e.target.value);
+  };
+
+  const onIdKeyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setIdKey(e.target.value);
+  };
+
+  const handleClick = () => {
+    handleLoginClick(ipAddress, idKey);
+  };
+
   return (
     <div className="main-page">
       <header className="main-header">
@@ -24,12 +39,15 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
           <p>ip address</p>
         </div>
         <div className="ip-address__textarea">
-          <textarea
+          <input
             className="ip-address__textarea__text"
+            type="text"
+            value={ipAddress}
             placeholder="ip address"
+            onChange={onIpAddressChange}
             contentEditable="true"
             autoFocus
-          ></textarea>
+          ></input>
         </div>
       </div>
 
@@ -38,16 +56,19 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
           <p>id key</p>
         </div>
         <div className="id-key__textarea">
-          <textarea
+          <input
             className="id-key__textarea__text"
+            type="text"
+            value={idKey}
             placeholder="authentorization key"
+            onChange={onIdKeyChange}
             contentEditable="true"
-          ></textarea>
+          ></input>
         </div>
       </div>
 
       <div className="button">
-        <button onClick={handleLoginClick}>GO</button>
+        <button onClick={handleClick}>GO</button>
       </div>
     </div>
   );
