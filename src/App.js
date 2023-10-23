@@ -14,19 +14,20 @@ const API_URL = 'https://192.168.0.235/api/s8sE1qlfsYiewwC4bc7UFr11adcvoEpWRtxOx
 let ipAddress = ''
 let idKey = ''
 
-let correctApiUrl = `https://${ipAddress}/api/${idKey}/scenes`
 
 
 const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [scenesData, setScenesData] = useState(null);
+  const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
+  const [idKey, setIdKey] = useState(""); // Define idKey state
 
-  
   const handleLoginClick = async () => {
-    
+    const correctApiUrl = `https://${ipAddress}/api/${idKey}/scenes`;
+
     try {
-      const response = await fetch(API_URL);
+      const response = await fetch(correctApiUrl);
       const data = await response.json();
       setScenesData(data);
       setIsLoggedIn(true);
@@ -44,7 +45,13 @@ const App = () => {
         <Rooms scenesData={scenesData} />
       ) : (
         <div>
-          <WelcomeScreen handleLoginClick={handleLoginClick} />
+          <WelcomeScreen 
+          handleLoginClick={handleLoginClick} 
+          ipAddress={ipAddress}
+          idKey={idKey}
+          setIpAddress={setIpAddress}
+          setIdKey={setIdKey}
+          />
         </div>
       )}
     </div>

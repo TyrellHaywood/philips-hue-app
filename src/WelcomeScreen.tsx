@@ -8,11 +8,21 @@ const API_URL =
 
 interface WelcomeScreenProps {
   handleLoginClick: () => void; // Define the type of handleLoginClick
+  ipAddress: string; //define type of ipAddress
+  idKey: string; //define type of idKey
+  setIpAddress: (value: string) => void; //define type of setIpAddress
+  setIdKey: (value: string) => void; //define type of setIdKey
 }
 
 // uses React.FC to ensure type safety
 
-const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
+const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
+  handleLoginClick,
+  ipAddress, // Use the prop directly
+  idKey, // Use the prop directly
+  setIpAddress, // Use the prop directly
+  setIdKey, // Use the prop directly
+}) => {
   return (
     <div className="main-page">
       <header className="main-header">
@@ -28,7 +38,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
             className="ip-address__textarea__text"
             type="text"
             placeholder="ip address"
-            contentEditable="true"
+            value={ipAddress}
+            onChange={(e) => setIpAddress(e.target.value)}
             autoFocus
           ></input>
         </div>
@@ -43,7 +54,8 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ handleLoginClick }) => {
             className="id-key__textarea__text"
             type="text"
             placeholder="authentorization key"
-            contentEditable="true"
+            value={idKey}
+            onChange={(e) => setIdKey(e.target.value)}
           ></input>
         </div>
       </div>
