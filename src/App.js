@@ -16,21 +16,30 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [scenesData, setScenesData] = useState(null);
+  const [groupData, setGroupData] = useState (null);
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
   const [idKey, setIdKey] = useState(""); // Define idKey state
 
   const handleLoginClick = async () => {
-    const API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
+    const SCENE_API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
+    const GROUP_API_URL = `https://${ipAddress}/api/${idKey}/groups`;
 
     try {
-      const response = await fetch(API_URL);
-      const data = await response.json();
+      //fetch scenes
+      const sceneResponse = await fetch(SCENE_API_URL);
+      const sceneData = await sceneResponse.json();
       const scenesById = {} //create an empty object to store scenes by id
 
+      //fetch groups
+      const groupResponse = await fetch(GROUP_API_URL);
+      const groupData = await groupResponse.json();
+      setGroupData(groupData)
+      console.log(groupData[0])
+
       //loop thru scenes and store them in scenesById variable
-      for (const sceneId in data) {
-        if (data.hasOwnProperty(sceneId)) {
-          scenesById[sceneId] = data[sceneId];
+      for (const sceneId in sceneData) {
+        if (sceneData.hasOwnProperty(sceneId)) {
+          scenesById[sceneId] = sceneData[sceneId];
         }
       }
 
@@ -39,7 +48,7 @@ const App = () => {
       setIsLoggedIn(true);
       console.log(scenesById);  
 
-      console.log(scenesById['5IWuvEbKHTPDKZb'])
+      console.log(scenesById['5IWuvEbKHTPDKZb']) // target testing
 
     } catch (error) {
       console.error('Error fetching scenes data:', error);
