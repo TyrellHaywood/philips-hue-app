@@ -20,14 +20,29 @@ const App = () => {
   const [idKey, setIdKey] = useState(""); // Define idKey state
 
   const handleLoginClick = async () => {
-    const correctApiUrl = `https://${ipAddress}/api/${idKey}/scenes`;
+    const API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
 
     try {
-      const response = await fetch(correctApiUrl);
+      const response = await fetch(API_URL);
       const data = await response.json();
-      setScenesData(data);
+      const scenesById = {} //create an empty object to store scenes by id
+
+      //loop thru scenes and store them in scenesById variable
+      for (const sceneId in data) {
+        if (data.hasOwnProperty(sceneId)) {
+          scenesById[sceneId] = data[sceneId];
+        }
+      }
+
+      setScenesData(scenesById);
+      // setScenesData(data);
       setIsLoggedIn(true);
-      console.log(data);
+      console.log(scenesById);  
+
+      // for(let i = 0; i >= scenesById.length; i++){
+      //   console.log(scenesById[i])
+      // }
+
     } catch (error) {
       console.error('Error fetching scenes data:', error);
     }
