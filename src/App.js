@@ -39,9 +39,7 @@ const App = () => {
       setIsLoggedIn(true);
       console.log(scenesById);  
 
-      // for(let i = 0; i >= scenesById.length; i++){
-      //   console.log(scenesById[i])
-      // }
+      console.log(scenesById['5IWuvEbKHTPDKZb'])
 
     } catch (error) {
       console.error('Error fetching scenes data:', error);
