@@ -45,10 +45,26 @@ $light-brown : #F8B363;
     // background-color: green;
     display: flex;
     justify-content: right;
+    overflow: scroll;
     // flex-direction: column; /* Stack the child components vertically */
     // overflow-y: auto; /* Enable vertical scrolling for overflow content */
 }
-    
+   
+
+.room-section::-webkit-scrollbar {
+    width: 15px;
+    height: 100%;
+    background-color: green;
+    border-radius: 30px;
+}
+
+.room-section::-webkit-scrollbar-thumb {
+    width: 25px;
+    height: 45px;
+    background-color: white;
+    border-radius: 30px;
+}
+
 // scroll bar---------***--*-------
 
 .room-scrollbar {
