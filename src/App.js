@@ -22,7 +22,31 @@ const App = () => {
   const [idKey, setIdKey] = useState(""); // Define idKey state
 
   const toggleLightsPower = () => {
-    console.log('POWER!')
+    const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
+  
+    fetch(LIGHTS_API_URL)
+      .then(response => response.json())
+      .then(lights => {
+        // Iterate over each light and send the on/off command
+        for (const lightId in lights) {
+          if (lights.hasOwnProperty(lightId)) {
+            // Replace 'on' with 'off' and vice versa to toggle power
+            const newPowerState = lights[lightId].state.on ? false : true;
+  
+            // Send a PUT request to update the light's state
+            fetch(`${LIGHTS_API_URL}/${lightId}/state`, {
+              method: 'PUT',
+              body: JSON.stringify({ on: newPowerState }),
+            })
+              .then(response => response.json())
+              .then(updatedLight => {
+                console.log(`Light ${lightId} is now ${newPowerState ? 'on' : 'off'}`);
+              })
+              .catch(error => console.error('Error updating light state', error));
+          }
+        }
+      })
+      .catch(error => console.error('Error fetching lights', error));
   };
 
   const handleLoginClick = async () => {
