@@ -13,10 +13,8 @@ $light-brown : #F8B363;
     height: 200px;
     border-radius: 50px;
     background-image: linear-gradient(90deg, $light-brown 28.79%, $medium-brown 88.97%);
+    margin-bottom: 50px;
     
-
-
-
     // component info---------***--*-------
     &__information { // top bar of content
         width: 100%;
@@ -73,6 +71,7 @@ $light-brown : #F8B363;
                 height: 40px;
                 border-radius: 50%;
                 margin-right: 5px;
+                border: none;
             }
         }  
         

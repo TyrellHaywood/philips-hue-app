@@ -2,6 +2,14 @@ import React from "react";
 import "./Room.scss";
 
 const Room = () => {
+  const powerButton = document.getElementsByClassName(
+    "room-component__information__button__circle"
+  );
+
+  const lightsPower = async () => {
+    console.log("power button clicked!");
+  };
+
   return (
     <div className="room-component">
       {/* room info */}
@@ -16,7 +24,10 @@ const Room = () => {
           </h2>
         </div>
         <div className="room-component__information__button">
-          <div className="room-component__information__button__circle"></div>
+          <button
+            className="room-component__information__button__circle"
+            onClick={lightsPower}
+          ></button>
         </div>
       </div>
       {/* room brightness */}

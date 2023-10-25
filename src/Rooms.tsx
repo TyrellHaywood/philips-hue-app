@@ -3,6 +3,8 @@ import "./Rooms.scss";
 import Room from "./Room";
 
 const Rooms = () => {
+  const myButton = document.getElementById("myButton");
+
   return (
     <div className="rooms-page">
       <header className="rooms-header">
