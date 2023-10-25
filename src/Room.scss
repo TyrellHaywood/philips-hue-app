@@ -74,12 +74,28 @@ $light-brown : #F8B363;
                 border: none;
             }
         }  
-        
-        & .lights {
-            color: white;
-            margin-top: 0px;
-            margin-left: 175px;
-        }
+
+        &.lights-on {
+            /* Styles when lights are on */
+            .room-component__information__button {
+              justify-content: left;
+              transition: justify-content 0.3s;
+            }
+            .room-component__information__button__circle {
+              margin-left: 5px;
+            }
+          }
+          
+        &.lights-off {
+            /* Styles when lights are off */
+            .room-component__information__button {
+              justify-content: right;
+              transition: justify-content 0.3s;
+            }
+            .room-component__information__button__circle {
+              margin-right: 5px;
+            }
+          }
 
     }
 

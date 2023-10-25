@@ -1,19 +1,26 @@
 import React from "react";
+import { useState } from "react";
 import "./Room.scss";
 
 const Room = () => {
+  const [isLightOn, setLightOn] = useState(false);
+
   const powerButton = document.getElementsByClassName(
     "room-component__information__button__circle"
   );
 
-  const lightsPower = async () => {
-    console.log("power button clicked!");
+  const toggleLightsPower = () => {
+    setLightOn(!isLightOn);
   };
 
   return (
     <div className="room-component">
       {/* room info */}
-      <div className="room-component__information">
+      <div
+        className={`room-component__information ${
+          isLightOn ? "lights-on" : "lights-off"
+        }`}
+      >
         <img className="room-component__information__img"></img>
         <div className="room-component__information__title">
           <h1 className="room-component__information__title__title">
@@ -25,8 +32,10 @@ const Room = () => {
         </div>
         <div className="room-component__information__button">
           <button
-            className="room-component__information__button__circle"
-            onClick={lightsPower}
+            className={`room-component__information__button__circle ${
+              isLightOn ? "on" : "off"
+            }`}
+            onClick={toggleLightsPower}
           ></button>
         </div>
       </div>
