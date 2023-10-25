@@ -15,12 +15,18 @@ const Rooms = () => {
       <div className="room-section">
         {/*  */}
         <Room />
-        <div className="room-scrollbar">
-          <div className="room-scrollbar__bar">
-            <div className="room-scrollbar__bar__cursor"></div>
-          </div>
-        </div>
+        <Room />
+        <Room />
+        <Room />
+        <Room />
+        <Room />
+        <Room />
       </div>
+      {/* <div className="room-scrollbar">
+        <div className="room-scrollbar__bar">
+          <div className="room-scrollbar__bar__cursor"></div>
+        </div>
+      </div> -- was originally inside `room-section`, probably dont need. keeping just in case*/}
       {/*  */}
     </div>
   );

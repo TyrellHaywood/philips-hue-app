@@ -46,8 +46,8 @@ $light-brown : #F8B363;
     display: flex;
     justify-content: right;
     overflow: scroll;
-    // flex-direction: column; /* Stack the child components vertically */
-    // overflow-y: auto; /* Enable vertical scrolling for overflow content */
+    flex-direction: column; /* Stack the child components vertically */
+    overflow-y: auto; /* Enable vertical scrolling for overflow content */
 }
    
 
