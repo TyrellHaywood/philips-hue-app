@@ -2,7 +2,12 @@ import React from "react";
 import "./Rooms.scss";
 import Room from "./Room";
 
-const Rooms = () => {
+//define type for props (avoid typescript errors)
+interface RoomProps {
+  toggleLightsPower: () => void;
+}
+
+const Rooms: React.FC<RoomProps> = ({ toggleLightsPower }) => {
   const myButton = document.getElementById("myButton");
 
   return (
@@ -16,20 +21,14 @@ const Rooms = () => {
       </div>
       <div className="room-section">
         {/*  */}
-        <Room />
-        <Room />
-        <Room />
-        <Room />
-        <Room />
-        <Room />
-        <Room />
+        <Room toggleLightsPower={toggleLightsPower} />
+        <Room toggleLightsPower={toggleLightsPower} />
+        <Room toggleLightsPower={toggleLightsPower} />
+        <Room toggleLightsPower={toggleLightsPower} />
+        <Room toggleLightsPower={toggleLightsPower} />
+        <Room toggleLightsPower={toggleLightsPower} />
+        <Room toggleLightsPower={toggleLightsPower} />
       </div>
-      {/* <div className="room-scrollbar">
-        <div className="room-scrollbar__bar">
-          <div className="room-scrollbar__bar__cursor"></div>
-        </div>
-      </div> -- was originally inside `room-section`, probably dont need. keeping just*/}
-      {/*  */}
     </div>
   );
 };

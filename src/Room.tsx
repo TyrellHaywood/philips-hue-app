@@ -2,15 +2,17 @@ import React from "react";
 import { useState } from "react";
 import "./Room.scss";
 
-const Room = () => {
+//define type for props (avoid typescript errors)
+interface RoomProps {
+  toggleLightsPower: () => void;
+}
+
+const Room: React.FC<RoomProps> = ({ toggleLightsPower }) => {
   const [isLightOn, setLightOn] = useState(false);
 
-  const powerButton = document.getElementsByClassName(
-    "room-component__information__button__circle"
-  );
-
-  const toggleLightsPower = () => {
+  const handleToggleLights = () => {
     setLightOn(!isLightOn);
+    toggleLightsPower(); //call function from the prop
   };
 
   return (
@@ -35,7 +37,7 @@ const Room = () => {
             className={`room-component__information__button__circle ${
               isLightOn ? "on" : "off"
             }`}
-            onClick={toggleLightsPower}
+            onClick={handleToggleLights}
           ></button>
         </div>
       </div>

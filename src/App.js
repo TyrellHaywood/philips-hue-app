@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import './App.scss' // imports stylesheet;
 import Rooms from './Rooms';
 import WelcomeScreen from './WelcomeScreen';
+import Room from './Room'
 
 let ipAddress = ''
 let idKey = ''
@@ -19,6 +20,10 @@ const App = () => {
   const [groupData, setGroupData] = useState (null);
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
   const [idKey, setIdKey] = useState(""); // Define idKey state
+
+  const toggleLightsPower = () => {
+    console.log('POWER!')
+  };
 
   const handleLoginClick = async () => {
     const SCENE_API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
@@ -55,12 +60,11 @@ const App = () => {
     }
   };
 
-
   return (
     <div className='main-page'>
       
       {isLoggedIn ? (
-        <Rooms scenesData={scenesData} />
+        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower}/>
       ) : (
         <div>
           <WelcomeScreen 
