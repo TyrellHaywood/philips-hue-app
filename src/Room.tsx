@@ -1,5 +1,5 @@
 import React from "react";
-import "./Rooms.scss";
+import "./Room.scss";
 
 const Room = () => {
   return (
