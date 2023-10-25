@@ -45,7 +45,8 @@ $light-brown : #F8B363;
     flex-direction: column; /* Stack the child components vertically */
     overflow-y: auto; /* Enable vertical scrolling for overflow content */
 }
-   
+
+// scroll bar---------***--*-------
 
 .room-section::-webkit-scrollbar {
     width: 25px;
@@ -65,30 +66,3 @@ $light-brown : #F8B363;
     background-clip: padding-box;
     border-radius: 10px;
   }
-
-// scroll bar---------***--*-------
-
-.room-scrollbar {
-    width: 25px;
-    height: 100%;
-    margin-left: 25px;
-    // background-color: green;
-    display: flex;
-    justify-content: center;
-    
-
-    &__bar {
-        width: 15px;
-        height: 100%;
-        background-color: green;
-        border-radius: 30px;
-
-        &__cursor {
-            width: 25px;
-            height: 45px;
-            background-color: white;
-            border-radius: 30px;
-        }
-    }
-    
-}
