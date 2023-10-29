@@ -24,6 +24,8 @@ const App = () => {
   const toggleLightsPower = () => {
     const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
   
+
+    // controls on and off buttons of function, by fetching api light values and sending PUT method
     fetch(LIGHTS_API_URL)
       .then(response => response.json())
       .then(lights => {
@@ -49,6 +51,8 @@ const App = () => {
       .catch(error => console.error('Error fetching lights', error));
   };
 
+
+  //login authentication, talks to bridge and fetches data on scenes
   const handleLoginClick = async () => {
     const SCENE_API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
     const GROUP_API_URL = `https://${ipAddress}/api/${idKey}/groups`;
