@@ -21,37 +21,6 @@ const App = () => {
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
   const [idKey, setIdKey] = useState(""); // Define idKey state
 
-  const toggleLightsPower = () => {
-    const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
-  
-
-    // controls on and off buttons of function, by fetching api light values and sending PUT method
-    fetch(LIGHTS_API_URL)
-      .then(response => response.json())
-      .then(lights => {
-        // Iterate over each light and send the on/off command
-        for (const lightId in lights) {
-          if (lights.hasOwnProperty(lightId)) {
-            // Replace 'on' with 'off' and vice versa to toggle power
-            const newPowerState = lights[lightId].state.on ? false : true;
-  
-            // Send a PUT request to update the light's state
-            fetch(`${LIGHTS_API_URL}/${lightId}/state`, {
-              method: 'PUT',
-              body: JSON.stringify({ on: newPowerState }),
-            })
-              .then(response => response.json())
-              .then(updatedLight => {
-                console.log(`Light ${lightId} is now ${newPowerState ? 'on' : 'off'}`);
-              })
-              .catch(error => console.error('Error updating light state', error));
-          }
-        }
-      })
-      .catch(error => console.error('Error fetching lights', error));
-  };
-
-
   //login authentication, talks to bridge and fetches data on scenes
   const handleLoginClick = async () => {
     const SCENE_API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
@@ -87,6 +56,66 @@ const App = () => {
       console.error('Error fetching scenes data:', error);
     }
   };
+
+  //controls on and off buttons of function, by fetching api light values and sending PUT method
+  const toggleLightsPower = () => {
+    const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
+  
+    fetch(LIGHTS_API_URL)
+      .then(response => response.json())
+      .then(lights => {
+        // Iterate over each light and send the on/off command
+        for (const lightId in lights) {
+          if (lights.hasOwnProperty(lightId)) {
+            // Replace 'on' with 'off' and vice versa to toggle power
+            const newPowerState = lights[lightId].state.on ? false : true;
+  
+            // Send a PUT request to update the light's state
+            fetch(`${LIGHTS_API_URL}/${lightId}/state`, {
+              method: 'PUT',
+              body: JSON.stringify({ on: newPowerState }),
+            })
+              .then(response => response.json())
+              .then(updatedLight => {
+                console.log(`Light ${lightId} is now ${newPowerState ? 'on' : 'off'}`);
+              })
+              .catch(error => console.error('Error updating light state', error));
+          }
+        }
+      })
+      .catch(error => console.error('Error fetching lights', error));
+  };
+
+  // handle brightness slider on rooms (groups) page
+  const lightsBrightness = () => {
+    const BRI_API_URL = `https://${ipAddress}/api/${idKey}/lights`
+    
+    fetch(BRI_API_URL)
+      .then(response => response.json())
+      .then(lights => {
+        // Iterate over each light in lights
+        for (const lightId in lights) {
+          if (lights.hasOwnProperty(lightId)) {
+            // Replace 'on' with 'off' and vice versa to toggle power
+            // const newPowerState = lights[lightId].state.on ? false : true;
+            const newBrightnessState = lights.lightId.state.bri;
+            
+            // Send a PUT request to update the light's state
+            fetch(`${LIGHTS_API_URL}/${lightId}/state`, {
+              method: 'PUT',
+              body: JSON.stringify({ bri: newBrightnessState }),
+            })
+              .then(response => response.json())
+              .then(updatedLight => {
+                console.log(`Light ${lightId} is now ${newPowerState ? 'on' : 'off'}`);
+              })
+              .catch(error => console.error('Error updating light state', error));
+          }
+        }
+      })
+      .catch(error => console.error('Error fetching lights', error));
+
+  }
 
   return (
     <div className='main-page'>
