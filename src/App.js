@@ -87,41 +87,39 @@ const App = () => {
   };
 
   // handle brightness slider on rooms (groups) page
-  const lightsBrightness = () => {
-    const BRI_API_URL = `https://${ipAddress}/api/${idKey}/lights`
-    
+  const adjustLightsBrightness = (brightness) => {
+    const BRI_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
+  
     fetch(BRI_API_URL)
-      .then(response => response.json())
-      .then(lights => {
+      .then((response) => response.json())
+      .then((lights) => {
         // Iterate over each light in lights
         for (const lightId in lights) {
           if (lights.hasOwnProperty(lightId)) {
-            // Replace 'on' with 'off' and vice versa to toggle power
-            // const newPowerState = lights[lightId].state.on ? false : true;
-            const newBrightnessState = lights.lightId.state.bri;
-            
+            const light = lights[lightId];
+            const newBrightnessState = brightness; // Use the provided brightness value
+  
             // Send a PUT request to update the light's state
             fetch(`${BRI_API_URL}/${lightId}/state`, {
               method: 'PUT',
               body: JSON.stringify({ bri: newBrightnessState }),
             })
-              .then(response => response.json())
-              .then(updatedLight => {
-              console.log(`Light ${lightId} is now ${newBrightnessState}`);
+              .then((response) => response.json())
+              .then((updatedLight) => {
+                console.log(`Light ${light.name} is now set to brightness ${newBrightnessState}`);
               })
-              .catch(error => console.error('Error updating light state', error));
+              .catch((error) => console.error('Error updating light state', error));
           }
         }
       })
-      .catch(error => console.error('Error fetching lights', error));
-
-  }
+      .catch((error) => console.error('Error fetching lights', error));
+  };
 
   return (
     <div className='main-page'>
       
       {isLoggedIn ? (
-        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower} lightsBrightness = {lightsBrightness} />
+        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower} adjustLightsBrightness={adjustLightsBrightness}  />
       ) : (
         <div>
           <WelcomeScreen 
