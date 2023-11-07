@@ -101,13 +101,13 @@ const App = () => {
             const newBrightnessState = lights.lightId.state.bri;
             
             // Send a PUT request to update the light's state
-            fetch(`${LIGHTS_API_URL}/${lightId}/state`, {
+            fetch(`${BRI_API_URL}/${lightId}/state`, {
               method: 'PUT',
               body: JSON.stringify({ bri: newBrightnessState }),
             })
               .then(response => response.json())
               .then(updatedLight => {
-                console.log(`Light ${lightId} is now ${newPowerState ? 'on' : 'off'}`);
+                // console.log(`Light ${lightId} is now ${newPowerState ? 'on' : 'off'}`);
               })
               .catch(error => console.error('Error updating light state', error));
           }
@@ -121,7 +121,7 @@ const App = () => {
     <div className='main-page'>
       
       {isLoggedIn ? (
-        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower}/>
+        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower} lightsBrightness = {lightsBrightness} />
       ) : (
         <div>
           <WelcomeScreen 
