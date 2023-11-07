@@ -5,14 +5,27 @@ import "./Room.scss";
 //define type for props (avoid typescript errors)
 interface RoomProps {
   toggleLightsPower: () => void;
+  adjustLightsBrightness: (brightness: number) => void;
 }
 
-const Room: React.FC<RoomProps> = ({ toggleLightsPower }) => {
+const Room: React.FC<RoomProps> = ({
+  toggleLightsPower,
+  adjustLightsBrightness,
+}) => {
   const [isLightOn, setLightOn] = useState(false);
+  const [brightness, setBrightness] = useState(100); // Default brightness value
 
   const handleToggleLights = () => {
     setLightOn(!isLightOn);
     toggleLightsPower(); //call function from the prop
+  };
+
+  const handleBrightnessChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newBrightness = Number(event.target.value);
+    setBrightness(newBrightness);
+    adjustLightsBrightness(newBrightness);
   };
 
   return (
@@ -44,9 +57,17 @@ const Room: React.FC<RoomProps> = ({ toggleLightsPower }) => {
       {/* room brightness */}
       <div className="room-component__brightness">
         <div className="room-component__brightness__slider">
-          <div className="room-component__brightness__slider__inner">
+          <input
+            type="range"
+            min="0"
+            max="255" // Adjust the max value based on your light's maximum brightness
+            value={brightness}
+            onChange={handleBrightnessChange}
+            className="room-component__brightness__slider__input"
+          />
+          {/* <div className="room-component__brightness__slider__inner">
             <div className="room-component__brightness__slider__inner__circle"></div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

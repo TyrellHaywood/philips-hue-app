@@ -107,7 +107,7 @@ const App = () => {
             })
               .then(response => response.json())
               .then(updatedLight => {
-                // console.log(`Light ${lightId} is now ${newPowerState ? 'on' : 'off'}`);
+              console.log(`Light ${lightId} is now ${newBrightnessState}`);
               })
               .catch(error => console.error('Error updating light state', error));
           }

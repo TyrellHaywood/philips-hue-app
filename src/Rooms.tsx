@@ -5,9 +5,13 @@ import Room from "./Room";
 //define type for props (avoid typescript errors)
 interface RoomProps {
   toggleLightsPower: () => void;
+  adjustLightsBrightness: (brightness: number) => void;
 }
 
-const Rooms: React.FC<RoomProps> = ({ toggleLightsPower }) => {
+const Rooms: React.FC<RoomProps> = ({
+  toggleLightsPower,
+  adjustLightsBrightness,
+}) => {
   const myButton = document.getElementById("myButton");
 
   return (
@@ -21,13 +25,34 @@ const Rooms: React.FC<RoomProps> = ({ toggleLightsPower }) => {
       </div>
       <div className="room-section">
         {/*  */}
-        <Room toggleLightsPower={toggleLightsPower} />
-        <Room toggleLightsPower={toggleLightsPower} />
-        <Room toggleLightsPower={toggleLightsPower} />
-        <Room toggleLightsPower={toggleLightsPower} />
-        <Room toggleLightsPower={toggleLightsPower} />
-        <Room toggleLightsPower={toggleLightsPower} />
-        <Room toggleLightsPower={toggleLightsPower} />
+        <Room
+          toggleLightsPower={toggleLightsPower}
+          adjustLightsBrightness={adjustLightsBrightness}
+        />
+        <Room
+          toggleLightsPower={toggleLightsPower}
+          adjustLightsBrightness={adjustLightsBrightness}
+        />
+        <Room
+          toggleLightsPower={toggleLightsPower}
+          adjustLightsBrightness={adjustLightsBrightness}
+        />
+        <Room
+          toggleLightsPower={toggleLightsPower}
+          adjustLightsBrightness={adjustLightsBrightness}
+        />
+        <Room
+          toggleLightsPower={toggleLightsPower}
+          adjustLightsBrightness={adjustLightsBrightness}
+        />
+        <Room
+          toggleLightsPower={toggleLightsPower}
+          adjustLightsBrightness={adjustLightsBrightness}
+        />
+        <Room
+          toggleLightsPower={toggleLightsPower}
+          adjustLightsBrightness={adjustLightsBrightness}
+        />
       </div>
     </div>
   );
