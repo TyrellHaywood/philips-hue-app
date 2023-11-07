@@ -31,7 +31,7 @@ const Room: React.FC<RoomProps> = ({
   };
 
   return (
-    <div className="room-component">
+    <button className="room-component">
       {/* room info */}
       <div
         className={`room-component__information ${
@@ -69,7 +69,7 @@ const Room: React.FC<RoomProps> = ({
           />
         </div>
       </div>
-    </div>
+    </button>
   );
 };
 
