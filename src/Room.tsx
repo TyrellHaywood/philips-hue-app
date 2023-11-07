@@ -13,7 +13,7 @@ const Room: React.FC<RoomProps> = ({
   adjustLightsBrightness,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
-  const [brightness, setBrightness] = useState(100); // Default brightness value
+  const [brightness, setBrightness] = useState(0); // Default brightness value
 
   const handleToggleLights = () => {
     setLightOn(!isLightOn);
