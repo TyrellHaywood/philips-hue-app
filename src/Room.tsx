@@ -6,11 +6,13 @@ import "./Room.scss";
 interface RoomProps {
   toggleLightsPower: () => void;
   adjustLightsBrightness: (brightness: number) => void;
+  // lightsData: Array<any>; // Add lightsData prop
 }
 
 const Room: React.FC<RoomProps> = ({
   toggleLightsPower,
   adjustLightsBrightness,
+  // lightsData,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
@@ -65,9 +67,6 @@ const Room: React.FC<RoomProps> = ({
             onChange={handleBrightnessChange}
             className="room-component__brightness__slider__input"
           />
-          {/* <div className="room-component__brightness__slider__inner">
-            <div className="room-component__brightness__slider__inner__circle"></div>
-          </div> */}
         </div>
       </div>
     </div>
