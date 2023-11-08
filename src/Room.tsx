@@ -5,6 +5,7 @@ import "./Room.scss";
 //define type for props (avoid typescript errors)
 interface RoomProps {
   toggleLightsPower: () => void;
+  handleRoomClick: () => void;
   adjustLightsBrightness: (brightness: number) => void;
   // lightsData: Array<any>; // Add lightsData prop
 }
@@ -12,6 +13,7 @@ interface RoomProps {
 const Room: React.FC<RoomProps> = ({
   toggleLightsPower,
   adjustLightsBrightness,
+  handleRoomClick,
   // lightsData,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
@@ -31,7 +33,7 @@ const Room: React.FC<RoomProps> = ({
   };
 
   return (
-    <button className="room-component">
+    <button className="room-component" onClick={handleRoomClick()}>
       {/* room info */}
       <div
         className={`room-component__information ${

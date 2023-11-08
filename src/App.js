@@ -8,7 +8,8 @@ import { useState, useEffect } from 'react';
 import './App.scss' // imports stylesheet;
 import Rooms from './Rooms';
 import WelcomeScreen from './WelcomeScreen';
-import Room from './Room'
+import Room from './Room';
+import CurrentRoom from './CurrentRoom';
 
 let ipAddress = ''
 let idKey = ''
@@ -16,6 +17,7 @@ let idKey = ''
 const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [roomSelected, setRoomSelected] = useState(false);
   const [scenesData, setScenesData] = useState(null);
   const [groupData, setGroupData] = useState (null);
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
@@ -114,6 +116,12 @@ const App = () => {
       })
       .catch((error) => console.error('Error fetching lights', error));
   };
+
+  const handleRoomClick = () => {
+
+    setRoomSelected(true)
+
+  }
 
   return (
     <div className='main-page'>

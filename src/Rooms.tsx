@@ -1,16 +1,23 @@
 import React from "react";
+import { useState, useEffect } from "react";
+
 import "./Rooms.scss";
 import Room from "./Room";
+import CurrentRoom from "./CurrentRoom";
+
+const [roomSelected, setRoomSelected] = useState(false);
 
 //define type for props (avoid typescript errors)
 interface RoomProps {
   toggleLightsPower: () => void;
+  handleRoomClick: () => void;
   adjustLightsBrightness: (brightness: number) => void;
 }
 
 const Rooms: React.FC<RoomProps> = ({
   toggleLightsPower,
   adjustLightsBrightness,
+  handleRoomClick,
 }) => {
   const myButton = document.getElementById("myButton");
 
@@ -23,37 +30,42 @@ const Rooms: React.FC<RoomProps> = ({
       <div className="rooms-title">
         <h2 className="rooms-title__title">Rooms</h2>
       </div>
-      <div className="room-section">
-        {/*  */}
-        <Room
-          toggleLightsPower={toggleLightsPower}
-          adjustLightsBrightness={adjustLightsBrightness}
-        />
-        <Room
-          toggleLightsPower={toggleLightsPower}
-          adjustLightsBrightness={adjustLightsBrightness}
-        />
-        <Room
-          toggleLightsPower={toggleLightsPower}
-          adjustLightsBrightness={adjustLightsBrightness}
-        />
-        <Room
-          toggleLightsPower={toggleLightsPower}
-          adjustLightsBrightness={adjustLightsBrightness}
-        />
-        <Room
-          toggleLightsPower={toggleLightsPower}
-          adjustLightsBrightness={adjustLightsBrightness}
-        />
-        <Room
-          toggleLightsPower={toggleLightsPower}
-          adjustLightsBrightness={adjustLightsBrightness}
-        />
-        <Room
-          toggleLightsPower={toggleLightsPower}
-          adjustLightsBrightness={adjustLightsBrightness}
-        />
-      </div>
+      {roomSelected ? (
+        <CurrentRoom />
+      ) : (
+        <div className="room-section">
+          {/*  */}
+          <Room
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+            handleRoomClick={handleRoomClick}
+          />
+          <Room
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+          />
+          <Room
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+          />
+          <Room
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+          />
+          <Room
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+          />
+          <Room
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+          />
+          <Room
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+          />
+        </div>
+      )}
     </div>
   );
 };
