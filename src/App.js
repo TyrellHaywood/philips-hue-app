@@ -128,7 +128,16 @@ const App = () => {
     <div className='main-page'>
       
       {isLoggedIn ? (
-        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower} adjustLightsBrightness={adjustLightsBrightness} handleRoomClick={handleRoomClick} />
+        roomSelected ? (
+          <CurrentRoom />
+        ) : (
+          <Rooms
+            scenesData={scenesData}
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+            handleRoomClick={handleRoomClick}
+          />
+        )
       ) : (
         <div>
           <WelcomeScreen 
