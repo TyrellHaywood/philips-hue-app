@@ -5,3 +5,72 @@ $darker-brown : #8E5B1F;
 $dark-brown : #986B38;
 $medium-brown : #C78130;
 $light-brown : #F8B363;
+
+
+
+.current-room-header {
+    width: 100%;
+    height: 200px;
+    background-image: linear-gradient(90deg, $light-brown 28.79%, $medium-brown 88.97%);
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    
+    & h1 {
+        color: white;
+        font-size: 40px;
+    }
+
+    &__top {
+        display: flex;
+        align-items: center;
+        background-color: green;
+        height: 100px;
+        width: calc(100% - 100px);
+        margin-left: auto;
+        margin-right: auto;
+
+        &__round-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & button {
+                border: none;
+                background-color: rgba(255,255,255, 0);
+            }
+        }
+
+        // & .back-button {
+            
+        // }
+
+        & .edit-button {
+            margin-left: auto;
+        }
+
+        &__light-button {
+            width: 90px;
+            height: 50px;
+            border-radius: 50px;
+            background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
+            display: flex;
+            align-items: center;
+            justify-content: right;
+            margin-left: auto;
+
+            &__circle {
+                background-color: white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 5px;
+                border: none;
+            }
+        }
+    }
+
+}
