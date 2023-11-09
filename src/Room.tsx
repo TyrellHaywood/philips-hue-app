@@ -33,7 +33,7 @@ const Room: React.FC<RoomProps> = ({
   };
 
   return (
-    <button className="room-component" onClick={handleRoomClick()}>
+    <button className="room-component" onClick={handleRoomClick}>
       {/* room info */}
       <div
         className={`room-component__information ${

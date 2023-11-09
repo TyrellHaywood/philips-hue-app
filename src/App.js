@@ -118,8 +118,9 @@ const App = () => {
   };
 
   const handleRoomClick = () => {
-
+    console.log("clicked the room button!")
     setRoomSelected(true)
+    console.log("room selected (after state change)")
 
   }
 
@@ -127,7 +128,7 @@ const App = () => {
     <div className='main-page'>
       
       {isLoggedIn ? (
-        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower} adjustLightsBrightness={adjustLightsBrightness}  />
+        <Rooms scenesData={scenesData} toggleLightsPower={toggleLightsPower} adjustLightsBrightness={adjustLightsBrightness} handleRoomClick={handleRoomClick} />
       ) : (
         <div>
           <WelcomeScreen 
