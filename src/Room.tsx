@@ -18,6 +18,7 @@ const Room: React.FC<RoomProps> = ({
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
+  const [sliderWidth, setSliderWidth] = useState<number>(100);
 
   const handleToggleLights = () => {
     setLightOn(!isLightOn);
@@ -30,6 +31,11 @@ const Room: React.FC<RoomProps> = ({
     const newBrightness = Number(event.target.value);
     setBrightness(newBrightness);
     adjustLightsBrightness(newBrightness);
+
+    // update slider width
+    const thumbPosition = (newBrightness - 0) / (255 - 0);
+    const width = thumbPosition * 100;
+    setSliderWidth(width);
   };
 
   return (
@@ -64,10 +70,13 @@ const Room: React.FC<RoomProps> = ({
           <input
             type="range"
             min="0"
-            max="255" // Adjust the max value based on your light's maximum brightness
+            max="255" // Adjust the max value based on light's maximum brightness
             value={brightness}
             onChange={handleBrightnessChange}
             className="room-component__brightness__slider__input"
+            style={
+              { "--slider-width": `${sliderWidth}%` } as React.CSSProperties
+            }
           />
         </div>
       </div>

@@ -14,10 +14,24 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
+  const [sliderWidth, setSliderWidth] = useState<number>(100);
 
   const handleToggleLights = () => {
     setLightOn(!isLightOn);
     toggleLightsPower(); //call function from the prop
+  };
+
+  const handleBrightnessChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newBrightness = Number(event.target.value);
+    setBrightness(newBrightness);
+    adjustLightsBrightness(newBrightness);
+
+    // update slider width
+    const thumbPosition = (newBrightness - 0) / (255 - 0);
+    const width = thumbPosition * 100;
+    setSliderWidth(width);
   };
 
   return (
@@ -40,7 +54,21 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
             ></button>
           </div>
         </div>
-        <div className="current-room-header__bottom"></div>
+        <div className="current-room-header__bottom">
+          <div className="current-room-header__bottom__brightness-slider">
+            <input
+              type="range"
+              min="0"
+              max="255" // Adjust the max value based on light's maximum brightness
+              value={brightness}
+              onChange={handleBrightnessChange}
+              className="current-room-header__bottom__brightness-slider__input"
+              style={
+                { "--slider-width": `${sliderWidth}%` } as React.CSSProperties
+              }
+            />
+          </div>
+        </div>
       </header>
     </div>
   );

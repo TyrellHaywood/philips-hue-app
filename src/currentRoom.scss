@@ -23,6 +23,7 @@ $light-brown : #F8B363;
     &__top {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         background-color: green;
         height: 100px;
         width: calc(100% - 100px);
@@ -44,9 +45,9 @@ $light-brown : #F8B363;
             }
         }
 
-        // & .back-button {
-            
-        // }
+        & .back-button {
+            margin-right: 50px;
+        }
 
         & .edit-button {
             margin-left: auto;
@@ -60,7 +61,7 @@ $light-brown : #F8B363;
             display: flex;
             align-items: center;
             justify-content: right;
-            margin-left: auto;
+            margin-left: 50px;
 
             &__circle {
                 background-color: white;
@@ -71,6 +72,71 @@ $light-brown : #F8B363;
                 border: none;
             }
         }
+
+        &.lights-on {
+            /* Styles when lights are on */
+            .room-component__information__button {
+              justify-content: left;
+              transition: justify-content 0.3s;
+            }
+            .room-component__information__button__circle {
+              margin-left: 5px;
+            }
+          }
+          
+        &.lights-off {
+            /* Styles when lights are off */
+            .room-component__information__button {
+              justify-content: right;
+              transition: justify-content 0.3s;
+            }
+            .room-component__information__button__circle {
+              margin-right: 5px;
+            }
+          }
+    }
+
+    &__bottom {
+        background-color: blue;
+        width: calc(100% - 100px);
+        height: 100px;
+        border-bottom-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: auto;
+        margin-left: auto;
+
+        &__brightness-slider {
+            width: 100%;
+            height: 15px;
+            background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
+            border-radius: 50px;
+            margin-top: 35px;
+            display: flex;
+            align-items: center;
+
+            &__input {
+                width: var(--slider-width, 100%);
+                height: 15px;
+                background-image: linear-gradient(90deg, #C8BDB0 6.43%, rgba(227, 216, 203, 0.65) 74.38%);
+                border-radius: 50px;
+                display: flex;
+                align-items: center; 
+                appearance: none; // removes default styles
+
+                &::-webkit-slider-thumb {
+                    width: 25px;
+                    height: 25px; 
+                    background-color: white;
+                    border-radius: 50%;
+                    appearance: none; // Remove default appearance for custom styling
+                    }
+            }
+        }
+        
     }
 
 }
+
