@@ -101,7 +101,9 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           <Scene></Scene>
           <Scene></Scene>
         </div>
-        <p className="current-room-content__lights-title"></p>
+        <div className="current-room-content__lights-title">
+          <p>Lights</p>
+        </div>
         <div className="current-room-content__lights">
           <Light></Light>
           <Light></Light>

@@ -6,3 +6,49 @@ $dark-brown : #986B38;
 $medium-brown : #C78130;
 $light-brown : #F8B363;
 $button-blue : #408CFF;
+
+// ------------oO00O%-o0O-STYLES-------Oo0Oo%o--o0O
+
+.light {
+    width: 225px;
+    height: 292px;
+    background-color: #292929; // default color for now
+    border-radius: 30px;
+    margin-right: 35px; // space between for now, can definitely change
+    margin-bottom: 25px;
+
+
+    &__top {
+        width: 225px;
+        height: 192px;
+        background-color:#292929; // default color for now
+        border: none;
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 0px;
+
+        &__icon {
+            width: 90px;
+            height: 90px;
+            margin-top: 25px;
+        }
+
+        & p {
+            font-size: 20px;
+            color: white;
+        }
+    }
+
+    &__bottom {
+        width: 225px;
+        height: 100px;
+        background-color:#333333; // default color for now
+        border: none;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;
+    }
+}
