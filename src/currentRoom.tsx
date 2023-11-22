@@ -43,7 +43,9 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
           <h1>Tyrell's Room</h1>
           <div className="current-room-header__top__round-button edit-button">
-            <button>edit</button>
+            <div className="edit-button__more-options"></div>
+            <div className="edit-button__more-options"></div>
+            <div className="edit-button__more-options"></div>
           </div>
           <div className="current-room-header__top__light-button">
             <button
