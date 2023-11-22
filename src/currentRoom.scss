@@ -174,12 +174,23 @@ $button-blue : #408CFF;
 
  // ------------oO00O%-o0O-MID HEADER-------Oo0Oo%o--o0O
 
-.current-room-mid-header {
+.current-room-content {
+    width: calc(100% - 50px);
+    height: 100%;
+    // background-color: green;
+    margin-left: auto;
+    margin-right: auto;
+
+    &__mid-header {
     width: 100%;
-    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 25px;
     & p {
         color: rgba(255,255,255, 0.6);
         font-size: 20px;
+
     }
 
     &__search-bar {
@@ -190,6 +201,8 @@ $button-blue : #408CFF;
         display: flex;
         align-items: center;
         justify-content: left;
+        margin-right:25px;
+        margin-left: 25px;
 
         & span {
             margin-left: 25px;
@@ -230,4 +243,5 @@ $button-blue : #408CFF;
             background-color: $button-blue;
         }
     }
+}
 }

@@ -76,16 +76,18 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
         </div>
       </header>
-      <div className="current-room-mid-header">
-        <p>MY SCENES</p>
-        <div className="current-room-mid-header__search-bar">
-          <span className="material-icons md-light md-36">search</span>
-          <input type="text" placeholder="Search for your scene" />
-        </div>
-        <div className="current-room-mid-header__new-scene">
-          <button>
-            <span className="material-icons md-light md-36">add</span>
-          </button>
+      <div className="current-room-content">
+        <div className="current-room-content__mid-header">
+          <p>MY SCENES</p>
+          <div className="current-room-content__mid-header__search-bar">
+            <span className="material-icons md-light md-36">search</span>
+            <input type="text" placeholder="Search for your scene" />
+          </div>
+          <div className="current-room-content__mid-header__new-scene">
+            <button>
+              <span className="material-icons md-light md-36">add</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
