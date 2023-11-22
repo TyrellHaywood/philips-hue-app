@@ -16,6 +16,7 @@ $button-blue : #408CFF;
     border-radius: 30px;
     margin-right: 35px; // space between for now, can definitely change
     margin-top: 25px;
+    margin-bottom: 25px;
 
     &-button{
         width: 225px;
@@ -35,6 +36,9 @@ $button-blue : #408CFF;
             margin-top: 25px;
             margin-bottom: 49px;
             border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
     }
 
         & p {

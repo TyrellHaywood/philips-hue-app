@@ -6,7 +6,9 @@ const Scene = () => {
   return (
     <div className="scene">
       <button className="scene-button">
-        <div className="scene-button__color"></div>
+        <div className="scene-button__color">
+          <span className="material-icons md-light md-60">play_arrow</span>
+        </div>
         <p>Scene Name</p>
       </button>
     </div>

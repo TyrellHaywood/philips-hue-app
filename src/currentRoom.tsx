@@ -2,6 +2,7 @@ import React from "react";
 import "./CurrentRoom.scss"; // imports stylesheet;
 import { useState, useEffect } from "react";
 import Scene from "./Scene";
+import Light from "./Light";
 
 //define type for props (avoid typescript errors)
 interface CurrentRoomProps {
@@ -90,9 +91,21 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
             </button>
           </div>
         </div>
-        <div className="scenes">
+        <div className="current-room-content__scenes">
           <Scene></Scene>
           <Scene></Scene>
+          <Scene></Scene>
+          <Scene></Scene>
+          <Scene></Scene>
+          <Scene></Scene>
+          <Scene></Scene>
+          <Scene></Scene>
+        </div>
+        <p className="current-room-content__lights-title"></p>
+        <div className="current-room-content__lights">
+          <Light></Light>
+          <Light></Light>
+          <Light></Light>
         </div>
       </div>
     </div>
