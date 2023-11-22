@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 
 import "./Rooms.scss";
 import Room from "./Room";
-import CurrentRoom from "./CurrentRoom";
 
 //define type for props (avoid typescript errors)
 interface RoomProps {
