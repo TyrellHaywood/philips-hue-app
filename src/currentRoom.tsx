@@ -39,14 +39,17 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
       <header className="current-room-header">
         <div className="current-room-header__top">
           <div className="current-room-header__top__round-button back-button">
-            <span className="material-icons md-light">arrow_back</span>
-            <button>back</button>
+            <button className="back-button__arrow-button">
+              <span className="material-icons md-light md-36">arrow_back</span>
+            </button>
           </div>
           <h1>Tyrell's Room</h1>
           <div className="current-room-header__top__round-button edit-button">
-            <div className="edit-button__more-options"></div>
-            <div className="edit-button__more-options"></div>
-            <div className="edit-button__more-options"></div>
+            <button className="btn">
+              <div className="edit-button__more-options"></div>
+              <div className="edit-button__more-options"></div>
+              <div className="edit-button__more-options"></div>
+            </button>
           </div>
           <div className="current-room-header__top__light-button">
             <button

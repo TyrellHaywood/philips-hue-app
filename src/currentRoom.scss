@@ -46,14 +46,31 @@ $light-brown : #F8B363;
 
         & .back-button {
             margin-right: 50px;
+
+            &__arrow-button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                justify-content: center;
+                align-items: center;
+            }
             
         }
 
         & .edit-button {
+            width: 50px;
+            height: 50px;
             margin-left: auto;
-            display: flex;
-            align-items: center;
-            justify-content: left;
+            
+            & .btn {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: left;
+                padding-left: 0;
+            }
 
             // styles for more options icons on edit button
             &__more-options {
