@@ -5,6 +5,7 @@ $darker-brown : #8E5B1F;
 $dark-brown : #986B38;
 $medium-brown : #C78130;
 $light-brown : #F8B363;
+$button-blue : #408CFF;
 
 .current-room-header {
     width: 100%;
@@ -171,3 +172,62 @@ $light-brown : #F8B363;
 
 }
 
+ // ------------oO00O%-o0O-MID HEADER-------Oo0Oo%o--o0O
+
+.current-room-mid-header {
+    width: 100%;
+    
+    & p {
+        color: rgba(255,255,255, 0.6);
+        font-size: 20px;
+    }
+
+    &__search-bar {
+        width: 75%; // in styles it was 1085 px, but keeping it at this for now
+        height: 50px;
+        background-image: linear-gradient(90deg, #C8BDB0 6.43%, rgba(227, 216, 203, 0.65) 74.38%);
+        border-radius: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+
+        & span {
+            margin-left: 25px;
+            margin-right: 25px;
+        }
+
+        & input {
+            border: none;
+            width: 80%;
+            height: 50px;
+            border-radius: 50px;
+            background-color: transparent;
+            color: rgba(255,255,255, 1);
+            font-size: 20px;
+            
+            &::placeholder {
+                color: rgba(255,255,255, 0.4);
+                font-size: 20px;
+            }
+
+            &:focus {
+                outline: none;
+                
+            }
+        }
+    }
+
+    &__new-scene {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+
+        & button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: none;
+            background-color: $button-blue;
+        }
+    }
+}
