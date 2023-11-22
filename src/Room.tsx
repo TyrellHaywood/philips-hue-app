@@ -46,7 +46,9 @@ const Room: React.FC<RoomProps> = ({
           isLightOn ? "lights-on" : "lights-off"
         }`}
       >
-        <img className="room-component__information__img"></img>
+        <div className="room-component__information__img">
+          <span className="material-icons md-light md-60">king_bed</span>
+        </div>
         <div className="room-component__information__title">
           <h1 className="room-component__information__title__title">
             Tyrell's Room
