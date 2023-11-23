@@ -129,7 +129,9 @@ const App = () => {
       
       {isLoggedIn ? (
         roomSelected ? (
-          <CurrentRoom />
+          <CurrentRoom 
+            toggleLightsPower={toggleLightsPower}
+            adjustLightsBrightness={adjustLightsBrightness}/>
         ) : (
           <Rooms
             scenesData={scenesData}
