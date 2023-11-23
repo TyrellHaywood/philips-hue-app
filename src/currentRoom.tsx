@@ -39,7 +39,11 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   return (
     <div className="current-room">
       <header className="current-room-header">
-        <div className="current-room-header__top">
+        <div
+          className={`current-room-header__top ${
+            isLightOn ? "lights-on" : "lights-off"
+          }`}
+        >
           <div className="current-room-header__top__round-button back-button">
             <button className="back-button__arrow-button">
               <span className="material-icons md-light md-36">arrow_back</span>

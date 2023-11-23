@@ -22,6 +22,8 @@ const App = () => {
   const [groupData, setGroupData] = useState (null);
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
   const [idKey, setIdKey] = useState(""); // Define idKey state
+  const [defaultBrightness, setDefaultBrightness] = useState(0);
+
 
   //login authentication, talks to bridge and fetches data on scenes
   const handleLoginClick = async () => {
@@ -57,6 +59,31 @@ const App = () => {
     } catch (error) {
       console.error('Error fetching scenes data:', error);
     }
+
+    const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
+    const lightsResponse = await fetch(LIGHTS_API_URL);
+    const lightsData = await lightsResponse.json();
+
+    // Calculate the average brightness of the on lights
+    let totalBrightness = 0;
+    let onLightsCount = 0;
+
+    for (const lightId in lightsData) {
+      if (lightsData.hasOwnProperty(lightId)) {
+        const light = lightsData[lightId];
+        if (light.state.on) {
+          totalBrightness += light.state.bri;
+          onLightsCount++;
+        }
+      }
+    }
+
+    // Calculate the average brightness
+    const averageBrightness =
+      onLightsCount > 0 ? Math.round(totalBrightness / onLightsCount) : 0;
+
+    // Set the default brightness in the state
+    setDefaultBrightness(averageBrightness);
   };
 
   //controls on and off buttons of function, by fetching api light values and sending PUT method

@@ -20,7 +20,8 @@ const Room: React.FC<RoomProps> = ({
   const [brightness, setBrightness] = useState(0); // Default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
 
-  const handleToggleLights = () => {
+  const handleToggleLights = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation(); // Stop the change event from propagating to the parent button
     setLightOn(!isLightOn);
     toggleLightsPower(); //call function from the prop
   };
@@ -28,7 +29,10 @@ const Room: React.FC<RoomProps> = ({
   const handleBrightnessChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const newBrightness = Number(event.target.value);
+    event.stopPropagation(); // Stop the change event from propagating to the parent button
+    const newBrightness = Number(
+      (event as React.ChangeEvent<HTMLInputElement>).target.value
+    );
     setBrightness(newBrightness);
     adjustLightsBrightness(newBrightness);
 
