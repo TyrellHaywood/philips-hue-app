@@ -29,17 +29,21 @@ const Room: React.FC<RoomProps> = ({
   const handleBrightnessChange = (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    event.stopPropagation(); // Stop the change event from propagating to the parent button
     const newBrightness = Number(
       (event as React.ChangeEvent<HTMLInputElement>).target.value
     );
     setBrightness(newBrightness);
     adjustLightsBrightness(newBrightness);
 
-    // update slider width
+    // Update slider width
     const thumbPosition = (newBrightness - 0) / (255 - 0);
     const width = thumbPosition * 100;
     setSliderWidth(width);
+  };
+
+  const handleSliderMouseDown = (event: React.MouseEvent<HTMLInputElement>) => {
+    // Prevent the click event of the button when starting to interact with the slider
+    event.stopPropagation();
   };
 
   return (
@@ -79,6 +83,7 @@ const Room: React.FC<RoomProps> = ({
             max="255" // Adjust the max value based on light's maximum brightness
             value={brightness}
             onChange={handleBrightnessChange}
+            onMouseDown={handleSliderMouseDown}
             className="room-component__brightness__slider__input"
             style={
               { "--slider-width": `${sliderWidth}%` } as React.CSSProperties
