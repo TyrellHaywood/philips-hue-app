@@ -10,6 +10,7 @@ interface CurrentRoomProps {
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
   scenesData: Array<{ id: string; name: string }>;
+  handleSelectScene: (sceneId: string) => void;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
@@ -17,10 +18,12 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   adjustLightsBrightness,
   handleBackClick,
   scenesData,
+  handleSelectScene,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
+  const [selectedScene, setSelectedScene] = useState(null); // Add this line
 
   const handleToggleLights = () => {
     setLightOn(!isLightOn);
@@ -105,7 +108,11 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
         <div className="current-room-content__scenes">
           {Array.isArray(scenesData) &&
             scenesData.map((scene) => (
-              <Scene key={scene.id} sceneName={scene.name} />
+              <Scene
+                sceneId={scene.id}
+                sceneName={scene.name}
+                handleSelectScene={handleSelectScene}
+              />
             ))}
         </div>
         <div className="current-room-content__lights-title">

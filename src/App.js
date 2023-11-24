@@ -150,6 +150,30 @@ const App = () => {
       .catch((error) => console.error('Error fetching lights', error));
   };
 
+  const handleSelectScene = async (sceneId) => {
+    try {
+      // Assuming you have the API URL for applying a scene
+      const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; // Adjust the URL accordingly
+
+      // Send a PUT request to apply the selected scene
+      const response = await fetch(APPLY_SCENE_API_URL, {
+        method: 'PUT',
+        body: JSON.stringify({ scene: sceneId }),
+      });
+
+      if (response.ok) {
+        console.log(`Successfully applied scene: ${sceneId}`);
+        // Add any additional logic after applying the scene
+      } else {
+        console.error('Failed to apply scene:', response.statusText);
+        // Handle the error as needed
+      }
+    } catch (error) {
+      console.error('Error applying scene:', error);
+      // Handle the error as needed
+    }
+  };
+
   const handleRoomClick = () => {
     console.log("clicked the room button!")
     setRoomSelected(true)
@@ -173,6 +197,7 @@ const App = () => {
             adjustLightsBrightness={adjustLightsBrightness}
             handleBackClick={handleBackClick}
             scenesData={scenesData}
+            handleSelectScene={handleSelectScene}
             />
             
             
