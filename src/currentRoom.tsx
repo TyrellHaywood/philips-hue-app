@@ -9,12 +9,14 @@ interface CurrentRoomProps {
   toggleLightsPower: () => void;
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
+  scenesData: Array<{ id: string; name: string }>;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
   toggleLightsPower,
   adjustLightsBrightness,
   handleBackClick,
+  scenesData,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
@@ -101,14 +103,10 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
         </div>
         <div className="current-room-content__scenes">
-          <Scene></Scene>
-          <Scene></Scene>
-          <Scene></Scene>
-          <Scene></Scene>
-          <Scene></Scene>
-          <Scene></Scene>
-          <Scene></Scene>
-          <Scene></Scene>
+          {Array.isArray(scenesData) &&
+            scenesData.map((scene) => (
+              <Scene key={scene.id} sceneName={scene.name} />
+            ))}
         </div>
         <div className="current-room-content__lights-title">
           <p>Lights</p>

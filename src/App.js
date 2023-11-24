@@ -18,8 +18,8 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
-  const [scenesData, setScenesData] = useState(null);
-  const [groupData, setGroupData] = useState (null);
+  const [scenesData, setScenesData] = useState([]); // Initialize as an empty array  const [groupData, setGroupData] = useState (null);
+  const [groupData, setGroupData] = useState(null);
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
   const [idKey, setIdKey] = useState(""); // Define idKey state
   const [defaultBrightness, setDefaultBrightness] = useState(0);
@@ -49,16 +49,22 @@ const App = () => {
         }
       }
       
-      setScenesData(scenesById);
-      // setScenesData(data);
-      setIsLoggedIn(true);
-      console.log(scenesById);  
+      // Create an array of scene objects
+    const scenesArray = Object.keys(scenesById).map((sceneId) => {
+      return {
+        id: sceneId,
+        name: scenesById[sceneId].name,
+      };
+    });
 
-      console.log(scenesById['5IWuvEbKHTPDKZb']) // target testing
+    setScenesData(scenesArray);
+    setIsLoggedIn(true);
+    console.log(scenesArray);
 
-    } catch (error) {
-      console.error('Error fetching scenes data:', error);
-    }
+    console.log(scenesArray[0]); // Target testing
+  } catch (error) {
+    console.error('Error fetching scenes data:', error);
+  }
 
     const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
     const lightsResponse = await fetch(LIGHTS_API_URL);
@@ -166,6 +172,7 @@ const App = () => {
             toggleLightsPower={toggleLightsPower}
             adjustLightsBrightness={adjustLightsBrightness}
             handleBackClick={handleBackClick}
+            scenesData={scenesData}
             />
             
             
