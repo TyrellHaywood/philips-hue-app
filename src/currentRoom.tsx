@@ -8,11 +8,13 @@ import Light from "./Light";
 interface CurrentRoomProps {
   toggleLightsPower: () => void;
   adjustLightsBrightness: (brightness: number) => void;
+  handleBackClick: () => void;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
   toggleLightsPower,
   adjustLightsBrightness,
+  handleBackClick,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
@@ -45,7 +47,10 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           }`}
         >
           <div className="current-room-header__top__round-button back-button">
-            <button className="back-button__arrow-button">
+            <button
+              className="back-button__arrow-button"
+              onClick={handleBackClick}
+            >
               <span className="material-icons md-light md-36">arrow_back</span>
             </button>
           </div>

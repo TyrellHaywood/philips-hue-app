@@ -48,7 +48,7 @@ const App = () => {
           scenesById[sceneId] = sceneData[sceneId];
         }
       }
-
+      
       setScenesData(scenesById);
       // setScenesData(data);
       setIsLoggedIn(true);
@@ -115,7 +115,7 @@ const App = () => {
       .catch(error => console.error('Error fetching lights', error));
   };
 
-  // handle brightness slider on rooms (groups) page
+  // handle brightness slider on other components
   const adjustLightsBrightness = (brightness) => {
     const BRI_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
   
@@ -151,6 +151,12 @@ const App = () => {
 
   }
 
+  const handleBackClick = () => {
+    console.log("clicked back page button")
+    setRoomSelected(false)
+    console.log("room changed (after state change)")
+  }
+
   return (
     <div className='main-page'>
       
@@ -158,7 +164,11 @@ const App = () => {
         roomSelected ? (
           <CurrentRoom 
             toggleLightsPower={toggleLightsPower}
-            adjustLightsBrightness={adjustLightsBrightness}/>
+            adjustLightsBrightness={adjustLightsBrightness}
+            handleBackClick={handleBackClick}
+            />
+            
+            
         ) : (
           <Rooms
             scenesData={scenesData}
