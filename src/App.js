@@ -174,6 +174,14 @@ const App = () => {
     }
   };
 
+  // bri = brightness: 1-254
+  // hue = hue of light: wrapping val between 0-65535
+  // saturation: 0(white)-254(colored)
+  // xy: coordinates of color in CIE color space 
+  // ct: mired color temp of light, 153(6500k)-500(2000)k
+  // colormode: indicates the mode which the light is working in
+
+
   const handleRoomClick = () => {
     console.log("clicked the room button!")
     setRoomSelected(true)
