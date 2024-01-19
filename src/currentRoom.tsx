@@ -12,6 +12,7 @@ interface CurrentRoomProps {
   scenesData: Array<{ id: string; name: string }>;
   handleSelectScene: (sceneId: string) => void;
   handleSearchInput: () => void;
+  handleSearchScene: (sceneId: any) => void;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
@@ -20,6 +21,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   handleBackClick,
   scenesData,
   handleSelectScene,
+  handleSearchScene,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
@@ -104,7 +106,10 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
         <div className="current-room-content__mid-header">
           <p>MY SCENES</p>
           <div className="current-room-content__mid-header__search-bar">
-            <button className="current-room-content__mid-header__search-bar__button">
+            <button
+              className="current-room-content__mid-header__search-bar__button"
+              onClick={handleSearchScene}
+            >
               <span className="material-icons md-light md-36">search</span>
             </button>
             <input

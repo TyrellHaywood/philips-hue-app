@@ -24,6 +24,8 @@ const App = () => {
   const [idKey, setIdKey] = useState(""); // Define idKey state
   const [defaultBrightness, setDefaultBrightness] = useState(0);
   const [scenesArray, setScenesArray] = useState([]);
+  const [searchValue, setSearchValue] = useState(""); // search bar text onChange
+
 
 
   //login authentication, talks to bridge and fetches data on scenes
@@ -155,10 +157,10 @@ const App = () => {
     try {
   
       const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
-      // Check if scenesArray is available in the component state
+      // check if scenesArray is available in the component state
       if (!scenesData || scenesData.length === 0) {
         console.error('scenesArray is empty or not yet initialized');
-        // Handle the error 
+        // handle the error 
         return;
       }
       // send a PUT request to apply the selected scene
@@ -187,34 +189,53 @@ const App = () => {
   }
   };
 
-  const handleSearchScene = async (sceneId) => {
+// event handler for input changes in search bar
+  const handleSearchInput = (event) => {
+    setSearchValue(event.target.value);
+    console.log(event.target.value); // logging search value
+  };
 
-    if("some text" == sceneId){
+  
+  const handleSearchScene = async (sceneId) => {
+    console.log("Search button clicked!")
+    if(searchValue == sceneId.name){
       try {
   
-      const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
-
-      // Send a PUT request to apply the selected scene
-      const response = await fetch(APPLY_SCENE_API_URL, {
-        method: 'PUT',
-        body: JSON.stringify({ scene: sceneId }),
-      });
-
-      if (response.ok) {
-        console.log(`Successfully applied scene: ${sceneId} with search bar.`);
-
+        const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
+        // check if scenesArray is available in the component state
+        if (!scenesData || scenesData.length === 0) {
+          console.error('scenesArray is empty or not yet initialized');
+          // handle the error 
+          return;
+        }
+        // send a PUT request to apply the selected scene
+        const response = await fetch(APPLY_SCENE_API_URL, {
+          method: 'PUT',
+          body: JSON.stringify({ scene: sceneId }),
+        });
+  
+        if (response.ok) {
+          // find the scene object with the matching ID from scenesArray
+          const selectedScene = scenesData.find((scene) => scene.id === sceneId);
+  
+        if (selectedScene) {
+          console.log(`Successfully applied scene: ${selectedScene.name}`);
+        } else {
+          console.error('Scene not found:', sceneId);
+          // handle the error 
+        }
       } else {
         console.error('Failed to apply scene:', response.statusText);
-        // Handle the error 
+        // handle the error 
       }
     } catch (error) {
       console.error('Error applying scene:', error);
-      // Handle the error 
+      // handle the error 
     }
     }
-
-    
   };
+
+  
 
   // bri = brightness: 1-254
   // hue = hue of light: wrapping val between 0-65535
@@ -248,6 +269,8 @@ const App = () => {
             handleBackClick={handleBackClick}
             scenesData={scenesData}
             handleSelectScene={handleSelectScene}
+            handleSearchInput={handleSearchInput}
+            handleSearchScene={handleSearchScene}
             />
             
             
