@@ -11,8 +11,8 @@ interface CurrentRoomProps {
   handleBackClick: () => void;
   scenesData: Array<{ id: string; name: string }>;
   handleSelectScene: (sceneId: string) => void;
-  handleSearchInput: () => void;
-  handleSearchScene: (sceneId: any) => void;
+  handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSearchScene: (searchValue: string) => void;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
@@ -108,7 +108,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           <div className="current-room-content__mid-header__search-bar">
             <button
               className="current-room-content__mid-header__search-bar__button"
-              onClick={handleSearchScene}
+              onClick={() => handleSearchScene(searchValue)}
             >
               <span className="material-icons md-light md-36">search</span>
             </button>

@@ -195,43 +195,47 @@ const App = () => {
     console.log(event.target.value); // logging search value
   };
 
+  // handles search bar scenes
+  const handleSearchScene = async (sceneName) => {
+    console.log("Search button clicked!");
+    console.log("Search value:", searchValue);
+    console.log("Scene name:", sceneName);
+
+    try {
+      const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`;
   
-  const handleSearchScene = async (sceneId) => {
-    console.log("Search button clicked!")
-    if(searchValue == sceneId.name){
-      try {
+      // check if scenesData is available in the component state
+      if (!scenesData || scenesData.length === 0) {
+        console.error('scenesArray is empty or not yet initialized');
+        // handle the error 
+        return;
+      }
   
-        const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
-        // check if scenesArray is available in the component state
-        if (!scenesData || scenesData.length === 0) {
-          console.error('scenesArray is empty or not yet initialized');
-          // handle the error 
-          return;
-        }
+      // find the scene object with the matching name from scenesData
+      const selectedScene = scenesData.find((scene) => scene.name.trim().toLowerCase() === sceneName.trim().toLowerCase());
+  
+      if (selectedScene) {
+        console.log("Found the scene!");
+  
         // send a PUT request to apply the selected scene
         const response = await fetch(APPLY_SCENE_API_URL, {
           method: 'PUT',
-          body: JSON.stringify({ scene: sceneId }),
+          body: JSON.stringify({ scene: selectedScene.id }),
         });
   
         if (response.ok) {
-          // find the scene object with the matching ID from scenesArray
-          const selectedScene = scenesData.find((scene) => scene.id === sceneId);
-  
-        if (selectedScene) {
           console.log(`Successfully applied scene: ${selectedScene.name}`);
         } else {
-          console.error('Scene not found:', sceneId);
+          console.error('Failed to apply scene:', response.statusText);
           // handle the error 
         }
       } else {
-        console.error('Failed to apply scene:', response.statusText);
+        console.error('Scene not found:', sceneName);
         // handle the error 
       }
     } catch (error) {
       console.error('Error applying scene:', error);
       // handle the error 
-    }
     }
   };
 
