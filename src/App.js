@@ -156,7 +156,7 @@ const App = () => {
   
       const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
       // Check if scenesArray is available in the component state
-      if (!scenesArray.length) {
+      if (!scenesData || scenesData.length === 0) {
         console.error('scenesArray is empty or not yet initialized');
         // Handle the error 
         return;
@@ -169,7 +169,7 @@ const App = () => {
 
       if (response.ok) {
         // find the scene object with the matching ID from scenesArray
-        const selectedScene = scenesArray.find((scene) => scene.id === sceneId);
+        const selectedScene = scenesData.find((scene) => scene.id === sceneId);
 
       if (selectedScene) {
         console.log(`Successfully applied scene: ${selectedScene.name}`);
