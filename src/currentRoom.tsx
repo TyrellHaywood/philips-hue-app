@@ -96,7 +96,9 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
         <div className="current-room-content__mid-header">
           <p>MY SCENES</p>
           <div className="current-room-content__mid-header__search-bar">
-            <span className="material-icons md-light md-36">search</span>
+            <button className="current-room-content__mid-header__search-bar__button">
+              <span className="material-icons md-light md-36">search</span>
+            </button>
             <input type="text" placeholder="Search for your scene" />
           </div>
           <div className="current-room-content__mid-header__new-scene">

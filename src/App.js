@@ -174,6 +174,35 @@ const App = () => {
     }
   };
 
+  const handleSearchScene = async (sceneId) => {
+
+    if("some text" == sceneId){
+      try {
+  
+      const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
+
+      // Send a PUT request to apply the selected scene
+      const response = await fetch(APPLY_SCENE_API_URL, {
+        method: 'PUT',
+        body: JSON.stringify({ scene: sceneId }),
+      });
+
+      if (response.ok) {
+        console.log(`Successfully applied scene: ${sceneId} with search bar.`);
+
+      } else {
+        console.error('Failed to apply scene:', response.statusText);
+        // Handle the error 
+      }
+    } catch (error) {
+      console.error('Error applying scene:', error);
+      // Handle the error 
+    }
+    }
+
+    
+  };
+
   // bri = brightness: 1-254
   // hue = hue of light: wrapping val between 0-65535
   // saturation: 0(white)-254(colored)

@@ -205,11 +205,18 @@ $button-blue : #408CFF;
         margin-right:25px;
         margin-left: 25px;
 
-        & span {
+        &__button {
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: transparent;
+            width: 30px;
+            height: 30px;
             margin-left: 25px;
             margin-right: 25px;
         }
-
+        
         & input {
             border: none;
             width: 80%;
