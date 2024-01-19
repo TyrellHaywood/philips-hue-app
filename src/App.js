@@ -18,8 +18,9 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
-  const [scenesData, setScenesData] = useState([]); // Initialize as an empty array  const [groupData, setGroupData] = useState (null);
+  const [scenesData, setScenesData] = useState([]); // Initialize as an empty array 
   const [groupData, setGroupData] = useState(null);
+  const [lightsData, setLightsData] = useState([]); // Initialize as an empty array 
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
   const [idKey, setIdKey] = useState(""); // Define idKey state
   const [defaultBrightness, setDefaultBrightness] = useState(0);
@@ -32,18 +33,19 @@ const App = () => {
   const handleLoginClick = async () => {
     const SCENE_API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
     const GROUP_API_URL = `https://${ipAddress}/api/${idKey}/groups`;
+    const LIGHT_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
 
     try {
       //fetch scenes
       const sceneResponse = await fetch(SCENE_API_URL);
       const sceneData = await sceneResponse.json();
-      const scenesById = {} //create an empty object to store scenes by id
+      const scenesById = {} // create an empty object to store scenes by id
 
       //fetch groups
       const groupResponse = await fetch(GROUP_API_URL);
       const groupData = await groupResponse.json();
-      setGroupData(groupData)
-      console.log(groupData[0])
+      setGroupData(groupData);
+      console.log(groupData[0]);
 
       //loop thru scenes and store them in scenesById variable
       for (const sceneId in sceneData) {
@@ -51,7 +53,6 @@ const App = () => {
           scenesById[sceneId] = sceneData[sceneId];
         }
       }
-      
       // Create an array of scene objects
     const scenesArray = Object.keys(scenesById).map((sceneId) => {
       return {
@@ -59,15 +60,45 @@ const App = () => {
         name: scenesById[sceneId].name,
       };
     });
-
     setScenesData(scenesArray);
     setIsLoggedIn(true);
-    console.log(scenesArray);
-
     console.log(scenesArray); // log entire array
   } catch (error) {
     console.error('Error fetching scenes data:', error);
   }
+
+
+  // create an array of light objects
+    try {
+      // fetch lights
+      const lightResponse = await fetch(LIGHT_API_URL);
+      const lightData = await lightResponse.json();
+      const lightsById = {} // create an empty object to store lights by id
+      setLightsData(lightData);
+      console.log(lightData);
+
+      // loop thru lights and store them in lightsById variable
+      for(const lightId in lightData) {
+        if (lightData.hasOwnProperty(lightId)) {
+          lightsById[lightId] = lightData[lightId];
+        }
+      }
+      
+      // Create an array of scene objects
+      const lightsArray = Object.keys(lightsById).map((lightId) => {
+        return {
+          id: lightId,
+          name: lightsById[lightId].name,
+        };
+      });
+      setLightsData(lightsArray);
+      console.log(lightsArray); // log entire array
+
+
+    } catch (error) {
+      console.error("Error mapping lights array:", error);
+    }
+
 
     const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
     const lightsResponse = await fetch(LIGHTS_API_URL);
