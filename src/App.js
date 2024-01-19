@@ -23,6 +23,7 @@ const App = () => {
   const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
   const [idKey, setIdKey] = useState(""); // Define idKey state
   const [defaultBrightness, setDefaultBrightness] = useState(0);
+  const [scenesArray, setScenesArray] = useState([]);
 
 
   //login authentication, talks to bridge and fetches data on scenes
@@ -61,7 +62,7 @@ const App = () => {
     setIsLoggedIn(true);
     console.log(scenesArray);
 
-    console.log(scenesArray[0]); // Target testing
+    console.log(scenesArray); // log entire array
   } catch (error) {
     console.error('Error fetching scenes data:', error);
   }
@@ -154,24 +155,36 @@ const App = () => {
     try {
   
       const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
-
-      // Send a PUT request to apply the selected scene
+      // Check if scenesArray is available in the component state
+      if (!scenesArray.length) {
+        console.error('scenesArray is empty or not yet initialized');
+        // Handle the error 
+        return;
+      }
+      // send a PUT request to apply the selected scene
       const response = await fetch(APPLY_SCENE_API_URL, {
         method: 'PUT',
         body: JSON.stringify({ scene: sceneId }),
       });
 
       if (response.ok) {
-        console.log(`Successfully applied scene: ${sceneId.name}`);
+        // find the scene object with the matching ID from scenesArray
+        const selectedScene = scenesArray.find((scene) => scene.id === sceneId);
 
+      if (selectedScene) {
+        console.log(`Successfully applied scene: ${selectedScene.name}`);
       } else {
-        console.error('Failed to apply scene:', response.statusText);
-        // Handle the error 
+        console.error('Scene not found:', sceneId);
+        // handle the error 
       }
-    } catch (error) {
-      console.error('Error applying scene:', error);
-      // Handle the error 
+    } else {
+      console.error('Failed to apply scene:', response.statusText);
+      // handle the error 
     }
+  } catch (error) {
+    console.error('Error applying scene:', error);
+    // handle the error 
+  }
   };
 
   const handleSearchScene = async (sceneId) => {
