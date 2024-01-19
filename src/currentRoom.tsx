@@ -1,4 +1,5 @@
 import React from "react";
+import { SyntheticEvent, KeyboardEvent } from "react";
 import "./CurrentRoom.scss"; // imports stylesheet;
 import { useState, useEffect, ChangeEvent } from "react";
 import Scene from "./Scene";
@@ -12,7 +13,12 @@ interface CurrentRoomProps {
   scenesData: Array<{ id: string; name: string }>;
   handleSelectScene: (sceneId: string) => void;
   handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSearchScene: (searchValue: string) => void;
+  handleSearchScene: (
+    event:
+      | React.MouseEvent<HTMLButtonElement>
+      | KeyboardEvent<HTMLInputElement>,
+    searchValue: string
+  ) => void;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
@@ -24,7 +30,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   handleSearchScene,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
-  const [brightness, setBrightness] = useState(0); // Default brightness value
+  const [brightness, setBrightness] = useState(0); // default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
   const [selectedScene, setSelectedScene] = useState(null);
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
@@ -51,6 +57,16 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
     console.log(event.target.value);
+  };
+
+  const handleSearchKeyPress = (
+    event: KeyboardEvent<HTMLInputElement>
+  ): void => {
+    // Prevent the default action for "Enter" key to avoid form submission
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleSearchScene(event, searchValue);
+    }
   };
 
   return (
@@ -108,7 +124,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           <div className="current-room-content__mid-header__search-bar">
             <button
               className="current-room-content__mid-header__search-bar__button"
-              onClick={() => handleSearchScene(searchValue)}
+              onClick={(event) => handleSearchScene(event, searchValue)}
             >
               <span className="material-icons md-light md-36">search</span>
             </button>
@@ -117,6 +133,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
               placeholder="Search for your scene"
               value={searchValue}
               onChange={handleSearchInput}
+              onKeyDown={handleSearchKeyPress}
             />
           </div>
           <div className="current-room-content__mid-header__new-scene">
