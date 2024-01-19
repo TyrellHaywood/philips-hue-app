@@ -1,6 +1,6 @@
 import React from "react";
 import "./CurrentRoom.scss"; // imports stylesheet;
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import Scene from "./Scene";
 import Light from "./Light";
 
@@ -11,6 +11,7 @@ interface CurrentRoomProps {
   handleBackClick: () => void;
   scenesData: Array<{ id: string; name: string }>;
   handleSelectScene: (sceneId: string) => void;
+  handleSearchInput: () => void;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
@@ -23,7 +24,8 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
-  const [selectedScene, setSelectedScene] = useState(null); // Add this line
+  const [selectedScene, setSelectedScene] = useState(null);
+  const [searchValue, setSearchValue] = useState(""); // search bar text onChange
 
   const handleToggleLights = () => {
     setLightOn(!isLightOn);
@@ -41,6 +43,12 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
     const thumbPosition = (newBrightness - 0) / (255 - 0);
     const width = thumbPosition * 100;
     setSliderWidth(width);
+  };
+
+  // event handler for input changes in search bar
+  const handleSearchInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setSearchValue(event.target.value);
+    console.log(event.target.value);
   };
 
   return (
@@ -99,7 +107,12 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
             <button className="current-room-content__mid-header__search-bar__button">
               <span className="material-icons md-light md-36">search</span>
             </button>
-            <input type="text" placeholder="Search for your scene" />
+            <input
+              type="text"
+              placeholder="Search for your scene"
+              value={searchValue}
+              onChange={handleSearchInput}
+            />
           </div>
           <div className="current-room-content__mid-header__new-scene">
             <button>

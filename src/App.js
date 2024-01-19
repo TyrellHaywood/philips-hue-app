@@ -162,7 +162,7 @@ const App = () => {
       });
 
       if (response.ok) {
-        console.log(`Successfully applied scene: ${sceneId}`);
+        console.log(`Successfully applied scene: ${sceneId.name}`);
 
       } else {
         console.error('Failed to apply scene:', response.statusText);
