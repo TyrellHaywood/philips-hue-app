@@ -152,6 +152,45 @@ const App = () => {
       .catch(error => console.error('Error fetching lights', error));
   };
 
+  const toggleSingleLightPower = async (lightId) => {
+    try {
+  
+      const SINGLE_LIGHT_API_URL = `https://${ipAddress}/api/${idKey}/lights/${lightId}/state`; 
+      // check if lightsArray is available in the component state
+      if (!lightsData || lightsData.length === 0) {
+        console.error('lightsArray is empty or not yet initialized');
+        // handle the error 
+        return;
+      }
+      
+      // Replace 'on' with 'off' and vice versa to toggle power
+      const newPowerState = lightsData[lightId].on ? false : true;
+      // send a PUT request to turn of selected light
+      const response = await fetch(SINGLE_LIGHT_API_URL, {
+        method: 'PUT',
+        body: JSON.stringify({ on: newPowerState }),
+      });
+
+      if (response.ok) {
+        // find the light object with the matching ID from lightsArray
+        const selectedLight = lightsData.find((light) => light.id === lightId);
+
+      if (selectedLight) {
+        console.log(`Successfully applied light: ${selectedLight.name}`);
+      } else {
+        console.error('Light not found:', lightId);
+        // handle the error 
+      }
+    } else {
+      console.error('Failed to apply light:', response.statusText);
+      // handle the error 
+    }
+  } catch (error) {
+    console.error('Error applying scene:', error);
+    // handle the error 
+  }
+  };
+
   // handle brightness slider on other components
   const adjustLightsBrightness = (brightness) => {
     const BRI_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
@@ -306,6 +345,7 @@ const App = () => {
         roomSelected ? (
           <CurrentRoom 
             toggleLightsPower={toggleLightsPower}
+            toggleSingleLightPower={toggleSingleLightPower}
             adjustLightsBrightness={adjustLightsBrightness}
             handleBackClick={handleBackClick}
             scenesData={scenesData}

@@ -8,6 +8,7 @@ import Light from "./Light";
 //define type for props (avoid typescript errors)
 interface CurrentRoomProps {
   toggleLightsPower: () => void;
+  toggleSingleLightPower: (lightId: string) => void;
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
   scenesData: Array<{ id: string; name: string }>;
@@ -24,6 +25,7 @@ interface CurrentRoomProps {
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
   toggleLightsPower,
+  toggleSingleLightPower,
   adjustLightsBrightness,
   handleBackClick,
   scenesData,
@@ -163,7 +165,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
               <Light
                 lightId={light.id}
                 lightName={light.name}
-                toggleLightsPower={toggleLightsPower}
+                toggleSingleLightPower={toggleSingleLightPower}
               />
             ))}
         </div>
