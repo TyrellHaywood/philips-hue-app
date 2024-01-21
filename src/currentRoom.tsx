@@ -158,13 +158,10 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           <p>Lights</p>
         </div>
         <div className="current-room-content__lights">
-          {/* {Array.isArray(lightsData) &&
+          {Array.isArray(lightsData) &&
             lightsData.map((light) => (
               <Light lightId={light.id} lightName={light.name} />
-            ))} */}
-          <Light />
-          <Light />
-          <Light />
+            ))}
         </div>
       </div>
     </div>
