@@ -18,14 +18,14 @@ const Scene: React.FC<SceneProps> = ({
   };
 
   return (
-    <div className="scene">
-      <button className="scene-button" onClick={handleClick}>
-        <div className="scene-button__color">
+    <button className="scene-component" onClick={handleClick}>
+      <div className="scene-component__button">
+        <div className="scene-component__button__color">
           <span className="material-icons md-light md-60">play_arrow</span>
         </div>
         <p>{sceneName}</p>
-      </button>
-    </div>
+      </div>
+    </button>
   );
 };
 
