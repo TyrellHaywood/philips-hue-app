@@ -6,9 +6,21 @@ import { useState, useEffect } from "react";
 interface lightProps {
   lightId: string;
   lightName: string;
+  toggleLightsPower: () => void;
 }
 
-const Light: React.FC<lightProps> = ({ lightId, lightName }) => {
+const Light: React.FC<lightProps> = ({
+  lightId,
+  lightName,
+  toggleLightsPower,
+}) => {
+  const [isLightOn, setLightOn] = useState(false);
+
+  const handleToggleLights = () => {
+    setLightOn(!isLightOn);
+    toggleLightsPower(); //call function from the prop
+  };
+
   return (
     <button className="light-component">
       <div className="light-component__top">
@@ -17,7 +29,16 @@ const Light: React.FC<lightProps> = ({ lightId, lightName }) => {
         </div>
         <p>{lightName}</p>
       </div>
-      <div className="light-component__bottom"></div>
+      <div className="light-component__bottom">
+        <div className="light-component__bottom__light-button">
+          <button
+            className={`light-component__bottom__light-button__circle ${
+              isLightOn ? "on" : "off"
+            }`}
+            onClick={handleToggleLights}
+          ></button>
+        </div>
+      </div>
     </button>
   );
 };

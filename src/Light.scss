@@ -17,7 +17,15 @@ $button-blue : #408CFF;
     margin-right: 35px; // space between for now, can definitely change
     margin-bottom: 25px;
     border: none;
+    background-position: 45% 0; /* Initially, the gradient is shifted to the right */
+    transform: translateX(0); /* Initial scale: no scaling */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
 
+    &:hover {
+        background-position: 0 0; /* On hover, shift the gradient to the left */
+        transform: translateX(10px); /* Increase the scale slightly to make it pop out */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increase the shadow for the pop-out effect */
+      }
 
     &__top {
         width: 225px;
@@ -51,5 +59,50 @@ $button-blue : #408CFF;
         border: none;
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &__light-button {
+            width: 90px;
+            height: 50px;
+            border-radius: 50px;
+            background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
+            display: flex;
+            align-items: center;
+            justify-content: right;
+
+            &__circle {
+                background-color: white;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                margin-right: 5px;
+                border: none;
+                
+            }
+        }
+
+        &.lights-on {
+            /* Styles when lights are on */
+            .current-room-header__top__light-button {
+              justify-content: left;
+              transition: justify-content 0.3s;
+            }
+            .current-room-header__top__light-button__circle {
+              margin-left: 5px;
+            }
+          }
+          
+        &.lights-off {
+            /* Styles when lights are off */
+            .current-room-header__top__light-button {
+              justify-content: right;
+              transition: justify-content 0.3s;
+            }
+            .current-room-header__top__light-button__circle {
+              margin-right: 5px;
+            }
+          }
     }
 }
