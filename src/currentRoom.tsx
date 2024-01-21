@@ -11,6 +11,7 @@ interface CurrentRoomProps {
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
   scenesData: Array<{ id: string; name: string }>;
+  lightsData: Array<{ id: string; name: string }>;
   handleSelectScene: (sceneId: string) => void;
   handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchScene: (
@@ -26,6 +27,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   adjustLightsBrightness,
   handleBackClick,
   scenesData,
+  lightsData,
   handleSelectScene,
   handleSearchScene,
 }) => {
@@ -107,7 +109,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
             <input
               type="range"
               min="0"
-              max="255" // Adjust the max value based on light's maximum brightness
+              max="255" // adjust the max value based on light's maximum brightness
               value={brightness}
               onChange={handleBrightnessChange}
               className="current-room-header__bottom__brightness-slider__input"
@@ -156,9 +158,13 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           <p>Lights</p>
         </div>
         <div className="current-room-content__lights">
-          <Light></Light>
-          <Light></Light>
-          <Light></Light>
+          {/* {Array.isArray(lightsData) &&
+            lightsData.map((light) => (
+              <Light lightId={light.id} lightName={light.name} />
+            ))} */}
+          <Light />
+          <Light />
+          <Light />
         </div>
       </div>
     </div>

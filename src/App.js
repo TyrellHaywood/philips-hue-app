@@ -1,7 +1,4 @@
 
-//sample scene = cSt4xDglSTLR9lp (homework)
-//green bug = g3Y6E1wtnkUZJV8
-
 import React from "react";
 import { useState, useEffect } from 'react';
 
@@ -312,6 +309,7 @@ const App = () => {
             adjustLightsBrightness={adjustLightsBrightness}
             handleBackClick={handleBackClick}
             scenesData={scenesData}
+            lightsData={lightsData}
             handleSelectScene={handleSelectScene}
             handleSearchInput={handleSearchInput}
             handleSearchScene={handleSearchScene}
