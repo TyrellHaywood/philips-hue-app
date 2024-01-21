@@ -83,9 +83,11 @@ const App = () => {
       
       // Create an array of scene objects
       const lightsArray = Object.keys(lightsById).map((lightId) => {
+        const {name, state} = lightsById[lightId]; // destructure name and state
         return {
           id: lightId,
-          name: lightsById[lightId].name,
+          name,
+          on: state.on
         };
       });
       setLightsData(lightsArray);
@@ -99,15 +101,15 @@ const App = () => {
 
     const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
     const lightsResponse = await fetch(LIGHTS_API_URL);
-    const lightsData = await lightsResponse.json();
+    const fetchedLightsData = await lightsResponse.json();
 
     // Calculate the average brightness of the on lights
     let totalBrightness = 0;
     let onLightsCount = 0;
 
-    for (const lightId in lightsData) {
-      if (lightsData.hasOwnProperty(lightId)) {
-        const light = lightsData[lightId];
+    for (const lightId in fetchedLightsData) {
+      if (fetchedLightsData.hasOwnProperty(lightId)) {
+        const light = fetchedLightsData[lightId];
         if (light.state.on) {
           totalBrightness += light.state.bri;
           onLightsCount++;
@@ -152,43 +154,39 @@ const App = () => {
       .catch(error => console.error('Error fetching lights', error));
   };
 
+  // controls on/off power button for each individual light rendered in CurrentRoom.tsx
   const toggleSingleLightPower = async (lightId) => {
     try {
+      const SINGLE_LIGHT_API_URL = `https://${ipAddress}/api/${idKey}/lights/${lightId}`;
   
-      const SINGLE_LIGHT_API_URL = `https://${ipAddress}/api/${idKey}/lights/${lightId}/state`; 
-      // check if lightsArray is available in the component state
       if (!lightsData || lightsData.length === 0) {
         console.error('lightsArray is empty or not yet initialized');
-        // handle the error 
         return;
       }
+  
+      const selectedLight = lightsData.find((light) => light.id === lightId);
       
-      // Replace 'on' with 'off' and vice versa to toggle power
-      const newPowerState = lightsData[lightId].on ? false : true;
-      // send a PUT request to turn of selected light
+      if (!selectedLight) {
+        console.error('Light not found:', lightId);
+        return;
+      }
+  
+      const newPowerState = selectedLight.state && selectedLight.state.on ? false : true;
+        
       const response = await fetch(SINGLE_LIGHT_API_URL, {
         method: 'PUT',
         body: JSON.stringify({ on: newPowerState }),
       });
-
+  
       if (response.ok) {
-        // find the light object with the matching ID from lightsArray
-        const selectedLight = lightsData.find((light) => light.id === lightId);
-
-      if (selectedLight) {
-        console.log(`Successfully applied light: ${selectedLight.name}`);
+        console.log(`Successfully applied light: ${selectedLight.name}, state of on is ${selectedLight.on}`);
       } else {
-        console.error('Light not found:', lightId);
-        // handle the error 
+        console.error('Failed to apply light:', response.statusText);
       }
-    } else {
-      console.error('Failed to apply light:', response.statusText);
-      // handle the error 
+    } catch (error) {
+      console.error('Error applying scene:', error);
+      console.log(lightsData)
     }
-  } catch (error) {
-    console.error('Error applying scene:', error);
-    // handle the error 
-  }
   };
 
   // handle brightness slider on other components
