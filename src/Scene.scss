@@ -22,6 +22,7 @@ $button-blue : #408CFF;
     transform: translateX(0); /* Initial scale: no scaling */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
 
+
     &:hover {
         background-position: 0 0; /* On hover, shift the gradient to the left */
         transform: translateX(10px); /* Increase the scale slightly to make it pop out */
