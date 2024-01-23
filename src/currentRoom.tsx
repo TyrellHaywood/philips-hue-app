@@ -4,6 +4,7 @@ import "./CurrentRoom.scss"; // imports stylesheet;
 import { useState, useEffect, ChangeEvent } from "react";
 import Scene from "./Scene";
 import Light from "./Light";
+import SceneTarget from "./SceneTarget";
 
 //define type for props (avoid typescript errors)
 interface CurrentRoomProps {
@@ -147,6 +148,11 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
         </div>
         <div className="current-room-content__scenes">
+          <SceneTarget
+            sceneId="1"
+            sceneName="Ty"
+            handleSelectScene={handleSelectScene}
+          />
           {Array.isArray(scenesData) &&
             scenesData.map((scene) => (
               <Scene

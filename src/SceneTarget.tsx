@@ -18,14 +18,21 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
   };
 
   return (
-    <button className="scene-component-target" onClick={handleClick}>
+    <div className="scene-component-target">
       <div className="scene-component-target__button">
         <div className="scene-component-target__button__color">
           <span className="material-icons md-light md-60">play_arrow</span>
         </div>
         <p>TARGET SCENE</p>
       </div>
-    </button>
+      <div className="scence-component-target__edit-buttons">
+        <button className="btn">
+          <div className="edit-button__more-options"></div>
+          <div className="edit-button__more-options"></div>
+          <div className="edit-button__more-options"></div>
+        </button>
+      </div>
+    </div>
   );
 };
 

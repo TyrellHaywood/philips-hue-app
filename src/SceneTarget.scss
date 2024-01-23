@@ -10,7 +10,7 @@ $button-blue : #408CFF;
 // ------------oO00O%-o0O-STYLES-------Oo0Oo%o--o0O
 
 .scene-component-target {
-    width: 225px;
+    width: 225px; // 75 pixels larger to compensate for new buttons
     height: 250px;
     background-color: #292929; // default color for now
     border-radius: 30px;
@@ -18,16 +18,16 @@ $button-blue : #408CFF;
     margin-top: 25px;
     margin-bottom: 25px;
     border: none;
-    background-position: 45% 0; /* Initially, the gradient is shifted to the right */
-    transform: translateX(0); /* Initial scale: no scaling */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+    // background-position: 45% 0; /* Initially, the gradient is shifted to the right */
+    // transform: translateX(0); /* Initial scale: no scaling */
+    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
 
 
-    &:hover {
-        background-position: 0 0; /* On hover, shift the gradient to the left */
-        transform: translateX(10px); /* Increase the scale slightly to make it pop out */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increase the shadow for the pop-out effect */
-      }
+    // &:hover {
+    //     background-position: 0 0; /* On hover, shift the gradient to the left */
+    //     transform: translateX(10px); /* Increase the scale slightly to make it pop out */
+    //     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increase the shadow for the pop-out effect */
+    //   }
 
     &__button{
         width: 225px;
@@ -55,6 +55,32 @@ $button-blue : #408CFF;
             color: white;
             font-size: 20px;
         }  
+    }
+
+    &__edit-buttons {
+        width: 50px;
+        height: 50px;
+        margin-left: auto;
+        
+        & .btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+            padding-left: 0;
+        }
+
+        // styles for more options icons on edit button
+        &__more-options {
+            width: 7.25px;
+            height: 7.25px;
+            background-color: white;
+            border-radius: 50%;
+            margin-left: 6.85px;
+            
+        }
     }
     
 }
