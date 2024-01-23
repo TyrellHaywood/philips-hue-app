@@ -23,7 +23,7 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
         <div className="scene-component-target__button__color">
           <span className="material-icons md-light md-60">play_arrow</span>
         </div>
-        <p>TARGET SCENE</p>
+        <p>{sceneName}</p>
       </div>
       <div className="scene-component-target__buttons-container">
         <button className="scene-component-target__buttons-container__edit-button">

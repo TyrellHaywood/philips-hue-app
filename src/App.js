@@ -23,6 +23,7 @@ const App = () => {
   const [defaultBrightness, setDefaultBrightness] = useState(0);
   const [scenesArray, setScenesArray] = useState([]);
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
+  const [selectedScene, setSelectedScene] = useState(null)
 
 
 
@@ -240,6 +241,7 @@ const App = () => {
 
       if (selectedScene) {
         console.log(`Successfully applied scene: ${selectedScene.name}`);
+        setSelectedScene(selectedScene);
       } else {
         console.error('Scene not found:', sceneId);
         // handle the error 
@@ -351,6 +353,7 @@ const App = () => {
             handleSelectScene={handleSelectScene}
             handleSearchInput={handleSearchInput}
             handleSearchScene={handleSearchScene}
+            selectedScene={selectedScene}
             />
             
             

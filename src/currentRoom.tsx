@@ -22,6 +22,7 @@ interface CurrentRoomProps {
       | KeyboardEvent<HTMLInputElement>,
     searchValue: string
   ) => void;
+  selectedScene: () => void;
 }
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
@@ -33,11 +34,11 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   lightsData,
   handleSelectScene,
   handleSearchScene,
+  selectedScene,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
-  const [selectedScene, setSelectedScene] = useState(null);
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
 
   const handleToggleLights = () => {
@@ -148,19 +149,33 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
         </div>
         <div className="current-room-content__scenes">
-          <SceneTarget
+          {/* <SceneTarget
             sceneId="1"
             sceneName="Ty"
             handleSelectScene={handleSelectScene}
-          />
+          /> */}
           {Array.isArray(scenesData) &&
-            scenesData.map((scene) => (
-              <Scene
-                sceneId={scene.id}
-                sceneName={scene.name}
-                handleSelectScene={handleSelectScene}
-              />
-            ))}
+            scenesData.map((scene) => {
+              const isSelected =
+                selectedScene && (selectedScene as any).id === scene.id;
+              console.log(`Scene ${scene.id} is selected: ${isSelected}`);
+
+              return isSelected ? (
+                <SceneTarget
+                  key={scene.id}
+                  sceneId={scene.id}
+                  sceneName={scene.name}
+                  handleSelectScene={handleSelectScene}
+                />
+              ) : (
+                <Scene
+                  key={scene.id}
+                  sceneId={scene.id}
+                  sceneName={scene.name}
+                  handleSelectScene={handleSelectScene}
+                />
+              );
+            })}
         </div>
         <div className="current-room-content__lights-title">
           <p>LIGHTS</p>
