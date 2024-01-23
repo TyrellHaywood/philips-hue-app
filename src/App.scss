@@ -30,3 +30,20 @@ body {
 .material-icons.md-108 { font-size: 108px; }
 .material-icons.md-120 { font-size: 120px; }
 .material-icons.md-132 { font-size: 132px; }
+
+// rules for pen icon
+.material-symbols-outlined.md-18 { font-size: 18px; }
+.material-symbols-outlined.md-24 { font-size: 24px; }
+.material-symbols-outlined.md-36 { font-size: 36px; }
+.material-symbols-outlined.md-48 { font-size: 48px; }
+.material-symbols-outlined.md-60 { font-size: 60px; }
+.material-symbols-outlined.md-72 { font-size: 72px; }
+.material-symbols-outlined.md-84 { font-size: 84px; }
+.material-symbols-outlined.md-96 { font-size: 96px; }
+.material-symbols-outlined.md-108 { font-size: 108px; }
+.material-symbols-outlined.md-120 { font-size: 120px; }
+.material-symbols-outlined.md-132 { font-size: 132px; }
+
+// Rules for using google material icons as white on a dark background. (pen specific)
+.material-symbols-outlined.md-light {color: rgba(255, 255, 255, 1);}
+.material-symbols-outlined.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }

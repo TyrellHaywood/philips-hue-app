@@ -12,7 +12,7 @@ $button-blue : #408CFF;
 .scene-component-target {
     width: 290px; // 75 pixels larger to compensate for new buttons
     height: 250px;
-    background-color: blue; // default color for now
+    // background-color: blue; // test color
     border-radius: 30px;
     margin-right: 35px; // space between for now, can definitely change
     margin-top: 25px;
@@ -58,9 +58,35 @@ $button-blue : #408CFF;
     }
 
 
-    // edit button container
+    &__buttons-container{
+        // background-color: green; // test color
+        width: 65px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: space-between;
+        gap: 20px;
 
-    &__edit-buttons {
+
+        // edit button container
+        &__edit-button {
+        width: 50px;
+        height: 50px;
+        margin-left: auto;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #292929;
+        border: none;
+    }
+
+
+    // options button container
+    &__options-button {
         width: 50px;
         height: 50px;
         margin-left: auto;
@@ -84,5 +110,5 @@ $button-blue : #408CFF;
             
         }
     }
-    
+    }
 }
