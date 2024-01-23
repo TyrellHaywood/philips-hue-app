@@ -25,13 +25,14 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
         </div>
         <p>TARGET SCENE</p>
       </div>
-      <div className="scence-component-target__edit-buttons">
-        <button className="btn">
-          <div className="edit-button__more-options"></div>
-          <div className="edit-button__more-options"></div>
-          <div className="edit-button__more-options"></div>
-        </button>
-      </div>
+      <button className="">
+        <span className="material-symbols-outlined">edit</span>
+      </button>
+      <button className="scene-component-target__edit-buttons">
+        <div className="scene-component-target__edit-buttons__more-options"></div>
+        <div className="scene-component-target__edit-buttons__more-options"></div>
+        <div className="scene-component-target__edit-buttons__more-options"></div>
+      </button>
     </div>
   );
 };

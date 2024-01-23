@@ -10,14 +10,14 @@ $button-blue : #408CFF;
 // ------------oO00O%-o0O-STYLES-------Oo0Oo%o--o0O
 
 .scene-component-target {
-    width: 225px; // 75 pixels larger to compensate for new buttons
+    width: 290px; // 75 pixels larger to compensate for new buttons
     height: 250px;
-    background-color: #292929; // default color for now
+    background-color: blue; // default color for now
     border-radius: 30px;
     margin-right: 35px; // space between for now, can definitely change
     margin-top: 25px;
     margin-bottom: 25px;
-    border: none;
+    display: flex;
     // background-position: 45% 0; /* Initially, the gradient is shifted to the right */
     // transform: translateX(0); /* Initial scale: no scaling */
     // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
@@ -57,20 +57,22 @@ $button-blue : #408CFF;
         }  
     }
 
+
+    // edit button container
+
     &__edit-buttons {
         width: 50px;
         height: 50px;
         margin-left: auto;
-        
-        & .btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: left;
-            padding-left: 0;
-        }
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: left;
+        padding-left: 0;
+        background-color: #292929;
+        border: none;
 
         // styles for more options icons on edit button
         &__more-options {
