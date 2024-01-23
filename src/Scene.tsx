@@ -13,7 +13,6 @@ const Scene: React.FC<SceneProps> = ({
   sceneName,
   handleSelectScene,
 }) => {
-  const [selectedScene, setSelectedScene] = useState(null);
   const handleClick = () => {
     handleSelectScene(sceneId);
   };

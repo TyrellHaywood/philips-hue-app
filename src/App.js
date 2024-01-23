@@ -301,6 +301,7 @@ const App = () => {
   
         if (response.ok) {
           console.log(`Successfully applied scene: ${selectedScene.name}`);
+          setSelectedScene(selectedScene);
         } else {
           console.error("Failed to apply scene:", response.statusText);
           // handle the error
