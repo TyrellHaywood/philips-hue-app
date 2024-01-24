@@ -6,12 +6,18 @@ import { useState, useEffect } from "react";
 interface lightProps {
   lightId: string;
   lightName: string;
+  lightCT: string;
+  lightXY: [number, number];
+  lightBri: number;
   toggleSingleLightPower: (lightId: string) => void;
 }
 
 const Light: React.FC<lightProps> = ({
   lightId,
   lightName,
+  lightCT,
+  lightXY,
+  lightBri,
   toggleSingleLightPower,
 }) => {
   const [isLightOn, setLightOn] = useState(false);

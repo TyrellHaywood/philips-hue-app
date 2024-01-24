@@ -13,7 +13,13 @@ interface CurrentRoomProps {
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
   scenesData: Array<{ id: string; name: string }>;
-  lightsData: Array<{ id: string; name: string }>;
+  lightsData: Array<{
+    id: string;
+    name: string;
+    ct: string;
+    xy: [number, number];
+    bri: number;
+  }>;
   handleSelectScene: (sceneId: string) => void;
   handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchScene: (
@@ -149,17 +155,11 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
         </div>
         <div className="current-room-content__scenes">
-          {/* <SceneTarget
-            sceneId="1"
-            sceneName="Ty"
-            handleSelectScene={handleSelectScene}
-          /> */}
           {Array.isArray(scenesData) &&
             scenesData.map((scene) => {
               const isSelected =
                 selectedScene && (selectedScene as any).id === scene.id;
               // console.log(`Scene ${scene.id} is selected: ${isSelected}`);
-
               return isSelected ? (
                 <SceneTarget
                   key={scene.id}
@@ -186,6 +186,9 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
               <Light
                 lightId={light.id}
                 lightName={light.name}
+                lightCT={light.ct}
+                lightXY={light.xy}
+                lightBri={light.bri}
                 toggleSingleLightPower={toggleSingleLightPower}
               />
             ))}

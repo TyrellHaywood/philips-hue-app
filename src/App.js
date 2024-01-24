@@ -98,11 +98,40 @@ const App = () => {
       setLightsData(lightsArray);
       console.log(lightsArray); // log entire array
 
+      // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
+      //Calculate XYZ values Convert using the following formulas:
+      const xValue = lightsArray["xy"][0];
+      const yValue = lightsArray["xy"][1];
+      const z = 1.0 - xValue - yValue;
+      const Y = lightsArray["bri"];
+      const X = (Y / yValue) * xValue;
+      const Z = (Y / yValue) * z;
 
+      // Convert to RGB using Wide RGB D65 conversion
+      let r = X * 1.656492 - Y * 0.354851 - Z * 0.255038;
+      let g = -X * 0.707196 + Y * 1.655397 + Z * 0.036152;
+      let b = X * 0.051713 - Y * 0.121364 + Z * 1.011530;
+
+      // Apply reverse gamma correction
+      r = r <= 0.0031308 ? 12.92 * r : (1.0 + 0.055) * Math.pow(r, 1.0 / 2.4) - 0.055;
+      g = g <= 0.0031308 ? 12.92 * g : (1.0 + 0.055) * Math.pow(g, 1.0 / 2.4) - 0.055;
+      b = b <= 0.0031308 ? 12.92 * b : (1.0 + 0.055) * Math.pow(b, 1.0 / 2.4) - 0.055;
+      
+      // clip RGB values to the valid range [0, 1]
+      r = Math.min(1.0, Math.max(0.0, r));
+      g = Math.min(1.0, Math.max(0.0, g));
+      b = Math.min(1.0, Math.max(0.0, b));
+
+      // convert RGB values to 8-bit integers
+      const rgbInt = {
+      r: Math.round(r * 255),
+      g: Math.round(g * 255),
+      b: Math.round(b * 255),
+      };
+    console.log(rgbInt)
     } catch (error) {
       console.error("Error mapping lights array:", error);
     }
-
 
     const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
     const lightsResponse = await fetch(LIGHTS_API_URL);
