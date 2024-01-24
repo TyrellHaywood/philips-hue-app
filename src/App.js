@@ -100,23 +100,29 @@ const App = () => {
 
       // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
       //Calculate XYZ values Convert using the following formulas:
-      const xValue = lightsArray["xy"][0];
-      const yValue = lightsArray["xy"][1];
+      const xValue = lightsArray[0]?.xy[0];
+      const yValue = lightsArray[0]?.xy[1];
+      console.log(xValue, yValue)
+
+
       const z = 1.0 - xValue - yValue;
-      const Y = lightsArray["bri"];
-      const X = (Y / yValue) * xValue;
-      const Z = (Y / yValue) * z;
+      const briValue = lightsArray[0]?.bri;
+      
+      console.log(briValue)
+
+      const X = (briValue / yValue) * xValue;
+      const Z = (briValue / yValue) * z;
 
       // Convert to RGB using Wide RGB D65 conversion
-      let r = X * 1.656492 - Y * 0.354851 - Z * 0.255038;
-      let g = -X * 0.707196 + Y * 1.655397 + Z * 0.036152;
-      let b = X * 0.051713 - Y * 0.121364 + Z * 1.011530;
+      let r = X * 1.656492 - briValue * 0.354851 - Z * 0.255038;
+      let g = -X * 0.707196 + briValue * 1.655397 + Z * 0.036152;
+      let b = X * 0.051713 - briValue * 0.121364 + Z * 1.011530;
 
       // Apply reverse gamma correction
       r = r <= 0.0031308 ? 12.92 * r : (1.0 + 0.055) * Math.pow(r, 1.0 / 2.4) - 0.055;
       g = g <= 0.0031308 ? 12.92 * g : (1.0 + 0.055) * Math.pow(g, 1.0 / 2.4) - 0.055;
       b = b <= 0.0031308 ? 12.92 * b : (1.0 + 0.055) * Math.pow(b, 1.0 / 2.4) - 0.055;
-      
+      console.log(r,g,b)
       // clip RGB values to the valid range [0, 1]
       r = Math.min(1.0, Math.max(0.0, r));
       g = Math.min(1.0, Math.max(0.0, g));
@@ -348,16 +354,6 @@ const App = () => {
       // handle the error
     }
   };
-
-  
-
-  // bri = brightness: 1-254
-  // hue = hue of light: wrapping val between 0-65535
-  // saturation: 0(white)-254(colored)
-  // xy: coordinates of color in CIE color space 
-  // ct: mired color temp of light, 153(6500k)-500(2000)k
-  // colormode: indicates the mode which the light is working in
-
 
   const handleRoomClick = () => {
     console.log("clicked the room button!")
