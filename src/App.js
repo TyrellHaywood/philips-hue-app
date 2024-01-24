@@ -90,8 +90,9 @@ const App = () => {
           id: lightId,
           name,
           on: state.on,
-          ct: state.ct,
-          xy: state.xy
+          ct: state.ct, // ct value
+          xy: state.xy, // xy coordinate in [x, y]
+          bri: state.bri // brightness, 0-500
         };
       });
       setLightsData(lightsArray);
