@@ -53,9 +53,10 @@ const App = () => {
       }
       // Create an array of scene objects
     const scenesArray = Object.keys(scenesById).map((sceneId) => {
+      const {name, state} = scenesById[sceneId]; // destructure name and state
       return {
         id: sceneId,
-        name: scenesById[sceneId].name,
+        name
       };
     });
     setScenesData(scenesArray);
@@ -88,7 +89,9 @@ const App = () => {
         return {
           id: lightId,
           name,
-          on: state.on
+          on: state.on,
+          ct: state.ct,
+          xy: state.xy
         };
       });
       setLightsData(lightsArray);

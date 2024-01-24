@@ -18,7 +18,7 @@ const Light: React.FC<lightProps> = ({
 
   const handleToggleLights = () => {
     setLightOn(!isLightOn);
-    toggleSingleLightPower(lightId); //call function from the prop
+    toggleSingleLightPower(lightId); // call function from the prop
   };
 
   return (

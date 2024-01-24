@@ -158,7 +158,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
             scenesData.map((scene) => {
               const isSelected =
                 selectedScene && (selectedScene as any).id === scene.id;
-              console.log(`Scene ${scene.id} is selected: ${isSelected}`);
+              // console.log(`Scene ${scene.id} is selected: ${isSelected}`);
 
               return isSelected ? (
                 <SceneTarget
