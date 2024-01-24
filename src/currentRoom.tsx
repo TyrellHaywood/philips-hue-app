@@ -198,6 +198,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
         </div>
       </div>
+      <div className="current-room-popup"></div>
     </div>
   );
 };

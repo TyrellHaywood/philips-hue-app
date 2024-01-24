@@ -8,9 +8,12 @@ $light-brown : #F8B363;
 $button-blue : #408CFF;
 
 .current-room-main{
+    width: 100%;
+    // height: 100vh;
+
     &__header {
         width: 100%;
-        height: 200px;
+        height: 150px; // supposed to be 200, but wasnt fitting properly in screen (temp workaround)
         background-image: linear-gradient(90deg, $light-brown 28.79%, $medium-brown 88.97%);
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;
@@ -137,7 +140,7 @@ $button-blue : #408CFF;
             border-bottom-right-radius: 30px;
             border-bottom-left-radius: 30px;
             display: flex;
-            align-items: center;
+            // align-items: center; // removed to help fit in browser properly
             justify-content: center;
             margin-right: auto;
             margin-left: auto;
@@ -147,7 +150,6 @@ $button-blue : #408CFF;
                 height: 15px;
                 background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
                 border-radius: 50px;
-
                 display: flex;
                 align-items: center;
 
