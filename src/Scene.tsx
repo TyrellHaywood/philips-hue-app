@@ -6,12 +6,14 @@ interface SceneProps {
   sceneId: string;
   sceneName: string;
   handleSelectScene: (sceneId: string) => void;
+  handleEditScene: () => void;
 }
 
 const Scene: React.FC<SceneProps> = ({
   sceneId,
   sceneName,
   handleSelectScene,
+  handleEditScene,
 }) => {
   const handleClick = () => {
     handleSelectScene(sceneId);

@@ -12,6 +12,7 @@ interface CurrentRoomProps {
   toggleSingleLightPower: (lightId: string) => void;
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
+  handleEditScene: () => void;
   scenesData: Array<{ id: string; name: string }>;
   lightsData: Array<{
     id: string;
@@ -36,6 +37,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   toggleSingleLightPower,
   adjustLightsBrightness,
   handleBackClick,
+  handleEditScene,
   scenesData,
   lightsData,
   handleSelectScene,
@@ -169,6 +171,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     sceneId={scene.id}
                     sceneName={scene.name}
                     handleSelectScene={handleSelectScene}
+                    handleEditScene={handleEditScene}
                   />
                 ) : (
                   <Scene
@@ -176,6 +179,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     sceneId={scene.id}
                     sceneName={scene.name}
                     handleSelectScene={handleSelectScene}
+                    handleEditScene={handleEditScene}
                   />
                 );
               })}
@@ -198,7 +202,6 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
           </div>
         </div>
       </div>
-      <div className="current-room-popup"></div>
     </div>
   );
 };

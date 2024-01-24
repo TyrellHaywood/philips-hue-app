@@ -6,15 +6,21 @@ interface SceneTargetProps {
   sceneId: string;
   sceneName: string;
   handleSelectScene: (sceneId: string) => void;
+  handleEditScene: () => void;
 }
 
 const SceneTarget: React.FC<SceneTargetProps> = ({
   sceneId,
   sceneName,
   handleSelectScene,
+  handleEditScene,
 }) => {
   const handleClick = () => {
     handleSelectScene(sceneId);
+  };
+
+  const handleEditClick = () => {
+    handleEditScene();
   };
 
   return (
@@ -26,7 +32,10 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
         <p>{sceneName}</p>
       </div>
       <div className="scene-component-target__buttons-container">
-        <button className="scene-component-target__buttons-container__edit-button">
+        <button
+          className="scene-component-target__buttons-container__edit-button"
+          onClick={handleEditClick}
+        >
           <span className="material-symbols-outlined md-light md-36">edit</span>
         </button>
         <button className="scene-component-target__buttons-container__options-button">

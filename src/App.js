@@ -7,6 +7,7 @@ import Rooms from './Rooms';
 import WelcomeScreen from './WelcomeScreen';
 import Room from './Room';
 import CurrentRoom from './CurrentRoom';
+import EditMenu from './EditMenu';
 
 let ipAddress = ''
 let idKey = ''
@@ -15,6 +16,7 @@ const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
+  const [editMenu, SetEditMenu] = useState(false);
   const [scenesData, setScenesData] = useState([]); // Initialize as an empty array 
   const [groupData, setGroupData] = useState(null);
   const [lightsData, setLightsData] = useState([]); // Initialize as an empty array 
@@ -359,7 +361,7 @@ const App = () => {
       // handle the error
     }
   };
-
+  
   const handleRoomClick = () => {
     console.log("clicked the room button!")
     setRoomSelected(true)
@@ -373,11 +375,20 @@ const App = () => {
     console.log("room changed (after state change)")
   }
 
+
+  const handleEditScene = () => {
+    console.log("Clicked Edit Scene Button")
+    SetEditMenu(true)
+  }
+
   return (
     <div className='main-page'>
       
       {isLoggedIn ? (
         roomSelected ? (
+          editMenu ? (
+          <editMenu/>
+          ): (
           <CurrentRoom 
             toggleLightsPower={toggleLightsPower}
             toggleSingleLightPower={toggleSingleLightPower}
@@ -389,9 +400,9 @@ const App = () => {
             handleSearchInput={handleSearchInput}
             handleSearchScene={handleSearchScene}
             selectedScene={selectedScene}
+            handleEditScene={handleEditScene}
             />
-            
-            
+            )
         ) : (
           <Rooms
             scenesData={scenesData}
