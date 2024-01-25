@@ -12,11 +12,11 @@ $button-blue : #408CFF;
     height: 100%;
 
     &-top {
-        background-color: green;
+        // background-color: green;
         width: 100%;
         height: 615px;
         display: flex;
-        
+        background-image: radial-gradient(50% 50% at 50% 50%, rgba(248, 179, 99, 0.69) 0%, rgba(199, 129, 48, 0.41) 100% );
 
         &__header {
             width: 100%;
@@ -26,7 +26,7 @@ $button-blue : #408CFF;
             color: white;
             display: flex;
             align-items: center;
-            background-color: blue;
+            background-image: radial-gradient(50% 50% at 50% 50%, rgba(255, 201, 138, 0.4) 0%, rgba(241, 210, 175, 0.26) 100% );
             
             & .menu-close-button {
                 width: 50px;
@@ -43,6 +43,7 @@ $button-blue : #408CFF;
                 height: 50px;
                 border-radius: 30px;
                 margin-left: auto;
+                margin-right: 25px;
             }
 
         }
