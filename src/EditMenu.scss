@@ -21,6 +21,8 @@ $button-blue : #408CFF;
         &__header {
             width: 100%;
             height: 100px;
+            margin-top: 50px;
+            border-radius: 30px 30px 0px 0px;
             color: white;
             display: flex;
             align-items: center;
@@ -31,6 +33,8 @@ $button-blue : #408CFF;
                 height: 50px;
                 border-radius: 50%;
                 border: none;
+                margin-left: 25px;
+                margin-right: 50px;
             }
 
             & .save-button{
@@ -38,6 +42,7 @@ $button-blue : #408CFF;
                 width: 100px;
                 height: 50px;
                 border-radius: 30px;
+                margin-left: auto;
             }
 
         }
