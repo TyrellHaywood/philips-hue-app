@@ -10,5 +10,37 @@ $button-blue : #408CFF;
 .edit-menu {
     width: 100%;
     height: 100%;
-    background-color: green;
+
+    &-top {
+        background-color: green;
+        width: 100%;
+        height: 615px;
+        display: flex;
+        
+
+        &__header {
+            width: 100%;
+            height: 100px;
+            color: white;
+            display: flex;
+            align-items: center;
+            background-color: blue;
+            
+            & .menu-close-button {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: none;
+            }
+
+            & .save-button{
+                border: none;
+                width: 100px;
+                height: 50px;
+                border-radius: 30px;
+            }
+
+        }
+
+    }
 }
