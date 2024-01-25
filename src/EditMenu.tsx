@@ -34,7 +34,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
           </button>
           <h1>Edit Scene</h1>
           <button className="save-button">
-            <p>SAVE</p>
+            <h1>SAVE</h1>
           </button>
         </header>
         <div className="edit-menu-top__main-content"></div>
