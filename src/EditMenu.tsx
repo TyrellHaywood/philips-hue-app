@@ -50,7 +50,11 @@ const EditMenu: React.FC<EditMenuProps> = ({
         <div className="edit-menu-top__middle">
           <div className="edit-menu-top__middle__scene-icon"></div>
           <h1>{sceneName}</h1>
-          <button></button>
+          <button className="edit-menu-top__middle__edit-button">
+            <span className="material-symbols-outlined md-light md-36">
+              edit
+            </span>
+          </button>
         </div>
         <div className="edit-menu-bottom"></div>
       </div>
