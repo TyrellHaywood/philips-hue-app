@@ -8,7 +8,7 @@ import Scene from "./Scene";
 interface EditMenuProps {
   toggleSingleLightPower: (lightId: string) => void;
   adjustLightsBrightness: (brightness: number) => void;
-  handleBackClick: () => void;
+  handleEditClose: () => void;
   selectedScene: () => void;
   scenesData: Array<{ id: string; name: string }>;
   lightsData: Array<{
@@ -23,7 +23,7 @@ interface EditMenuProps {
 const EditMenu: React.FC<EditMenuProps> = ({
   toggleSingleLightPower,
   adjustLightsBrightness,
-  handleBackClick,
+  handleEditClose,
   scenesData,
   lightsData,
   selectedScene,
@@ -54,7 +54,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
     <div className="edit-menu">
       <div className="edit-menu-top">
         <header className="edit-menu-top__header">
-          <button className="menu-close-button">
+          <button className="menu-close-button" onClick={handleEditClose}>
             <span className="material-icons md-light md-36">add</span>
           </button>
           <h1>Edit scene</h1>

@@ -375,6 +375,11 @@ const App = () => {
     console.log("room changed (after state change)")
   }
 
+  const handleEditClose = () => {
+    console.log("clicked back page button")
+    SetEditMenu(false)
+    console.log("room changed (after state change)")
+  }
 
   const handleEditScene = () => {
     console.log("Clicked Edit Scene Button")
@@ -393,6 +398,7 @@ const App = () => {
             toggleSingleLightPower={toggleSingleLightPower}
             adjustLightsBrightness={adjustLightsBrightness}
             selectedScene={selectedScene}
+            handleEditClose={handleEditClose}
           />
           ): (
           <CurrentRoom 
