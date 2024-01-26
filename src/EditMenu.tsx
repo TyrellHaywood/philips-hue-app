@@ -32,8 +32,6 @@ const EditMenu: React.FC<EditMenuProps> = ({
 
   Array.isArray(scenesData) &&
     scenesData.map((scene) => {
-      const isSelected =
-        selectedScene && (selectedScene as any).id === scene.id;
       sceneName = scene.name;
     });
 
