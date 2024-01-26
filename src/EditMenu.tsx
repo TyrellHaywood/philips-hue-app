@@ -32,12 +32,17 @@ const EditMenu: React.FC<EditMenuProps> = ({
           <button className="menu-close-button">
             <span className="material-icons md-light md-36">add</span>
           </button>
-          <h1>Edit Scene</h1>
+          <h1>scene name</h1>
           <button className="save-button">
             <h1>SAVE</h1>
           </button>
         </header>
-        <div className="edit-menu-top__main-content"></div>
+        <div className="edit-menu-top__middle">
+          <div className="edit-menu-top__middle__scene-icon"></div>
+          <h1>Warm Room</h1>
+          <button></button>
+        </div>
+        <div className="edit-menu-bottom"></div>
       </div>
     </div>
   );

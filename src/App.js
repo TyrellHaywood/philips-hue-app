@@ -387,7 +387,9 @@ const App = () => {
       {isLoggedIn ? (
         roomSelected ? (
           editMenu ? (
-          <EditMenu/>
+          <EditMenu
+          // sceneName={scene.name}
+          />
           ): (
           <CurrentRoom 
             toggleLightsPower={toggleLightsPower}
