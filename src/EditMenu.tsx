@@ -28,12 +28,27 @@ const EditMenu: React.FC<EditMenuProps> = ({
   lightsData,
   selectedScene,
 }) => {
-  let sceneName = "";
+  const [brightness, setBrightness] = useState(0); // default brightness value
+  const [sliderWidth, setSliderWidth] = useState<number>(100);
 
+  let sceneName = "";
   Array.isArray(scenesData) &&
     scenesData.map((scene) => {
       sceneName = scene.name;
     });
+
+  const handleBrightnessChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const newBrightness = Number(event.target.value);
+    setBrightness(newBrightness);
+    adjustLightsBrightness(newBrightness);
+
+    // update slider width
+    const thumbPosition = (newBrightness - 0) / (255 - 0);
+    const width = thumbPosition * 100;
+    setSliderWidth(width);
+  };
 
   return (
     <div className="edit-menu">
@@ -56,7 +71,23 @@ const EditMenu: React.FC<EditMenuProps> = ({
             </span>
           </button>
         </div>
-        <div className="edit-menu-bottom"></div>
+        <div className="edit-menu-top__bottom">
+          <h1>Scene brightness</h1>
+          <p>90%</p>
+          <div className="edit-menu-top__bottom__brightness-slider">
+            <input
+              type="range"
+              min="0"
+              max="255" // adjust the max value based on light's maximum brightness
+              value={brightness}
+              onChange={handleBrightnessChange}
+              className="edit-menu-top__bottom__brightness-slider__input"
+              style={
+                { "--slider-width": `${sliderWidth}%` } as React.CSSProperties
+              }
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
