@@ -388,7 +388,11 @@ const App = () => {
         roomSelected ? (
           editMenu ? (
           <EditMenu
-          // sceneName={scene.name}
+            scenesData={scenesData}
+            lightsData={lightsData}
+            toggleSingleLightPower={toggleSingleLightPower}
+            adjustLightsBrightness={adjustLightsBrightness}
+            selectedScene={selectedScene}
           />
           ): (
           <CurrentRoom 

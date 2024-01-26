@@ -2,12 +2,14 @@ import React from "react";
 import "./EditMenu.scss"; // imports stylesheet;
 import { useState, useEffect, ChangeEvent } from "react";
 import Light from "./Light";
+import Scene from "./Scene";
 
 //define type for props (avoid typescript errors)
 interface EditMenuProps {
   toggleSingleLightPower: (lightId: string) => void;
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
+  selectedScene: () => void;
   scenesData: Array<{ id: string; name: string }>;
   lightsData: Array<{
     id: string;
@@ -24,7 +26,17 @@ const EditMenu: React.FC<EditMenuProps> = ({
   handleBackClick,
   scenesData,
   lightsData,
+  selectedScene,
 }) => {
+  let sceneName = "";
+
+  Array.isArray(scenesData) &&
+    scenesData.map((scene) => {
+      const isSelected =
+        selectedScene && (selectedScene as any).id === scene.id;
+      sceneName = scene.name;
+    });
+
   return (
     <div className="edit-menu">
       <div className="edit-menu-top">
@@ -32,14 +44,14 @@ const EditMenu: React.FC<EditMenuProps> = ({
           <button className="menu-close-button">
             <span className="material-icons md-light md-36">add</span>
           </button>
-          <h1>scene name</h1>
+          <h1>Edit scene</h1>
           <button className="save-button">
             <h1>SAVE</h1>
           </button>
         </header>
         <div className="edit-menu-top__middle">
           <div className="edit-menu-top__middle__scene-icon"></div>
-          <h1>Warm Room</h1>
+          <h1>{sceneName}</h1>
           <button></button>
         </div>
         <div className="edit-menu-bottom"></div>
