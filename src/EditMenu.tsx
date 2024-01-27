@@ -10,6 +10,7 @@ interface EditMenuProps {
   adjustLightsBrightness: (brightness: number) => void;
   handleEditClose: () => void;
   selectedScene: () => void;
+  editMenu: () => void;
   scenesData: Array<{ id: string; name: string }>;
   lightsData: Array<{
     id: string;
@@ -27,6 +28,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
   scenesData,
   lightsData,
   selectedScene,
+  editMenu,
 }) => {
   const [brightness, setBrightness] = useState(0); // default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
@@ -52,7 +54,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
 
   return (
     <div className="edit-menu">
-      <div className="edit-menu-top">
+      <div className="{`edit-menu-top${editMenu ? ' active' : ''}`}">
         <header className="edit-menu-top__header">
           <button className="menu-close-button" onClick={handleEditClose}>
             <span className="material-icons md-light md-36">add</span>

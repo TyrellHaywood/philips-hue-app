@@ -399,6 +399,7 @@ const App = () => {
             adjustLightsBrightness={adjustLightsBrightness}
             selectedScene={selectedScene}
             handleEditClose={handleEditClose}
+            editMenu={editMenu}
           />
           ): (
           <CurrentRoom 
