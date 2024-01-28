@@ -54,7 +54,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
 
   return (
     <div className="edit-menu">
-      <div className="{`edit-menu-top${editMenu ? ' active' : ''}`}">
+      <div className="edit-menu-top">
         <header className="edit-menu-top__header">
           <button className="menu-close-button" onClick={handleEditClose}>
             <span className="material-icons md-light md-36">add</span>
