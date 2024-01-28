@@ -138,28 +138,38 @@ $button-blue : #408CFF;
             height: 224px;
             background-image: radial-gradient(50% 50% at 50% 50%, rgba(255, 201, 138, 0.4) 0%, rgba(241, 210, 175, 0.26) 100% );
             display: flex;
+            flex-direction: column;
 
+            &__text {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
 
-            & h1 {
-                color: white;
-                font-size: 36px;
-                position: absolute;
+                & h1 {
+                    color: white;
+                    font-size: 36px;
+                    margin-left: 25px;
+                }
+
+                & p {
+                    color: rgba(255,255,255, 0.6);
+                    margin-left: auto;
+                    margin-right: 30px;
+                }  
             }
-
-            & p {
-                color: rgba(255,255,255, 0.6);
-                margin-left: auto;
-            }
+            
 
             &__brightness-slider {
-                width: 100%;
+                width: 95%;
                 height: 15px;
                 background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
                 border-radius: 50px;
                 display: flex;
                 align-items: center;
                 margin-top: auto;
-                // position: absolute;
+                margin-bottom: 50px;
+                margin-right: auto;
+                margin-left: auto;
 
                 &__input {
                     width: var(--slider-width, 100%);

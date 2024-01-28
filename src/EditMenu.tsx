@@ -74,8 +74,11 @@ const EditMenu: React.FC<EditMenuProps> = ({
           </button>
         </div>
         <div className="edit-menu-top__bottom">
-          <h1>Scene brightness</h1>
-          <p>90%</p>
+          <div className="edit-menu-top__bottom__text">
+            <h1>Scene brightness</h1>
+            <p>90%</p>
+          </div>
+
           <div className="edit-menu-top__bottom__brightness-slider">
             <input
               type="range"
