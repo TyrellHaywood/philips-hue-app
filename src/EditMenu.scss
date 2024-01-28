@@ -11,9 +11,9 @@ $button-blue : #408CFF;
     width: 100%;
     height: 100%;
 
-    // ------------oO00O%-o0O-TOP-STYLES-------Oo0Oo%o--o0O
+    // ------------oO00O%-o0O-UPPER-TOP-STYLES-------Oo0Oo%o--o0O
 
-    &-top {
+    &-upper-top {
         // background-color: green;
         width: 100%;
         height: 615px;
@@ -194,4 +194,41 @@ $button-blue : #408CFF;
         }
 
     }
+
+    // ------------oO00O%-o0O-UPPER-BOTTOM-STYLES-------Oo0Oo%o--o0O
+    &-upper-bottom {
+        height: 409px;
+        width: 100%;
+        // background-color: green;
+
+        &__header {
+            background-color: green;
+            height: 103px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            & h2{
+                margin: 0;
+                color: rgba(255,255,255, 0.6);   
+                margin-left: 25px;
+                margin-right: auto;
+            }
+            
+            &__drop-down {
+                background-color: transparent;
+                border: none;
+                position: absolute;
+                margin-left: auto;
+                margin-right: auto;
+
+                & span {
+                   color: rgba(255,255,255, 0.6); 
+                }
+                
+            }
+        }
+    }
 }
+

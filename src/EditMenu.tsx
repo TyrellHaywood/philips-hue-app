@@ -54,8 +54,8 @@ const EditMenu: React.FC<EditMenuProps> = ({
 
   return (
     <div className="edit-menu">
-      <div className="edit-menu-top">
-        <header className="edit-menu-top__header">
+      <div className="edit-menu-upper-top">
+        <header className="edit-menu-upper-top__header">
           <button className="menu-close-button" onClick={handleEditClose}>
             <span className="material-icons md-light md-36">add</span>
           </button>
@@ -64,34 +64,43 @@ const EditMenu: React.FC<EditMenuProps> = ({
             <h1>SAVE</h1>
           </button>
         </header>
-        <div className="edit-menu-top__middle">
-          <div className="edit-menu-top__middle__scene-icon"></div>
+        <div className="edit-menu-upper-top__middle">
+          <div className="edit-menu-upper-top__middle__scene-icon"></div>
           <h1>{sceneName}</h1>
-          <button className="edit-menu-top__middle__edit-button">
+          <button className="edit-menu-upper-top__middle__edit-button">
             <span className="material-symbols-outlined md-light md-36">
               edit
             </span>
           </button>
         </div>
-        <div className="edit-menu-top__bottom">
-          <div className="edit-menu-top__bottom__text">
+        <div className="edit-menu-upper-top__bottom">
+          <div className="edit-menu-upper-top__bottom__text">
             <h1>Scene brightness</h1>
             <p>90%</p>
           </div>
-
-          <div className="edit-menu-top__bottom__brightness-slider">
+          <div className="edit-menu-upper-top__bottom__brightness-slider">
             <input
               type="range"
               min="0"
               max="255" // adjust the max value based on light's maximum brightness
               value={brightness}
               onChange={handleBrightnessChange}
-              className="edit-menu-top__bottom__brightness-slider__input"
+              className="edit-menu-upper-top__bottom__brightness-slider__input"
               style={
                 { "--slider-width": `${sliderWidth}%` } as React.CSSProperties
               }
             />
           </div>
+        </div>
+      </div>
+      <div className="edit-menu-upper-bottom">
+        <div className="edit-menu-upper-bottom__header">
+          <h2>DYNAMIC SCENES</h2>
+          <button className="edit-menu-upper-bottom__header__drop-down">
+            <span className="material-symbols-outlined md-36">
+              arrow_drop_down_circle
+            </span>
+          </button>
         </div>
       </div>
     </div>
