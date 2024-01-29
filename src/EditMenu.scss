@@ -63,6 +63,13 @@ $button-blue : #408CFF;
                 align-items: center;
                 justify-content: center;
                 background-color: rgba(255,255,255, 0.25);
+                transform: translateY(0);
+
+                &:hover {
+                    background-color: rgba(255,255,255, 0.15);
+                    transition: 0.2s;
+                    transform: translateX(-1.5px);
+                   }
             }
 
             & .save-button{
@@ -76,6 +83,12 @@ $button-blue : #408CFF;
                 align-items: center;
                 justify-content: center;
                 background-color: rgba(255,255,255, 0.25);
+
+                &:hover {
+                    background-color: rgba(255,255,255, 0.15);
+                    transition: 0.2s;
+                    transform: translateY(-1.5px);
+                   }
 
                 & h1 {
                     font-size: 24px;
@@ -128,6 +141,12 @@ $button-blue : #408CFF;
                 justify-content: center;
                 background-color: rgba(255,255,255, 0.25);
                 border: none;
+
+                &:hover {
+                    background-color: rgba(255,255,255, 0.15);
+                    transition: 0.2s;
+                    transform: translateY(-1.5px);
+                   }
             }
         }
 
@@ -223,14 +242,20 @@ $button-blue : #408CFF;
                 position: absolute;
                 margin-left: auto;
                 margin-right: auto;
-                transform: translateX(0); // initial scale: no scaling 
+                transform: translateY(0); // initial scale: no scaling 
 
                 &:hover {
                     transform: translateY(10px); // increase the scale slightly to make it pop out
+                    transition: 0.2s;
                   }
 
                 & span {
                    color: rgba(255,255,255, 0.6); 
+
+                   &:hover {
+                    color: rgba(255,255,255, 1); 
+                    transition: 0.2s;
+                   }
                 }
                 
             }
