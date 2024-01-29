@@ -122,6 +122,19 @@ const EditMenu: React.FC<EditMenuProps> = ({
         <header className="edit-menu-lower__header">
           <h1>Lights</h1>
         </header>
+        <div className="edit-menu-lower__lights">
+          {Array.isArray(lightsData) &&
+            lightsData.map((light) => (
+              <Light
+                lightId={light.id}
+                lightName={light.name}
+                lightCT={light.ct}
+                lightXY={light.xy}
+                lightBri={light.bri}
+                toggleSingleLightPower={toggleSingleLightPower}
+              />
+            ))}
+        </div>
       </div>
     </div>
   );

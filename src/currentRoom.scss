@@ -301,8 +301,8 @@ $button-blue : #408CFF;
         }
     &__lights {
         display: flex;
-        flex-direction: row; /* Stack the child components horizontally */
-        overflow-x: auto; /* Enable horizontal scrolling for overflow content */
+        flex-direction: row; // stack the child components horizontally
+        overflow-x: auto; // enable horizontal scrolling for overflow content
 
         &::-webkit-scrollbar {
             width: 25px;
