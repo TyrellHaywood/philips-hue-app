@@ -105,7 +105,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
         <div className="edit-menu-upper-bottom__dynamic-settings">
           <div className="edit-menu-upper-bottom__dynamic-settings__top">
             <h1>Dynamic Speed</h1>
-            <p>7 - medium</p>
+            <p>7 - Medium</p>
           </div>
           <div className="edit-menu-upper-bottom__dynamic-settings__div"></div>
           <div className="edit-menu-upper-bottom__dynamic-settings__bottom">

@@ -201,8 +201,9 @@ $button-blue : #408CFF;
         width: 100%;
         // background-color: green;
 
+
+        // dynamic scenes header & button
         &__header {
-            background-color: green;
             height: 103px;
             width: 100%;
             display: flex;
@@ -228,6 +229,47 @@ $button-blue : #408CFF;
                 }
                 
             }
+        }
+
+        &__dynamic-settings {
+            height: 306px;
+            width: 100%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+
+            &__top {
+                height: 122px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                background-color: green;
+                
+                & h1 {
+                    margin-top: auto;
+                    margin-bottom: 20px;
+                }
+
+                & p {
+                    color: rgba(255,255,255, 0.6);
+                    margin-left: auto;
+                    margin-right: 25px;
+                    margin-top: auto;
+                    margin-bottom: 25px;
+                    font-size: 20px;
+                }
+            }
+
+            &__div {
+                height: 1px;
+                width: 95%;
+                background-color: rgba(255,255,255, 0.45);
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            
         }
     }
 }
