@@ -2,7 +2,6 @@ import React from "react";
 import "./EditMenu.scss"; // imports stylesheet;
 import { useState, useEffect, ChangeEvent } from "react";
 import Light from "./Light";
-import Scene from "./Scene";
 
 //define type for props (avoid typescript errors)
 interface EditMenuProps {
@@ -118,6 +117,11 @@ const EditMenu: React.FC<EditMenuProps> = ({
             </div>
           </div>
         </div>
+      </div>
+      <div className="edit-menu-lower">
+        <header className="edit-menu-lower__header">
+          <h1>Lights</h1>
+        </header>
       </div>
     </div>
   );
