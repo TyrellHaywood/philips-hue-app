@@ -93,13 +93,16 @@ const EditMenu: React.FC<EditMenuProps> = ({
         </div>
       </div>
       <div className="edit-menu-upper-bottom">
-        <div className="edit-menu-upper-bottom__header">
+        <div className="edit-menu-upper-bottom__header" id="header">
           <h2>DYNAMIC SCENES</h2>
-          <button className="edit-menu-upper-bottom__header__drop-down">
+          <a
+            className="edit-menu-upper-bottom__header__drop-down"
+            href="#header"
+          >
             <span className="material-symbols-outlined md-36">
               arrow_drop_down_circle
             </span>
-          </button>
+          </a>
         </div>
         <div className="edit-menu-upper-bottom__dynamic-settings">
           <div className="edit-menu-upper-bottom__dynamic-settings__top">
