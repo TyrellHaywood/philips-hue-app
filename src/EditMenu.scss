@@ -16,7 +16,7 @@ $button-blue : #408CFF;
     &-upper-top {
         // background-color: green;
         width: 100%;
-        height: 615px;
+        height: 600px; // originally 615px
         // position: fixed;
         // bottom: 0;
         transition: height 0.3s;
@@ -324,20 +324,24 @@ $button-blue : #408CFF;
         }
     }
 
+// ------------oO00O%-o0O-LOWER-STYLES-------Oo0Oo%o--o0O
+
     &-lower {
         width: 100%;
-        height: 466px;
+        height: 425px; // originally 466px
         background-color: rgba(255,255,255, 0.25);
         margin-top: 25px;
         display: flex;
         flex-direction: column;
 
         &__header {
+            display: flex;
+            align-items: center;
 
             & h1 {
                 color: white;
-                margin-top: 50px;
-                margin-bottom: 0px;
+                // margin-top: 50px;
+                // margin-bottom: 0px;
                 margin-left: 25px;
                 font-size: 36px;
             }
@@ -347,7 +351,7 @@ $button-blue : #408CFF;
             display: flex;
             flex-direction: row; /* stack the child components horizontally */
             overflow-x: auto; /* enable horizontal scrolling for overflow content */
-            margin-top: 50px;
+            margin-top: 9px; // orignally 50px
             margin-left: 25px;
     
             &::-webkit-scrollbar {
@@ -370,6 +374,31 @@ $button-blue : #408CFF;
                 border-radius: 10px;
               }
         
+        }
+
+        &__delete {
+            height: 100px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &__scene {
+                width: 178px;
+                height: 50px;
+                border-radius: 30px;
+                border: solid #FF0000;
+                background-color: rgba(255, 0, 0, 0.3);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                & p {
+                    color: white;
+                    font-size: 20px;
+                    font-weight: 800;
+                }
+            }
         }
     }
 }

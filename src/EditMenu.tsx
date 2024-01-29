@@ -136,6 +136,11 @@ const EditMenu: React.FC<EditMenuProps> = ({
             ))}
         </div>
       </div>
+      <div className="edit-menu-lower__delete">
+        <button className="edit-menu-lower__delete__scene">
+          <p>Delete scene</p>
+        </button>
+      </div>
     </div>
   );
 };
