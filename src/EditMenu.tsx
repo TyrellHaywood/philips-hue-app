@@ -102,6 +102,18 @@ const EditMenu: React.FC<EditMenuProps> = ({
             </span>
           </button>
         </div>
+        <div className="edit-menu-upper-bottom__dynamic-settings">
+          <div className="edit-menu-upper-bottom__dynamic-settings__top">
+            <h1>Dynamic Speed</h1>
+            <p>7 - medium</p>
+          </div>
+          <div className="edit-menu-upper-bottom__dynamic-settings__div"></div>
+          <div className="edit-menu-upper-bottom__dynamic-settings__bottom">
+            <h1>Auto-play</h1>
+            <p>Set dynamic as default</p>
+            <button className="edit-menu-upper-bottom__dynamic-settings__bottom__power"></button>
+          </div>
+        </div>
       </div>
     </div>
   );
