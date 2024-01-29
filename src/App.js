@@ -25,7 +25,8 @@ const App = () => {
   const [defaultBrightness, setDefaultBrightness] = useState(0);
   const [scenesArray, setScenesArray] = useState([]);
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
-  const [selectedScene, setSelectedScene] = useState(null)
+  const [selectedScene, setSelectedScene] = useState(null);
+  const [sceneNameEdit, setSceneNameEdit] = useState("");
 
 
 
@@ -384,6 +385,12 @@ const App = () => {
   const handleEditScene = () => {
     console.log("Clicked Edit Scene Button")
     SetEditMenu(true)
+  }
+
+
+  const handleEditName = () => {
+    console.log("Clicked Edit Scene Name Button")
+    setSceneNameEdit()
   }
 
   return (
