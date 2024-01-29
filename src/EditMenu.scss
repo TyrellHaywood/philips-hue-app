@@ -237,6 +237,7 @@ $button-blue : #408CFF;
             color: white;
             display: flex;
             flex-direction: column;
+            background-color: rgba(255,255,255, 0.25);
 
             &__top {
                 height: 122px;
@@ -244,11 +245,11 @@ $button-blue : #408CFF;
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-                background-color: rgba(255,255,255, 0.25);
                 
                 & h1 {
                     margin-top: auto;
                     margin-bottom: 20px;
+                    margin-left: 25px;
                 }
 
                 & p {
@@ -270,13 +271,26 @@ $button-blue : #408CFF;
             }
 
             &__bottom {
-                background-color: blue;
-                
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                width: 100%;
 
                 &__text {
+                    display: flex;
+                    flex-direction: column;
+                    margin-right: auto;
+                    margin-left: 25px;
+
 
                      & h1 {
-                        margin-left: auto;  
+                        margin-right: auto;  
+                        margin-bottom: 0px;
+                     }
+
+                     & p {
+                        margin-right: auto;
+                        margin-top: 10px;
                      }
                     
                 }
@@ -289,6 +303,8 @@ $button-blue : #408CFF;
                     display: flex;
                     align-items: center;
                     justify-content: left; // default off for now
+                    margin-left: auto;
+                    margin-right: 25px;
 
                     &__circle {
                         background-color: white;
