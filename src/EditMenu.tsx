@@ -67,7 +67,12 @@ const EditMenu: React.FC<EditMenuProps> = ({
         </header>
         <div className="edit-menu-upper-top__middle">
           <div className="edit-menu-upper-top__middle__scene-icon"></div>
-          <input placeholder={sceneName} onChange={handleNameEditInput}></input>
+          <input
+            type="text"
+            value={sceneName}
+            onChange={handleNameEditInput}
+            // contentEditable="true"
+          ></input>
           <button className="edit-menu-upper-top__middle__edit-button">
             <span className="material-symbols-outlined md-light md-36">
               edit
