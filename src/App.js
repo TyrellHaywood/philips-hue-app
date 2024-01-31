@@ -17,11 +17,11 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
   const [editMenu, SetEditMenu] = useState(false);
-  const [scenesData, setScenesData] = useState([]); // Initialize as an empty array 
+  const [scenesData, setScenesData] = useState([]); // initialize as an empty array 
   const [groupData, setGroupData] = useState(null);
-  const [lightsData, setLightsData] = useState([]); // Initialize as an empty array 
-  const [ipAddress, setIpAddress] = useState(""); // Define ipAddress state
-  const [idKey, setIdKey] = useState(""); // Define idKey state
+  const [lightsData, setLightsData] = useState([]); // initialize as an empty array 
+  const [ipAddress, setIpAddress] = useState(""); // define ipAddress state
+  const [idKey, setIdKey] = useState(""); // define idKey state
   const [defaultBrightness, setDefaultBrightness] = useState(0);
   const [scenesArray, setScenesArray] = useState([]);
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
@@ -390,7 +390,7 @@ const App = () => {
 
   const handleEditName = () => {
     console.log("Clicked Edit Scene Name Button")
-    setSceneNameEdit()
+    const CHANGE_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`;
   }
 
   return (
