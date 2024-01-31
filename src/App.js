@@ -388,6 +388,13 @@ const App = () => {
   }
 
 
+  // event handler for input changes when editing scene name
+  const handleNameChangeInput = (event) => {
+    setSceneNameEdit(event.target.value);
+    console.log(event.target.value); // logging search value
+  };
+
+  
   const handleEditName = () => {
     console.log("Clicked Edit Scene Name Button")
     const CHANGE_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`;
