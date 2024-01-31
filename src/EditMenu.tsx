@@ -8,6 +8,7 @@ interface EditMenuProps {
   toggleSingleLightPower: (lightId: string) => void;
   adjustLightsBrightness: (brightness: number) => void;
   handleEditClose: () => void;
+  handleNameEditInput () => void;
   selectedScene: () => void;
   editMenu: () => void;
   scenesData: Array<{ id: string; name: string }>;
@@ -28,6 +29,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
   lightsData,
   selectedScene,
   editMenu,
+  handleNameEditInput,
 }) => {
   const [brightness, setBrightness] = useState(0); // default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
@@ -65,6 +67,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
         </header>
         <div className="edit-menu-upper-top__middle">
           <div className="edit-menu-upper-top__middle__scene-icon"></div>
+          {/*    add onChange event to h1 (switch to input tag) for handleNameEditInput  */}
           <h1>{sceneName}</h1>
           <button className="edit-menu-upper-top__middle__edit-button">
             <span className="material-symbols-outlined md-light md-36">
