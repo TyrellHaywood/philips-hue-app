@@ -389,7 +389,7 @@ const App = () => {
 
 
   // event handler for input changes when editing scene name
-  const handleNameChangeInput = (event) => {
+  const handleNameEditInput = (event) => {
     setSceneNameEdit(event.target.value);
     console.log(event.target.value); // logging search value
   };
@@ -414,6 +414,7 @@ const App = () => {
             selectedScene={selectedScene}
             handleEditClose={handleEditClose}
             editMenu={editMenu}
+            handleNameEditInput={handleNameEditInput}
           />
           ): (
           <CurrentRoom 
