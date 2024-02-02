@@ -12,6 +12,7 @@ interface EditMenuProps {
   selectedScene: () => void;
   editMenu: () => void;
   readOnlyChange: boolean;
+  autoFocusChange: boolean;
   handleEditName: () => void;
   scenesData: Array<{ id: string; name: string }>;
   lightsData: Array<{
@@ -33,6 +34,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
   editMenu,
   handleNameEditInput,
   readOnlyChange,
+  autoFocusChange,
   handleEditName,
 }) => {
   const [brightness, setBrightness] = useState(0); // default brightness value
@@ -76,7 +78,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
             placeholder={sceneName}
             onChange={handleNameEditInput}
             readOnly={readOnlyChange}
-            autoFocus={false}
+            autoFocus={autoFocusChange}
           ></input>
           <button
             className="edit-menu-upper-top__middle__edit-button"

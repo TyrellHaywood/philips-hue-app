@@ -420,6 +420,7 @@ const App = () => {
             editMenu={editMenu}
             handleNameEditInput={handleNameEditInput}
             readOnlyChange={readOnlyChange}
+            autoFocusChange={autoFocusChange}
             handleEditName={handleEditName}
           />
           ): (
