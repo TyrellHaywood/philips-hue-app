@@ -27,7 +27,7 @@ const App = () => {
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
   const [selectedScene, setSelectedScene] = useState(null);
   const [sceneNameEdit, setSceneNameEdit] = useState("");
-  const [readOnly, setReadOnly] = useState(true);
+  const [readOnlyChange, setReadOnlyChange] = useState(true);
 
 
 
@@ -398,7 +398,7 @@ const App = () => {
   // handles unlocking scene name input box for editing
   const handleEditName = () => {
     console.log("Clicked Edit Scene Name Button")
-    setReadOnly(false)
+    setReadOnlyChange(false)
   }
 
   return (
@@ -416,7 +416,8 @@ const App = () => {
             handleEditClose={handleEditClose}
             editMenu={editMenu}
             handleNameEditInput={handleNameEditInput}
-            readOnly={readOnly}
+            readOnlyChange={readOnlyChange}
+            handleEditName={handleEditName}
           />
           ): (
           <CurrentRoom 
