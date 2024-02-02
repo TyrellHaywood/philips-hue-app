@@ -27,6 +27,7 @@ const App = () => {
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
   const [selectedScene, setSelectedScene] = useState(null);
   const [sceneNameEdit, setSceneNameEdit] = useState("");
+  const [readOnly, setReadOnly] = useState(true);
 
 
 
@@ -394,10 +395,10 @@ const App = () => {
     console.log(event.target.value); // logging search value
   };
 
-  
+  // handles unlocking scene name input box for editing
   const handleEditName = () => {
     console.log("Clicked Edit Scene Name Button")
-    const CHANGE_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`;
+    setReadOnly(false)
   }
 
   return (
@@ -415,6 +416,7 @@ const App = () => {
             handleEditClose={handleEditClose}
             editMenu={editMenu}
             handleNameEditInput={handleNameEditInput}
+            readOnly={readOnly}
           />
           ): (
           <CurrentRoom 
