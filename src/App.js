@@ -28,6 +28,7 @@ const App = () => {
   const [selectedScene, setSelectedScene] = useState(null);
   const [sceneNameEdit, setSceneNameEdit] = useState("");
   const [readOnlyChange, setReadOnlyChange] = useState(true);
+  const [autoFocusChange, setAutoFocusChange] = useState(false);
 
 
 
@@ -398,9 +399,9 @@ const App = () => {
   // handles unlocking scene name input box for editing
   const handleEditName = () => {
     console.log("Clicked Edit Scene Name Button")
-    console.log(readOnlyChange)
     setReadOnlyChange(false)
-    console.log(readOnlyChange)
+    setAutoFocusChange(true)
+
   }
 
   return (

@@ -76,6 +76,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
             placeholder={sceneName}
             onChange={handleNameEditInput}
             readOnly={readOnlyChange}
+            autoFocus={false}
           ></input>
           <button
             className="edit-menu-upper-top__middle__edit-button"
