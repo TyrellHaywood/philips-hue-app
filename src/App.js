@@ -401,6 +401,18 @@ const App = () => {
     console.log("Clicked Edit Scene Name Button")
     setReadOnlyChange(false)
     setAutoFocusChange(true)
+  }
+
+  const saveSceneEdit = () => {
+    console.log("clicked save button")
+    // reset readOnly and autoFocus attributes
+    setReadOnlyChange(true)
+    setAutoFocusChange(false)
+
+    // send put request to api and set new name
+
+    // close edit menu
+    SetEditMenu(false)
 
   }
 
@@ -422,6 +434,7 @@ const App = () => {
             readOnlyChange={readOnlyChange}
             autoFocusChange={autoFocusChange}
             handleEditName={handleEditName}
+            saveSceneEdit={saveSceneEdit}
           />
           ): (
           <CurrentRoom 

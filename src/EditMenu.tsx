@@ -11,6 +11,7 @@ interface EditMenuProps {
   handleNameEditInput: () => void;
   selectedScene: () => void;
   editMenu: () => void;
+  saveSceneEdit: () => void;
   readOnlyChange: boolean;
   autoFocusChange: boolean;
   handleEditName: () => void;
@@ -28,6 +29,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
   toggleSingleLightPower,
   adjustLightsBrightness,
   handleEditClose,
+  saveSceneEdit,
   scenesData,
   lightsData,
   selectedScene,
@@ -67,7 +69,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
             <span className="material-icons md-light md-36">add</span>
           </button>
           <h1>Edit scene</h1>
-          <button className="save-button">
+          <button className="save-button" onClick={saveSceneEdit}>
             <h1>SAVE</h1>
           </button>
         </header>
