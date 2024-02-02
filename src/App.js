@@ -398,7 +398,9 @@ const App = () => {
   // handles unlocking scene name input box for editing
   const handleEditName = () => {
     console.log("Clicked Edit Scene Name Button")
+    console.log(readOnlyChange)
     setReadOnlyChange(false)
+    console.log(readOnlyChange)
   }
 
   return (
