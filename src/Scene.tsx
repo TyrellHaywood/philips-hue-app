@@ -22,9 +22,7 @@ const Scene: React.FC<SceneProps> = ({
   return (
     <button className="scene-component" onClick={handleClick}>
       <div className="scene-component__button">
-        <div className="scene-component__button__color">
-          <span className="material-icons md-light md-60">play_arrow</span>
-        </div>
+        <div className="scene-component__button__color"></div>
         <p>{sceneName}</p>
       </div>
     </button>
