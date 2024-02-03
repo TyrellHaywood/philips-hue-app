@@ -124,18 +124,19 @@ const App = () => {
         let r = X * 1.656492 - briValue * 0.354851 - Z * 0.255038;
         let g = -X * 0.707196 + briValue * 1.655397 + Z * 0.036152;
         let b = X * 0.051713 - briValue * 0.121364 + Z * 1.011530;
-        console.log("rgb intial", r,g,b)
-        // Apply reverse gamma correction
-        r = r <= 0.0031308 ? 12.92 * r : (1.0 + 0.055) * Math.pow(r, 1.0 / 2.4) - 0.055;
-        g = g <= 0.0031308 ? 12.92 * g : (1.0 + 0.055) * Math.pow(g, 1.0 / 2.4) - 0.055;
-        b = b <= 0.0031308 ? 12.92 * b : (1.0 + 0.055) * Math.pow(b, 1.0 / 2.4) - 0.055;
-        console.log("rgb after gamma", r,g,b)
+        console.log("rgb after initial conversion: ", r, g, b)
 
-        // clip RGB values to the valid range [0, 1]
-        r = Math.min(1.0, Math.max(0.0, r));
-        g = Math.min(1.0, Math.max(0.0, g));
-        b = Math.min(1.0, Math.max(0.0, b));
-        console.log("rgb after clip", r,g,b)
+        // Apply reverse gamma correction
+        r = r <= 0.04045 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
+        g = g <= 0.04045 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
+        b = b <= 0.04045 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
+        console.log("rgb after gamma: ", r, g, b)
+
+        // // Clip RGB values to the valid range [0, 1]
+        // r = Math.min(1.0, Math.max(0.0, r));
+        // g = Math.min(1.0, Math.max(0.0, g));
+        // b = Math.min(1.0, Math.max(0.0, b));
+        // console.log("rgb after clip: ", r, g, b)
 
         // convert RGB values to 8-bit integers
         const rgbInt = {
@@ -144,6 +145,7 @@ const App = () => {
           b: Math.round(b * 255),
         };
         console.log(rgbInt);
+
     })
   }catch (error) {
       console.error("Error mapping lights array:", error);
