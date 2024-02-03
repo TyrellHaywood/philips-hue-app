@@ -440,6 +440,13 @@ $button-blue : #408CFF;
                 justify-content: center;
                 align-items: center;
 
+                &:hover {
+                    transition: 0.2s;
+                    transform: translateY(-1.5px);
+                    border: solid #FF0000;
+                    background-color: rgba(255, 0, 0, 0.4);
+                }
+
                 & p {
                     color: white;
                     font-size: 20px;
