@@ -45,12 +45,6 @@ const App = () => {
       const sceneData = await sceneResponse.json();
       const scenesById = {} // create an empty object to store scenes by id
 
-      //fetch groups
-      // const groupResponse = await fetch(GROUP_API_URL);
-      // const groupData = await groupResponse.json();
-      // setGroupData(groupData);
-      // console.log("this is groupData: " + groupData); // group data is currently undefined
-
       // create an array of group objects
 
         // fetch groups
@@ -69,7 +63,6 @@ const App = () => {
 
         setGroupData(groupData);
         console.log("this is group data updated: " + groupData); // log entire array
-
 
       //loop thru scenes and store them in scenesById variable
       for (const sceneId in sceneData) {
