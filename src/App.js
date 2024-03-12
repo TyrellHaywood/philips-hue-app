@@ -128,9 +128,9 @@ const App = () => {
       
       // loop through all lights in the lightsArray
       lightsArray.forEach(light => {
-        // Calculate XYZ values Convert using the following formulas:
-        const xValue = light.xy[0];
-        const yValue = light.xy[1];
+          // Calculate XYZ values Convert using the following formulas:
+          const xValue = light.xy[0];
+          const yValue = light.xy[1];
         console.log(xValue, yValue)
 
         const z = 1.0 - xValue - yValue;
@@ -168,9 +168,9 @@ const App = () => {
         console.log(rgbInt);
 
     })
-  }catch (error) {
-      console.error("Error mapping lights array:", error);
-    }
+      }catch (error) {
+            console.error("Error mapping lights array:", error);
+          }
 
     const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
     const lightsResponse = await fetch(LIGHTS_API_URL);
