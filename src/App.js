@@ -146,9 +146,18 @@ const App = () => {
         r = r * 255;   if (r < 0) { r = 255 }
         g = g * 255;   if (g < 0) { g = 255 }
         b = b * 255;   if (b < 0) { b = 255 }
-        
+
         const rgbInt = {r:Math.round(r), g:Math.round(g), b:Math.round(b)};
         console.log(rgbInt)
+        // convert RGB to hex
+        const clamp = (value) => Math.max(0, Math.min(255, Math.round(value)));
+        const rHex = clamp(rgbInt.r).toString(16).padStart(2, '0');
+        const gHex = clamp(rgbInt.g).toString(16).padStart(2, '0');
+        const bHex = clamp(rgbInt.b).toString(16).padStart(2, '0');
+        const hexValue = `#${rHex}${gHex}${bHex}`;
+        console.log(hexValue)
+        // add hexValue as property for each light
+        light.hexValue = hexValue
         })
       }catch (error) {
         console.error("Error converting xy to RGB:", error)
