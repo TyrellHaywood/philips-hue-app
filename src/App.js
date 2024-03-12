@@ -120,47 +120,41 @@ const App = () => {
       // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
       
       // loop through all lights in the lightsArray
-      lightsArray.forEach(light => {
-          // Calculate XYZ values Convert using the following formulas:
-          const xValue = light.xy[0];
-          const yValue = light.xy[1];
-        console.log(xValue, yValue)
-
+      try {
+        lightsArray.forEach(light => {
+        // get xy coordinates & brightness from lights object
+        const xValue = light.xy[0];
+        const yValue = light.xy[1];
+        const briValue = light.bri / 255.0;
         const z = 1.0 - xValue - yValue;
-        const briValue = light.bri;
-        console.log(briValue)
-
         const X = (briValue / yValue) * xValue;
         const Z = (briValue / yValue) * z;
+        // convert XYZ to RGB
+        let r = X * 1.612 - briValue * 0.203 - Z * 0.302;
+        let g = -X * 0.509 + briValue * 1.412 + Z * 0.066;
+        let b = X * 0.026 - briValue * 0.072 + Z * 0.962;
+        // apply gamma correction
+        r = r <= 0.0031308 ? 12.92 * r : (1.0 + 0.055) * Math.pow(r, (1.0 / 2.4)) - 0.055;
+        g = g <= 0.0031308 ? 12.92 * g : (1.0 + 0.055) * Math.pow(g, (1.0 / 2.4)) - 0.055;
+        b = b <= 0.0031308 ? 12.92 * b : (1.0 + 0.055) * Math.pow(b, (1.0 / 2.4)) - 0.055;
+        // normalize RGB values
+        const maxValue = Math.max(r,g,b);
+        r /= maxValue;
+        g /= maxValue;
+        b /= maxValue;
+        // scale to 0-255 range
+        r = r * 255;   if (r < 0) { r = 255 }
+        g = g * 255;   if (g < 0) { g = 255 }
+        b = b * 255;   if (b < 0) { b = 255 }
+        
+        const rgbInt = {r:Math.round(r), g:Math.round(g), b:Math.round(b)};
+        console.log(rgbInt)
+        })
+      }catch (error) {
+        console.error("Error converting xy to RGB:", error)
+      }
+      
 
-        console.log(X,Z)
-        // Convert to RGB using Wide RGB D65 conversion
-        let r = X * 1.656492 - briValue * 0.354851 - Z * 0.255038;
-        let g = -X * 0.707196 + briValue * 1.655397 + Z * 0.036152;
-        let b = X * 0.051713 - briValue * 0.121364 + Z * 1.011530;
-        console.log("rgb after initial conversion: ", r, g, b)
-
-        // Apply reverse gamma correction
-        r = r <= 0.04045 ? r / 12.92 : Math.pow((r + 0.055) / 1.055, 2.4);
-        g = g <= 0.04045 ? g / 12.92 : Math.pow((g + 0.055) / 1.055, 2.4);
-        b = b <= 0.04045 ? b / 12.92 : Math.pow((b + 0.055) / 1.055, 2.4);
-        console.log("rgb after gamma: ", r, g, b)
-
-        // // Clip RGB values to the valid range [0, 1]
-        // r = Math.min(1.0, Math.max(0.0, r));
-        // g = Math.min(1.0, Math.max(0.0, g));
-        // b = Math.min(1.0, Math.max(0.0, b));
-        // console.log("rgb after clip: ", r, g, b)
-
-        // convert RGB values to 8-bit integers
-        const rgbInt = {
-          r: Math.round(r * 255),
-          g: Math.round(g * 255),
-          b: Math.round(b * 255),
-        };
-        console.log(rgbInt);
-
-    })
       }catch (error) {
             console.error("Error mapping lights array:", error);
           }
