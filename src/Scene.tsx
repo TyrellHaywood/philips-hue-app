@@ -1,6 +1,5 @@
 import React from "react";
 import "./Scene.scss"; // imports stylesheet;
-import "./lightVariables.scss";
 import { useState, useEffect } from "react";
 
 interface SceneProps {

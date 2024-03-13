@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import "./Room.scss";
-import "./lightVariables.scss";
 
 //define type for props (avoid typescript errors)
 interface RoomProps {

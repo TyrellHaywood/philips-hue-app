@@ -3,7 +3,6 @@ import React from "react";
 import { useState, useEffect } from 'react';
 
 import './App.scss' // imports stylesheet;
-import './lightVariables.scss'
 import Rooms from './Rooms';
 import WelcomeScreen from './WelcomeScreen';
 import Room from './Room';
@@ -33,7 +32,6 @@ const App = () => {
   const [ownerName, setOwnerName] = useState("");
 
 
-
   //login authentication, talks to bridge and fetches data on scenes
   const handleLoginClick = async () => {
     const SCENE_API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
@@ -52,7 +50,7 @@ const App = () => {
         const groupResponse = await fetch(GROUP_API_URL);
         const groupData = await groupResponse.json();
         const groupsById = {} // create an empty object to store lights by id
-        setLightsData(groupData);
+        setGroupData(groupData);
         console.log(groupData);
 
         // loop thru groups and store them in groupDataById variable
@@ -81,7 +79,7 @@ const App = () => {
     });
     setScenesData(scenesArray);
     setIsLoggedIn(true);
-    console.log(scenesArray); // log entire array
+    console.log("scenesArray: ", scenesArray, "scenesData: ", scenesData); // log entire array
   } catch (error) {
     console.error('Error fetching scenes data:', error);
   }
@@ -94,7 +92,7 @@ const App = () => {
       const lightData = await lightResponse.json();
       const lightsById = {} // create an empty object to store lights by id
       setLightsData(lightData);
-      console.log(lightData);
+      console.log("lights Data initial: ", lightData);
 
       // loop thru lights and store them in lightsById variable
       for(const lightId in lightData) {
@@ -116,7 +114,7 @@ const App = () => {
         };
       });
       setLightsData(lightsArray);
-      console.log(lightsArray); // log entire array
+      console.log("lights data, lights array: ", lightData, lightsArray); // log entire array
 
       // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
       
@@ -158,7 +156,9 @@ const App = () => {
         const hexValue = `#${rHex}${gHex}${bHex}`;
         console.log(hexValue)
         // add hexValue as property for each light
-        light.hexValue = hexValue
+        light.hexValue = hexValue;
+        setLightsData(lightsArray); // update lightsData state
+        console.log(lightsData);
         })
       }catch (error) {
         console.error("Error converting xy to RGB:", error)
@@ -194,6 +194,20 @@ const App = () => {
     // Set the default brightness in the state
     setDefaultBrightness(averageBrightness);
   };
+
+// use effect hook!
+
+useEffect(() => {
+  // update SCSS variables based on lightsData
+  if(Array.isArray(lightsData)){
+    lightsData.forEach((light) => {
+      document.documentElement.style.setProperty(`--light-${light.id}`, light.hex);
+      console.log("useEffect lightsData: ", lightsData)
+    });
+  }
+}, [lightsData]);
+
+  
 
   //controls on and off buttons of function, by fetching api light values and sending PUT method
   const toggleLightsPower = () => {
