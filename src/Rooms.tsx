@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 
 import "./Rooms.scss";
+import "./lightVariables.scss";
 import Room from "./Room";
 
 //define type for props (avoid typescript errors)

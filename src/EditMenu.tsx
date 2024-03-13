@@ -1,5 +1,6 @@
 import React from "react";
 import "./EditMenu.scss"; // imports stylesheet;
+import "./lightVariables.scss";
 import { useState, useEffect, ChangeEvent } from "react";
 import Light from "./Light";
 

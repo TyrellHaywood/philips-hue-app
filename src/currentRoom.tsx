@@ -1,6 +1,7 @@
 import React from "react";
 import { SyntheticEvent, KeyboardEvent } from "react";
 import "./CurrentRoom.scss"; // imports stylesheet;
+import "./lightVariables.scss";
 import { useState, useEffect, ChangeEvent } from "react";
 import Scene from "./Scene";
 import Light from "./Light";

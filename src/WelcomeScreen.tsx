@@ -1,5 +1,6 @@
 import React from "react";
 import "./WelcomeScreen.scss"; // imports stylesheet;
+import "./lightVariables.scss";
 
 import { useState, useEffect } from "react";
 

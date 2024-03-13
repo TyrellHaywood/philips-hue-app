@@ -3,6 +3,7 @@ import React from "react";
 import { useState, useEffect } from 'react';
 
 import './App.scss' // imports stylesheet;
+import './lightVariables.scss'
 import Rooms from './Rooms';
 import WelcomeScreen from './WelcomeScreen';
 import Room from './Room';
