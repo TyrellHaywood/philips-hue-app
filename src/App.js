@@ -20,6 +20,7 @@ const App = () => {
   const [scenesData, setScenesData] = useState([]); // initialize as an empty array 
   const [groupData, setGroupData] = useState(null);
   const [lightsData, setLightsData] = useState([]); // initialize as an empty array 
+  const [lightsValueData, setLightsValueData] = useState([]); // initialize as an empty array 
   const [ipAddress, setIpAddress] = useState(""); // define ipAddress state
   const [idKey, setIdKey] = useState(""); // define idKey state
   const [defaultBrightness, setDefaultBrightness] = useState(0);
@@ -101,7 +102,7 @@ const App = () => {
         }
       }
       
-      // Create an array of scene objects
+      // Create an array of light objects
       const lightsArray = Object.keys(lightsById).map((lightId) => {
         const {name, state} = lightsById[lightId]; // destructure name and state
         return {
@@ -113,7 +114,7 @@ const App = () => {
           bri: state.bri // brightness, 0-500
         };
       });
-      setLightsData(lightsArray);
+      setLightsData([]);
       console.log("lights data, lights array: ", lightData, lightsArray); // log entire array
 
       // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
@@ -157,8 +158,9 @@ const App = () => {
         console.log(hexValue)
         // add hexValue as property for each light
         light.hexValue = hexValue;
-        setLightsData(lightsArray); // update lightsData state
-        console.log(lightsData);
+        setLightsValueData(lightsArray); // update lightsData state
+        console.log("lightsValueData after hexAdded: ", lightsValueData);
+        console.log("lightsArray after hexAdded: ", lightsArray);
         })
       }catch (error) {
         console.error("Error converting xy to RGB:", error)
@@ -196,16 +198,15 @@ const App = () => {
   };
 
 // use effect hook!
-
 useEffect(() => {
-  // update SCSS variables based on lightsData
-  if(Array.isArray(lightsData)){
-    lightsData.forEach((light) => {
-      document.documentElement.style.setProperty(`--light-${light.id}`, light.hex);
-      console.log("useEffect lightsData: ", lightsData)
+  // update SCSS variables based on lightsValueData
+  if (Array.isArray(lightsValueData)) {
+    lightsValueData.forEach((light) => {
+      document.documentElement.style.setProperty(`--light-${light.id}`, light.hexValue);
+      console.log("useEffect lightsValueData: ", lightsValueData)
     });
   }
-}, [lightsData]);
+}, [lightsValueData]);
 
   
 
