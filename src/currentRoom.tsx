@@ -28,6 +28,7 @@ interface CurrentRoomProps {
     xy: [number, number];
     bri: number;
   }>;
+  lightColors: { [key: string]: string };
 
   handleSelectScene: (sceneId: string) => void;
   handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
@@ -49,6 +50,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   scenesData,
   lightsData,
   lightsValueData,
+  lightColors,
   handleSelectScene,
   handleSearchScene,
   selectedScene,
@@ -95,7 +97,12 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   return (
     <div className="current-room">
       <div className="current-room-main">
-        <header className="current-room-main__header">
+        <header
+          className="current-room-main__header"
+          style={{
+            background: `linear-gradient(90deg, ${lightColors.light0} 28.79%, ${lightColors.light1} 88.97%)`,
+          }}
+        >
           <div
             className={`current-room-main__header__top ${
               isLightOn ? "lights-on" : "lights-off"
