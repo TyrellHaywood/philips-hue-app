@@ -217,7 +217,71 @@ useEffect(() => {
   }
 }, [lightsValueData]);
 
-  
+const updateLightColors = async () => {
+  const LIGHT_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
+  // fetch lights
+  const lightResponse = await fetch(LIGHT_API_URL);
+  const lightData = await lightResponse.json();
+  const lightsById = {} // create an empty object to store lights by id
+  setLightsData(lightData);
+  // loop thru lights and store them in lightsById variable
+  for(const lightId in lightData) {
+    if (lightData.hasOwnProperty(lightId)) {
+      lightsById[lightId] = lightData[lightId];
+    }
+  }
+
+  const lightsArray = Object.keys(lightsById).map((lightId) => {
+    const {name, state} = lightsById[lightId]; // destructure name and state
+    return {
+      id: lightId,
+      name,
+      on: state.on,
+      ct: state.ct, // ct value
+      xy: state.xy, // xy coordinate in [x, y]
+      bri: state.bri // brightness, 0-500
+    };
+  });
+  setLightsData([]);
+
+  const newColors = {};
+  lightsArray.forEach((light, index) => {
+    const xValue = light.xy[0];
+    const yValue = light.xy[1];
+    const briValue = light.bri / 255.0;
+    const z = 1.0 - xValue - yValue;
+    const X = (briValue / yValue) * xValue;
+    const Z = (briValue / yValue) * z;
+
+    let r = X * 1.612 - briValue * 0.203 - Z * 0.302;
+    let g = -X * 0.509 + briValue * 1.412 + Z * 0.066;
+    let b = X * 0.026 - briValue * 0.072 + Z * 0.962;
+
+    r = r <= 0.0031308 ? 12.92 * r : (1.0 + 0.055) * Math.pow(r, (1.0 / 2.4)) - 0.055;
+    g = g <= 0.0031308 ? 12.92 * g : (1.0 + 0.055) * Math.pow(g, (1.0 / 2.4)) - 0.055;
+    b = b <= 0.0031308 ? 12.92 * b : (1.0 + 0.055) * Math.pow(b, (1.0 / 2.4)) - 0.055;
+
+    const maxValue = Math.max(r, g, b);
+    r /= maxValue;
+    g /= maxValue;
+    b /= maxValue;
+
+    r = r * 255; if (r < 0) { r = 255 }
+    g = g * 255; if (g < 0) { g = 255 }
+    b = b * 255; if (b < 0) { b = 255 }
+
+    const rgbInt = { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
+    const clamp = (value) => Math.max(0, Math.min(255, Math.round(value)));
+    const rHex = clamp(rgbInt.r).toString(16).padStart(2, '0');
+    const gHex = clamp(rgbInt.g).toString(16).padStart(2, '0');
+    const bHex = clamp(rgbInt.b).toString(16).padStart(2, '0');
+    const hexValue = `#${rHex}${gHex}${bHex}`;
+    light.hexValue = hexValue;
+    newColors[`light${index}`] = hexValue;
+  });
+  setLightsValueData(lightsArray); // update lightsData state
+  return newColors;
+};
 
   //controls on and off buttons of function, by fetching api light values and sending PUT method
   const toggleLightsPower = () => {
@@ -337,82 +401,9 @@ useEffect(() => {
         console.log(`Successfully applied scene: ${selectedScene.name}`);
         setSelectedScene(selectedScene);
 
-        // update lightsValueData with the new light values
-        try {
-          // fetch lights
-          const lightResponse = await fetch(LIGHT_API_URL);
-          const lightData = await lightResponse.json();
-          const lightsById = {} // create an empty object to store lights by id
-          setLightsData(lightData);
-    
-          // loop thru lights and store them in lightsById variable
-          for(const lightId in lightData) {
-            if (lightData.hasOwnProperty(lightId)) {
-              lightsById[lightId] = lightData[lightId];
-            }
-          }
+        const newColors = updateLightColors();
+        setLightColors(newColors); // update lightColors state
 
-          const lightsArray = Object.keys(lightsById).map((lightId) => {
-            const {name, state} = lightsById[lightId]; // destructure name and state
-            return {
-              id: lightId,
-              name,
-              on: state.on,
-              ct: state.ct, // ct value
-              xy: state.xy, // xy coordinate in [x, y]
-              bri: state.bri // brightness, 0-500
-            };
-          });
-          setLightsData([]);
-      
-          // loop through all lights in the lightsArray
-          try {
-            // initialize newColors to be updated immediately
-            const newColors = {};
-            lightsArray.forEach((light, index) => {
-            // get xy coordinates & brightness from lights object
-            const xValue = light.xy[0];
-            const yValue = light.xy[1];
-            const briValue = light.bri / 255.0;
-            const z = 1.0 - xValue - yValue;
-            const X = (briValue / yValue) * xValue;
-            const Z = (briValue / yValue) * z;
-            // convert XYZ to RGB
-            let r = X * 1.612 - briValue * 0.203 - Z * 0.302;
-            let g = -X * 0.509 + briValue * 1.412 + Z * 0.066;
-            let b = X * 0.026 - briValue * 0.072 + Z * 0.962;
-            // apply gamma correction
-            r = r <= 0.0031308 ? 12.92 * r : (1.0 + 0.055) * Math.pow(r, (1.0 / 2.4)) - 0.055;
-            g = g <= 0.0031308 ? 12.92 * g : (1.0 + 0.055) * Math.pow(g, (1.0 / 2.4)) - 0.055;
-            b = b <= 0.0031308 ? 12.92 * b : (1.0 + 0.055) * Math.pow(b, (1.0 / 2.4)) - 0.055;
-            // normalize RGB values
-            const maxValue = Math.max(r,g,b);
-            r /= maxValue;
-            g /= maxValue;
-            b /= maxValue;
-            // scale to 0-255 range
-            r = r * 255;   if (r < 0) { r = 255 }
-            g = g * 255;   if (g < 0) { g = 255 }
-            b = b * 255;   if (b < 0) { b = 255 }
-    
-            const rgbInt = {r:Math.round(r), g:Math.round(g), b:Math.round(b)};
-            console.log(rgbInt)
-            // convert RGB to hex
-            const clamp = (value) => Math.max(0, Math.min(255, Math.round(value)));
-            const rHex = clamp(rgbInt.r).toString(16).padStart(2, '0');
-            const gHex = clamp(rgbInt.g).toString(16).padStart(2, '0');
-            const bHex = clamp(rgbInt.b).toString(16).padStart(2, '0');
-            const hexValue = `#${rHex}${gHex}${bHex}`;
-            light.hexValue = hexValue;
-            setLightsValueData(lightsArray); // update lightsData state
-            newColors[`light${index}`] = hexValue;
-            })
-          }catch (error) {
-            console.error("Error converting xy to RGB:", error)
-          }
-          }catch (error) {
-                console.error("Error mapping lights array:", error);
-              }
       } else {
         console.error('Scene not found:', sceneId);
         // handle the error 
