@@ -21,6 +21,14 @@ interface CurrentRoomProps {
     xy: [number, number];
     bri: number;
   }>;
+  lightsValueData: Array<{
+    id: string;
+    name: string;
+    ct: string;
+    xy: [number, number];
+    bri: number;
+  }>;
+
   handleSelectScene: (sceneId: string) => void;
   handleSearchInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
   handleSearchScene: (
@@ -40,6 +48,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   handleEditScene,
   scenesData,
   lightsData,
+  lightsValueData,
   handleSelectScene,
   handleSearchScene,
   selectedScene,
@@ -188,8 +197,8 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
             <p>LIGHTS</p>
           </div>
           <div className="current-room-content__lights">
-            {Array.isArray(lightsData) &&
-              lightsData.map((light) => (
+            {Array.isArray(lightsValueData) &&
+              lightsValueData.map((light) => (
                 <Light
                   lightId={light.id}
                   lightName={light.name}

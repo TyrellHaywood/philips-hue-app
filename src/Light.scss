@@ -18,15 +18,14 @@ $button-blue : #408CFF;
     margin-right: 35px; // space between for now, can definitely change
     margin-bottom: 25px;
     border: none;
-    background-position: 45% 0; /* Initially, the gradient is shifted to the right */
-    transform: translateX(0); /* Initial scale: no scaling */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+    background-position: 45% 0; /* intial gradient is shifted to the right */
+    transform: translateX(0); 
     padding: 0px;
 
     &:hover {
-        background-position: 0 0; /* On hover, shift the gradient to the left */
-        transform: translateX(10px); /* Increase the scale slightly to make it pop out */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increase the shadow for the pop-out effect */
+        background-position: 0 0; /* on hover shift the gradient to the left */
+        transform: translateX(10px); 
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); 
       }
 
     &__top {

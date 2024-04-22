@@ -115,7 +115,7 @@ const App = () => {
         };
       });
       setLightsData([]);
-      console.log("lights data, lights array: ", lightData, lightsArray); // log entire array
+      console.log("lights data, lights array: ", lightsData, lightsArray); // log entire array
 
       // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
       
@@ -460,6 +460,7 @@ useEffect(() => {
           <EditMenu
             scenesData={scenesData}
             lightsData={lightsData}
+            lightsValueData={lightsValueData} // fixes lightsData not rendering properly
             toggleSingleLightPower={toggleSingleLightPower}
             adjustLightsBrightness={adjustLightsBrightness}
             selectedScene={selectedScene}
@@ -479,6 +480,7 @@ useEffect(() => {
             handleBackClick={handleBackClick}
             scenesData={scenesData}
             lightsData={lightsData}
+            lightsValueData={lightsValueData} // fixes lightsData not rendering properly
             handleSelectScene={handleSelectScene}
             handleSearchInput={handleSearchInput}
             handleSearchScene={handleSearchScene}

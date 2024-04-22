@@ -23,6 +23,13 @@ interface EditMenuProps {
     xy: [number, number];
     bri: number;
   }>;
+  lightsValueData: Array<{
+    id: string;
+    name: string;
+    ct: string;
+    xy: [number, number];
+    bri: number;
+  }>;
 }
 
 const EditMenu: React.FC<EditMenuProps> = ({
@@ -32,6 +39,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
   saveSceneEdit,
   scenesData,
   lightsData,
+  lightsValueData,
   selectedScene,
   editMenu,
   handleNameEditInput,
@@ -145,8 +153,8 @@ const EditMenu: React.FC<EditMenuProps> = ({
           <h1>Lights</h1>
         </header>
         <div className="edit-menu-lower__lights">
-          {Array.isArray(lightsData) &&
-            lightsData.map((light) => (
+          {Array.isArray(lightsValueData) &&
+            lightsValueData.map((light) => (
               <Light
                 lightId={light.id}
                 lightName={light.name}
