@@ -9,12 +9,14 @@ interface RoomProps {
   toggleLightsPower: () => void;
   handleRoomClick: () => void;
   adjustLightsBrightness: (brightness: number) => void;
+  lightColors: { [key: string]: string };
 }
 
 const Rooms: React.FC<RoomProps> = ({
   toggleLightsPower,
   adjustLightsBrightness,
   handleRoomClick,
+  lightColors,
 }) => {
   const [roomSelected, setRoomSelected] = useState(false);
 
@@ -33,36 +35,43 @@ const Rooms: React.FC<RoomProps> = ({
           toggleLightsPower={toggleLightsPower}
           adjustLightsBrightness={adjustLightsBrightness}
           handleRoomClick={handleRoomClick}
+          lightColors={lightColors}
         />
         <Room
           toggleLightsPower={toggleLightsPower}
           adjustLightsBrightness={adjustLightsBrightness}
           handleRoomClick={handleRoomClick}
+          lightColors={lightColors}
         />
         <Room
           toggleLightsPower={toggleLightsPower}
           adjustLightsBrightness={adjustLightsBrightness}
           handleRoomClick={handleRoomClick}
+          lightColors={lightColors}
         />
         <Room
           toggleLightsPower={toggleLightsPower}
           adjustLightsBrightness={adjustLightsBrightness}
           handleRoomClick={handleRoomClick}
+          lightColors={lightColors}
         />
         <Room
           toggleLightsPower={toggleLightsPower}
           adjustLightsBrightness={adjustLightsBrightness}
           handleRoomClick={handleRoomClick}
+          lightColors={lightColors}
         />
         <Room
           toggleLightsPower={toggleLightsPower}
           adjustLightsBrightness={adjustLightsBrightness}
           handleRoomClick={handleRoomClick}
+          lightColors={lightColors}
         />
         <Room
           toggleLightsPower={toggleLightsPower}
           adjustLightsBrightness={adjustLightsBrightness}
           handleRoomClick={handleRoomClick}
+          lightColors={lightColors}
         />
       </div>
     </div>

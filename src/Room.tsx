@@ -7,14 +7,14 @@ interface RoomProps {
   toggleLightsPower: () => void;
   handleRoomClick: () => void;
   adjustLightsBrightness: (brightness: number) => void;
-  // lightsData: Array<any>; // Add lightsData prop
+  lightColors: { [key: string]: string };
 }
 
 const Room: React.FC<RoomProps> = ({
   toggleLightsPower,
   adjustLightsBrightness,
   handleRoomClick,
-  // lightsData,
+  lightColors,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
   const [brightness, setBrightness] = useState(0); // Default brightness value
@@ -47,7 +47,13 @@ const Room: React.FC<RoomProps> = ({
   };
 
   return (
-    <button className="room-component" onClick={handleRoomClick}>
+    <button
+      className="room-component"
+      onClick={handleRoomClick}
+      style={{
+        background: `linear-gradient(90deg, ${lightColors.light0} 28.79%, ${lightColors.light1} 88.97%)`,
+      }}
+    >
       {/* room info */}
       <div
         className={`room-component__information ${

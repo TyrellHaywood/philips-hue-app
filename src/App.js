@@ -460,6 +460,9 @@ const updateLightColors = async () => {
           method: "PUT",
           body: JSON.stringify({ scene: selectedScene.id }),
         });
+        
+        const newColors = updateLightColors();
+        setLightColors(newColors); // update lightColors state
   
         if (response.ok) {
           console.log(`Successfully applied scene: ${selectedScene.name}`);
@@ -573,6 +576,7 @@ const updateLightColors = async () => {
             toggleLightsPower={toggleLightsPower}
             adjustLightsBrightness={adjustLightsBrightness}
             handleRoomClick={handleRoomClick}
+            lightColors={lightColors}
           />
         )
       ) : (

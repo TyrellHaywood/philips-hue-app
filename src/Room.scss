@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-@import './lightVariables.scss'; // light variables
 
 // colors
 $darker-brown : #8E5B1F; 
@@ -18,15 +17,15 @@ $light-brown : #F8B363;
     border: none;
     transition: background-position 1s, transform 0.3s, box-shadow 0.3s;
     background-size: 200% 100%;
-    background-position: 45% 0; /* Initially, the gradient is shifted to the right */
-    transform: translateX(0); /* Initial scale: no scaling */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
+    background-position: 45% 0; /* initial gradient is shifted to the right */
+    transform: translateX(0); 
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
 
   &:hover {
-    background-position: 0 0; /* On hover, shift the gradient to the left */
-    transform: translateX(10px); /* Increase the scale slightly to make it pop out */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increase the shadow for the pop-out effect */
+    background-position: 0 0; /* shift the gradient to the left */
+    transform: translateX(10px); /* increase scale slightly to make it pop out */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* increase  shadow for the pop-out effect */
   }
 
     // component info---------***--*-------
@@ -72,7 +71,7 @@ $light-brown : #F8B363;
             width: 90px;
             height: 50px;
             border-radius: 50px;
-            background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
+            background-color: rgba(255,255,255, 0.5);
             margin-left: 347px;
             margin-top: 50px;
             display: flex;

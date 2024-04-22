@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
-@import './lightVariables.scss'; // light variables
 
 // colors
 $darker-brown : #8E5B1F; 
@@ -93,7 +92,7 @@ $button-blue : #408CFF;
                 width: 90px;
                 height: 50px;
                 border-radius: 50px;
-                background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
+                background-color: rgba(255,255,255, 0.5);
                 display: flex;
                 align-items: center;
                 justify-content: right;
@@ -109,28 +108,31 @@ $button-blue : #408CFF;
                     
                 }
             }
-
-            &.lights-on {
-                /* Styles when lights are on */
-                .current-room-header__top__light-button {
-                justify-content: left;
-                transition: justify-content 0.3s;
-                }
-                .current-room-header__top__light-button__circle {
-                margin-left: 5px;
-                }
-            }
             
-            &.lights-off {
-                /* Styles when lights are off */
-                .current-room-header__top__light-button {
-                justify-content: right;
-                transition: justify-content 0.3s;
+                &.lights-on {
+                    /* Styles when lights are on */
+                    .current-room-main__header__top__light-button {
+                    justify-content: left;
+                    transition: justify-content 0.3s;
+                    }
+                    .current-room-main__header__top__light-button__circle {
+                    margin-left: 5px;
+                    }
                 }
-                .current-room-header__top__light-button__circle {
-                margin-right: 5px;
-                }
-            }
+                
+                &.lights-off {
+                    /* Styles when lights are off */
+                    .current-room-main__header__top__light-button {
+                    justify-content: right;
+                    transition: justify-content 0.3s;
+                    }
+                    .current-room-main__header__top__light-button__circle {
+                    margin-right: 5px;
+                    }
+                } 
+
+
+
         }
 
         // ------------oO00O%-o0O-BOTTOM-STYLES-------Oo0Oo%o--o0O
