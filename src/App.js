@@ -81,10 +81,12 @@ const App = () => {
       }
       // Create an array of scene objects
     const scenesArray = Object.keys(scenesById).map((sceneId) => {
-      const {name, state} = scenesById[sceneId]; // destructure name and state
+      const { name, lights } = sceneData[sceneId]; // Destructure name and lights
+      const lightsData = lights.map((lightId) => groupsById[lightId]); // Get light data from groupsById
       return {
         id: sceneId,
-        name
+        name,
+        lightsData
       };
     });
     setScenesData(scenesArray);
@@ -280,6 +282,8 @@ const updateLightColors = async () => {
     newColors[`light${index}`] = hexValue;
   });
   setLightsValueData(lightsArray); // update lightsData state
+  console.log("light colors: ", lightColors)
+  console.log("scenesData: ", scenesData)
   return newColors;
 };
 

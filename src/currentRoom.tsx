@@ -188,6 +188,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     sceneName={scene.name}
                     handleSelectScene={handleSelectScene}
                     handleEditScene={handleEditScene}
+                    lightColors={lightColors}
                   />
                 ) : (
                   <Scene
@@ -196,6 +197,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     sceneName={scene.name}
                     handleSelectScene={handleSelectScene}
                     handleEditScene={handleEditScene}
+                    lightColors={lightColors}
                   />
                 );
               })}

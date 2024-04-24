@@ -7,11 +7,13 @@ interface SceneTargetProps {
   sceneName: string;
   handleSelectScene: (sceneId: string) => void;
   handleEditScene: () => void;
+  lightColors: { [key: string]: string };
 }
 
 const SceneTarget: React.FC<SceneTargetProps> = ({
   sceneId,
   sceneName,
+  lightColors,
   handleSelectScene,
   handleEditScene,
 }) => {
@@ -25,7 +27,12 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
 
   return (
     <div className="scene-component-target">
-      <div className="scene-component-target__button">
+      <div
+        className="scene-component-target__button"
+        style={{
+          background: `linear-gradient(90deg, ${lightColors.light0} 28.79%, ${lightColors.light1} 88.97%)`,
+        }}
+      >
         <div className="scene-component-target__button__color">
           <span className="material-icons md-light md-60">play_arrow</span>
         </div>
