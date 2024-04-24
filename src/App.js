@@ -148,19 +148,19 @@ const App = () => {
                 b = b * 255;   if (b < 0) { b = 255 }
 
                 const rgbInt = {r:Math.round(r), g:Math.round(g), b:Math.round(b)};
-                console.log(rgbInt)
+                // console.log(rgbInt)
                 // convert RGB to hex
                 const clamp = (value) => Math.max(0, Math.min(255, Math.round(value)));
                 const rHex = clamp(rgbInt.r).toString(16).padStart(2, '0');
                 const gHex = clamp(rgbInt.g).toString(16).padStart(2, '0');
                 const bHex = clamp(rgbInt.b).toString(16).padStart(2, '0');
                 const hexValue = `#${rHex}${gHex}${bHex}`;
-                console.log(hexValue)
+                // console.log(hexValue)
                 // add hexValue as property for each light
                 light.hexValue = hexValue;
                 setLightsValueData(lightsArray); // update lightsData state
-                console.log("lightsValueData after hexAdded: ", lightsValueData);
-                console.log("lightsArray after hexAdded: ", lightsArray);
+                // console.log("lightsValueData after hexAdded: ", lightsValueData);
+                // console.log("lightsArray after hexAdded: ", lightsArray);
                 })
 
                 // create an array of scene objects
@@ -180,13 +180,9 @@ const App = () => {
               }catch (error) {
                 console.error("Error converting xy to RGB:", error)
               }
-              
-
             } catch (error) {
                     console.error("Error mapping lights array:", error);
                   }
-
-         
           } else {
               console.error('Failed to apply scene:', response.statusText);
               // handle the error 
@@ -195,13 +191,10 @@ const App = () => {
           console.error('Error fetching scene\'s data :', error);
           // handle the error 
         }
-        
       }
-
   } catch (error) {
     console.error('Error fetching scenes data:', error);
   }
-
 
   // fetch and store lights data
     try {
@@ -314,7 +307,7 @@ const App = () => {
     setDefaultBrightness(averageBrightness);
   };
 
-// use effect hook! update colors based on light data
+// use effect hook! update colors based on light data + scenesData
 useEffect(() => {
   if (Array.isArray(lightsValueData)) {
     const newColors = {};
@@ -323,7 +316,9 @@ useEffect(() => {
     });
     setLightColors(newColors);
   }
-}, [lightsValueData]);
+
+  console.log("scenesData updated: ", scenesData);
+}, [lightsValueData, scenesData]);
 
 const updateLightColors = async () => {
   const LIGHT_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
@@ -502,28 +497,6 @@ const updateLightColors = async () => {
         method: 'PUT',
         body: JSON.stringify({ scene: sceneId }),
       });
-
-
-/* 
-  try {
-    const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
-    const response = await fetch(APPLY_SCENE_API_URL, {
-      method: 'PUT',
-      body: JSON.stringify({ scene: sceneId }),
-    });
-
-    if (response.ok) {
-          // logic to get lights info
-    } else {
-        console.error('Failed to apply scene:', response.statusText);
-        // handle the error 
-    }
-
-  } catch (error) {
-    console.error('Error applying scene:', error);
-    // handle the error 
-  }
-*/
 
       if (response.ok) {
         // find the scene object with the matching ID from scenesArray
