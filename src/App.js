@@ -62,11 +62,10 @@ const App = () => {
         const groupsById = {} // create an empty object to store lights by id
         setGroupData(groupData);
         console.log(groupData);
-
         // loop thru groups and store them in groupDataById variable
-        for(const lightId in groupData) {
-          if (groupData.hasOwnProperty(lightId)) {
-            groupsById[lightId] = groupData[lightId];
+        for(const groupId in groupData) {
+          if (groupData.hasOwnProperty(groupId)) {
+            groupsById[groupId] = groupData[groupId];
           }
         }
 
@@ -78,26 +77,133 @@ const App = () => {
         if (sceneData.hasOwnProperty(sceneId)) {
           scenesById[sceneId] = sceneData[sceneId];
         }
+
+        try {
+          const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
+          const response = await fetch(APPLY_SCENE_API_URL, {
+            method: 'PUT',
+            body: JSON.stringify({ scene: sceneId }),
+          });
+      
+          if (response.ok) {
+                //   // fetch and store lights data
+            try {
+              // fetch lights
+              const lightResponse = await fetch(LIGHT_API_URL);
+              const lightData = await lightResponse.json();
+              const lightsById = {} // create an empty object to store lights by id
+              setLightsData(lightData);
+              console.log("lights Data initial: ", lightData);
+
+              // loop thru lights and store them in lightsById variable
+              for(const lightId in lightData) {
+                if (lightData.hasOwnProperty(lightId)) {
+                  lightsById[lightId] = lightData[lightId];
+                }
+              }
+              
+              // Create an array of light objects
+              const lightsArray = Object.keys(lightsById).map((lightId) => {
+                const {name, state} = lightsById[lightId]; // destructure name and state
+                return {
+                  id: lightId,
+                  name,
+                  on: state.on,
+                  ct: state.ct, // ct value
+                  xy: state.xy, // xy coordinate in [x, y]
+                  bri: state.bri // brightness, 0-500
+                };
+              });
+              setLightsData([]);
+              console.log("lights data, lights array: ", lightsData, lightsArray); // log entire array
+
+              // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
+              
+              // loop through all lights in the lightsArray
+              try {
+                lightsArray.forEach(light => {
+                // get xy coordinates & brightness from lights object
+                const xValue = light.xy[0];
+                const yValue = light.xy[1];
+                const briValue = light.bri / 255.0;
+                const z = 1.0 - xValue - yValue;
+                const X = (briValue / yValue) * xValue;
+                const Z = (briValue / yValue) * z;
+                // convert XYZ to RGB
+                let r = X * 1.612 - briValue * 0.203 - Z * 0.302;
+                let g = -X * 0.509 + briValue * 1.412 + Z * 0.066;
+                let b = X * 0.026 - briValue * 0.072 + Z * 0.962;
+                // apply gamma correction
+                r = r <= 0.0031308 ? 12.92 * r : (1.0 + 0.055) * Math.pow(r, (1.0 / 2.4)) - 0.055;
+                g = g <= 0.0031308 ? 12.92 * g : (1.0 + 0.055) * Math.pow(g, (1.0 / 2.4)) - 0.055;
+                b = b <= 0.0031308 ? 12.92 * b : (1.0 + 0.055) * Math.pow(b, (1.0 / 2.4)) - 0.055;
+                // normalize RGB values
+                const maxValue = Math.max(r,g,b);
+                r /= maxValue;
+                g /= maxValue;
+                b /= maxValue;
+                // scale to 0-255 range
+                r = r * 255;   if (r < 0) { r = 255 }
+                g = g * 255;   if (g < 0) { g = 255 }
+                b = b * 255;   if (b < 0) { b = 255 }
+
+                const rgbInt = {r:Math.round(r), g:Math.round(g), b:Math.round(b)};
+                console.log(rgbInt)
+                // convert RGB to hex
+                const clamp = (value) => Math.max(0, Math.min(255, Math.round(value)));
+                const rHex = clamp(rgbInt.r).toString(16).padStart(2, '0');
+                const gHex = clamp(rgbInt.g).toString(16).padStart(2, '0');
+                const bHex = clamp(rgbInt.b).toString(16).padStart(2, '0');
+                const hexValue = `#${rHex}${gHex}${bHex}`;
+                console.log(hexValue)
+                // add hexValue as property for each light
+                light.hexValue = hexValue;
+                setLightsValueData(lightsArray); // update lightsData state
+                console.log("lightsValueData after hexAdded: ", lightsValueData);
+                console.log("lightsArray after hexAdded: ", lightsArray);
+                })
+
+                // create an array of scene objects
+                const scenesArray = Object.keys(scenesById).map((sceneId) => {
+                  const { name, lights } = sceneData[sceneId]; 
+                  const lightsData = lights.map((lightId) => lightsArray[lightId]);
+                  return {
+                    id: sceneId,
+                    name,
+                    lightsData
+                  };
+                });
+                setScenesData(scenesArray);
+                setIsLoggedIn(true);
+                console.log("scenesArray: ", scenesArray, "scenesData: ", scenesData); // log entire array     
+                
+              }catch (error) {
+                console.error("Error converting xy to RGB:", error)
+              }
+              
+
+            } catch (error) {
+                    console.error("Error mapping lights array:", error);
+                  }
+
+         
+          } else {
+              console.error('Failed to apply scene:', response.statusText);
+              // handle the error 
+          }
+        } catch (error) {
+          console.error('Error fetching scene\'s data :', error);
+          // handle the error 
+        }
+        
       }
-      // Create an array of scene objects
-    const scenesArray = Object.keys(scenesById).map((sceneId) => {
-      const { name, lights } = sceneData[sceneId]; // Destructure name and lights
-      const lightsData = lights.map((lightId) => groupsById[lightId]); // Get light data from groupsById
-      return {
-        id: sceneId,
-        name,
-        lightsData
-      };
-    });
-    setScenesData(scenesArray);
-    setIsLoggedIn(true);
-    console.log("scenesArray: ", scenesArray, "scenesData: ", scenesData); // log entire array
+
   } catch (error) {
     console.error('Error fetching scenes data:', error);
   }
 
 
-  // create an array of light objects
+  // fetch and store lights data
     try {
       // fetch lights
       const lightResponse = await fetch(LIGHT_API_URL);
@@ -396,6 +502,28 @@ const updateLightColors = async () => {
         method: 'PUT',
         body: JSON.stringify({ scene: sceneId }),
       });
+
+
+/* 
+  try {
+    const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
+    const response = await fetch(APPLY_SCENE_API_URL, {
+      method: 'PUT',
+      body: JSON.stringify({ scene: sceneId }),
+    });
+
+    if (response.ok) {
+          // logic to get lights info
+    } else {
+        console.error('Failed to apply scene:', response.statusText);
+        // handle the error 
+    }
+
+  } catch (error) {
+    console.error('Error applying scene:', error);
+    // handle the error 
+  }
+*/
 
       if (response.ok) {
         // find the scene object with the matching ID from scenesArray
