@@ -8,12 +8,36 @@ interface SceneProps {
   handleSelectScene: (sceneId: string) => void;
   handleEditScene: () => void;
   lightColors: { [key: string]: string };
+  lightsData: {
+    id: string;
+    name: string;
+    on: boolean;
+    bri: number;
+    ct: number;
+    hexValue: string;
+    xy: number[];
+  }[];
+  scenesData: Array<{
+    id: string;
+    name: string;
+    lightsData: Array<{
+      id: string;
+      name: string;
+      on: boolean;
+      bri: number;
+      ct: number;
+      hexValue: string;
+      xy: Array<number>;
+    }>;
+  }>;
 }
 
 const Scene: React.FC<SceneProps> = ({
   sceneId,
   sceneName,
   lightColors,
+  lightsData,
+  scenesData,
   handleSelectScene,
   handleEditScene,
 }) => {
@@ -28,8 +52,8 @@ const Scene: React.FC<SceneProps> = ({
           className="scene-component__button__color"
           style={{
             background: `linear-gradient(90deg, ${
-              lightColors[`light${sceneId}`]
-            } 28.79%, ${lightColors[`light${sceneId}`]} 88.97%)`,
+              lightsData[0]?.hexValue ?? "#ffffff"
+            } 28.79%, ${lightsData[1]?.hexValue ?? "#ffffff"} 88.97%)`,
           }}
         ></div>
         <p>{sceneName}</p>

@@ -13,13 +13,18 @@ interface CurrentRoomProps {
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
   handleEditScene: () => void;
-  scenesData: Array<{ id: string; name: string }>;
-  lightsData: Array<{
+  scenesData: Array<{
     id: string;
     name: string;
-    ct: string;
-    xy: [number, number];
-    bri: number;
+    lightsData: Array<{
+      id: string;
+      name: string;
+      on: boolean;
+      bri: number;
+      ct: number;
+      hexValue: string;
+      xy: Array<number>;
+    }>;
   }>;
   lightsValueData: Array<{
     id: string;
@@ -48,7 +53,6 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
   handleBackClick,
   handleEditScene,
   scenesData,
-  lightsData,
   lightsValueData,
   lightColors,
   handleSelectScene,
@@ -180,7 +184,9 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
               scenesData.map((scene) => {
                 const isSelected =
                   selectedScene && (selectedScene as any).id === scene.id;
-                // console.log(`Scene ${scene.id} is selected: ${isSelected}`);
+                console.log(
+                  `Scene ${scene.id} is selected: ${isSelected}. lightsData: ${scene.lightsData[0].hexValue}`
+                );
                 return isSelected ? (
                   <SceneTarget
                     key={scene.id}
@@ -195,6 +201,8 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     key={scene.id}
                     sceneId={scene.id}
                     sceneName={scene.name}
+                    scenesData={scenesData}
+                    lightsData={scene.lightsData}
                     handleSelectScene={handleSelectScene}
                     handleEditScene={handleEditScene}
                     lightColors={lightColors}
