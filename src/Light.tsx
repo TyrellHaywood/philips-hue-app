@@ -32,7 +32,9 @@ const Light: React.FC<lightProps> = ({
   return (
     <button
       className="light-component"
-      style={{ backgroundColor: `${lightColors[lightId]}` }}
+      style={{
+        background: `${lightColors[`light${lightId}`]}`,
+      }}
     >
       <div className="light-component__top">
         <div className="light-component__top__icon">
