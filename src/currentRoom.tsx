@@ -223,6 +223,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                   lightXY={light.xy}
                   lightBri={light.bri}
                   toggleSingleLightPower={toggleSingleLightPower}
+                  lightColors={lightColors}
                 />
               ))}
           </div>

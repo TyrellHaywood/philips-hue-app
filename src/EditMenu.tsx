@@ -30,6 +30,7 @@ interface EditMenuProps {
     xy: [number, number];
     bri: number;
   }>;
+  lightColors: { [key: string]: string };
 }
 
 const EditMenu: React.FC<EditMenuProps> = ({
@@ -46,6 +47,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
   readOnlyChange,
   autoFocusChange,
   handleEditName,
+  lightColors,
 }) => {
   const [brightness, setBrightness] = useState(0); // default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
@@ -162,6 +164,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
                 lightXY={light.xy}
                 lightBri={light.bri}
                 toggleSingleLightPower={toggleSingleLightPower}
+                lightColors={lightColors}
               />
             ))}
         </div>

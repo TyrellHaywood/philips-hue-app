@@ -12,7 +12,7 @@ $button-blue : #408CFF;
 .light-component {
     width: 225px;
     height: 292px;
-    background-color: #292929; // default color for now
+    // background-color: #292929; // default color for now
     border-radius: 30px;
     margin-right: 35px; // space between for now, can definitely change
     margin-bottom: 25px;
@@ -30,7 +30,7 @@ $button-blue : #408CFF;
     &__top {
         width: 100%;
         height: 192px;
-        background-color:#292929; // default color for now
+        // background-color:#292929; // default color for now
         border: none;
         border-top-left-radius: 30px;
         border-top-right-radius: 30px;
@@ -54,7 +54,7 @@ $button-blue : #408CFF;
     &__bottom {
       width: 100%;
         height: 100px;
-        background-color:#333333; // default color for now
+        // background-color:#333333; // default color for now
         border: none;
         border-bottom-left-radius: 30px;
         border-bottom-right-radius: 30px;

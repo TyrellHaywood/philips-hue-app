@@ -10,6 +10,7 @@ interface lightProps {
   lightXY: [number, number];
   lightBri: number;
   toggleSingleLightPower: (lightId: string) => void;
+  lightColors: { [key: string]: string };
 }
 
 const Light: React.FC<lightProps> = ({
@@ -19,6 +20,7 @@ const Light: React.FC<lightProps> = ({
   lightXY,
   lightBri,
   toggleSingleLightPower,
+  lightColors,
 }) => {
   const [isLightOn, setLightOn] = useState(false);
 
@@ -28,7 +30,10 @@ const Light: React.FC<lightProps> = ({
   };
 
   return (
-    <button className="light-component">
+    <button
+      className="light-component"
+      style={{ backgroundColor: `${lightColors[lightId]}` }}
+    >
       <div className="light-component__top">
         <div className="light-component__top__icon">
           <span className="material-icons md-light md-72">lightbulb</span>
