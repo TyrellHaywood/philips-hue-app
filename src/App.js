@@ -599,7 +599,9 @@ const updateLightColors = async () => {
   }
 
   return (
-    <div className='main-page'>
+    <div className='main-page' style={{
+      background: `linear-gradient(45deg, black 46.35%, ${lightColors.light0} 65%, ${lightColors.light1} 80%)`,
+    }}>
       
       {isLoggedIn ? (
         roomSelected ? (

@@ -43,6 +43,7 @@ $button-blue : #408CFF;
             width: 90px;
             height: 90px;
             margin-top: 25px;
+            background-color: transparent;
         }
 
         & p {
@@ -66,7 +67,8 @@ $button-blue : #408CFF;
             width: 90px;
             height: 50px;
             border-radius: 50px;
-            background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
+            // background-image: linear-gradient(90deg, $dark-brown 6.43%, $darker-brown 74.38%);
+            background-color: rgba(0, 0, 0, 0.25);
             display: flex;
             align-items: center;
             justify-content: right;

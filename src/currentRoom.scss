@@ -33,6 +33,7 @@ $button-blue : #408CFF;
             width: calc(100% - 100px);
             margin-left: auto;
             margin-right: auto;
+            background-color: transparent;
 
             &__round-button {
                 width: 50px;
@@ -147,6 +148,7 @@ $button-blue : #408CFF;
             justify-content: center;
             margin-right: auto;
             margin-left: auto;
+            background-color: transparent;
 
             &__brightness-slider {
                 width: 100%;
@@ -190,6 +192,7 @@ $button-blue : #408CFF;
     // background-color: green;
     margin-left: auto;
     margin-right: auto;
+    background-color: transparent;
 
     &__mid-header {
     width: 100%;
@@ -197,6 +200,8 @@ $button-blue : #408CFF;
     align-items: center;
     justify-content: center;
     margin-top: 25px;
+    background-color: transparent;
+
     & p {
         color: rgba(255,255,255, 0.6);
         font-size: 20px;
@@ -251,7 +256,7 @@ $button-blue : #408CFF;
         width: 50px;
         height: 50px;
         border-radius: 50%;
-
+        
         & button {
             width: 50px;
             height: 50px;
@@ -267,7 +272,7 @@ $button-blue : #408CFF;
         display: flex;
         flex-direction: row; /* Stack the child components horizontally */
         overflow-x: auto; /* Enable horizontal scrolling for overflow content */
-
+        background-color: transparent;
 
         &::-webkit-scrollbar {
             width: 25px;
@@ -291,10 +296,10 @@ $button-blue : #408CFF;
     }
 
     &__lights-title{
-
             width: 100%;
             margin-top: 25px; 
             margin-bottom: 0px;
+            background-color: transparent;
 
             & p {
                 color: rgba(255,255,255, 0.6);
@@ -306,6 +311,7 @@ $button-blue : #408CFF;
         display: flex;
         flex-direction: row; // stack the child components horizontally
         overflow-x: auto; // enable horizontal scrolling for overflow content
+        background-color: transparent;
 
         &::-webkit-scrollbar {
             width: 25px;

@@ -11,7 +11,8 @@ $light-brown : #F8B363;
     // background-color: grey; // to visualize position
     width: 900px; // might want to change this to a %, to make more responsive in future
     height: 100px;
-    margin: 100px auto 0px auto ;
+    margin: 0px auto 0px auto ;
+    padding-top: 100px;
     display: flex;
     align-items: center;
     justify-content: left;
@@ -27,6 +28,7 @@ $light-brown : #F8B363;
     width: 900px;
     // background-color: grey; // to visualize position
     margin: 50px auto 0px auto;
+    background-color: transparent;
 
 
     &__title {
@@ -44,6 +46,7 @@ $light-brown : #F8B363;
     justify-content: right;
     flex-direction: column; /* Stack the child components vertically */
     overflow-y: auto; /* Enable vertical scrolling for overflow content */
+    background-color: transparent;
 }
 
 // scroll bar---------***--*-------
