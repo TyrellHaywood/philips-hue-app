@@ -8,6 +8,7 @@ interface SceneTargetProps {
   handleSelectScene: (sceneId: string) => void;
   handleEditScene: () => void;
   lightColors: { [key: string]: string };
+  toggleDynamicScene: () => void;
 }
 
 const SceneTarget: React.FC<SceneTargetProps> = ({
@@ -16,6 +17,7 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
   lightColors,
   handleSelectScene,
   handleEditScene,
+  toggleDynamicScene,
 }) => {
   const handleClick = () => {
     handleSelectScene(sceneId);
@@ -23,6 +25,10 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
 
   const handleEditClick = () => {
     handleEditScene();
+  };
+
+  const handleLightEffect = () => {
+    toggleDynamicScene();
   };
 
   return (
@@ -33,9 +39,12 @@ const SceneTarget: React.FC<SceneTargetProps> = ({
           background: `linear-gradient(90deg, ${lightColors.light0} 28.79%, ${lightColors.light1} 88.97%)`,
         }}
       >
-        <div className="scene-component-target__button__color">
+        <button
+          className="scene-component-target__button__color"
+          onClick={handleLightEffect}
+        >
           <span className="material-icons md-light md-60">play_arrow</span>
-        </div>
+        </button>
         <p>{sceneName}</p>
       </div>
       <div className="scene-component-target__buttons-container">

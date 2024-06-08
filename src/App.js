@@ -547,6 +547,33 @@ const updateLightColors = async () => {
     }
   };
   
+  const toggleDynamicScene = () => {
+    const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
+  
+    fetch(LIGHTS_API_URL)
+      .then(response => response.json())
+      .then(lights => {
+
+        for (const lightId in lights) {
+          if (lights.hasOwnProperty(lightId)) {
+
+            const newEffect = lights[lightId].state.colormode ? "colorloop" : "none";
+  
+            fetch(`${LIGHTS_API_URL}/${lightId}/state`, {
+              method: 'PUT',
+              body: JSON.stringify({ effect: newEffect }),
+            })
+              .then(response => response.json())
+              .then(updatedLight => {
+                console.log(`Light ${lightId} effect is now ${newEffect ? 'colorloop' : 'none'}`);
+              })
+              .catch(error => console.error('Error updating light state', error));
+          }
+        }
+      })
+      .catch(error => console.error('Error fetching lights', error));
+  };
+
   const handleRoomClick = () => {
     console.log("clicked the room button!")
     setRoomSelected(true)
@@ -637,6 +664,7 @@ const updateLightColors = async () => {
             handleSearchScene={handleSearchScene}
             selectedScene={selectedScene}
             handleEditScene={handleEditScene}
+            toggleDynamicScene={toggleDynamicScene}
             />
             )
         ) : (

@@ -9,6 +9,7 @@ import SceneTarget from "./SceneTarget";
 //define type for props (avoid typescript errors)
 interface CurrentRoomProps {
   toggleLightsPower: () => void;
+  toggleDynamicScene: () => void;
   toggleSingleLightPower: (lightId: string) => void;
   adjustLightsBrightness: (brightness: number) => void;
   handleBackClick: () => void;
@@ -48,6 +49,7 @@ interface CurrentRoomProps {
 
 const CurrentRoom: React.FC<CurrentRoomProps> = ({
   toggleLightsPower,
+  toggleDynamicScene,
   toggleSingleLightPower,
   adjustLightsBrightness,
   handleBackClick,
@@ -195,6 +197,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     handleSelectScene={handleSelectScene}
                     handleEditScene={handleEditScene}
                     lightColors={lightColors}
+                    toggleDynamicScene={toggleDynamicScene}
                   />
                 ) : (
                   <Scene
