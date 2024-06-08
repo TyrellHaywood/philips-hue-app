@@ -648,6 +648,7 @@ const updateLightColors = async () => {
             autoFocusChange={autoFocusChange}
             handleEditName={handleEditName}
             saveSceneEdit={saveSceneEdit}
+            toggleDynamicScene={toggleDynamicScene}
           />
           ): (
           <CurrentRoom 

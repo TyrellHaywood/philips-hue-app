@@ -359,10 +359,10 @@ $button-blue : #408CFF;
                     width: 90px;
                     height: 50px;
                     border-radius: 50px;
-                    background-color: #868484;
+                    background-color: rgba(0, 0, 0, 0.25);
                     display: flex;
                     align-items: center;
-                    justify-content: left; // default off for now
+                    justify-content: flex-start; // default off for now
                     margin-left: auto;
                     margin-right: 25px;
 
@@ -374,11 +374,24 @@ $button-blue : #408CFF;
                         margin-left: 5px;
                         border: none;
                         
+                        &.on {
+                            justify-content: flex-start;
+                            margin-left: 5px;
+                            margin-right: auto;
+                          }
+                          
+                        &.off {
+                            justify-content: flex-end;
+                            margin-right: 5px;
+                            margin-left: auto;
+                          }
+                        
                     }
                 }
             }
         }
     }
+
 
 // ------------oO00O%-o0O-LOWER-STYLES-------Oo0Oo%o--o0O
 

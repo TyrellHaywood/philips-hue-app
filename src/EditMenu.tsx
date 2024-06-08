@@ -9,6 +9,7 @@ interface EditMenuProps {
   adjustLightsBrightness: (brightness: number) => void;
   handleEditClose: () => void;
   handleNameEditInput: () => void;
+  toggleDynamicScene: () => void;
   selectedScene: () => void;
   editMenu: () => void;
   saveSceneEdit: () => void;
@@ -48,6 +49,7 @@ const EditMenu: React.FC<EditMenuProps> = ({
   autoFocusChange,
   handleEditName,
   lightColors,
+  toggleDynamicScene,
 }) => {
   const [brightness, setBrightness] = useState(0); // default brightness value
   const [sliderWidth, setSliderWidth] = useState<number>(100);
@@ -69,6 +71,12 @@ const EditMenu: React.FC<EditMenuProps> = ({
     const thumbPosition = (newBrightness - 0) / (255 - 0);
     const width = thumbPosition * 100;
     setSliderWidth(width);
+  };
+
+  const [isEffectOn, setEffectOn] = useState(false);
+  const handleLightEffect = () => {
+    setEffectOn(!isEffectOn);
+    toggleDynamicScene();
   };
 
   return (
@@ -145,7 +153,12 @@ const EditMenu: React.FC<EditMenuProps> = ({
               <p>Set dynamic as default</p>
             </div>
             <div className="edit-menu-upper-bottom__dynamic-settings__bottom__power">
-              <button className="edit-menu-upper-bottom__dynamic-settings__bottom__power__circle"></button>
+              <button
+                className={`edit-menu-upper-bottom__dynamic-settings__bottom__power__circle ${
+                  isEffectOn ? "on" : "off"
+                }`}
+                onClick={handleLightEffect}
+              ></button>
             </div>
           </div>
         </div>
