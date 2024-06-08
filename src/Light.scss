@@ -84,26 +84,14 @@ $button-blue : #408CFF;
             }
         }
 
-        &.lights-on {
-            /* Styles when lights are on */
-            .current-room-header__top__light-button {
-              justify-content: left;
-              transition: justify-content 0.3s;
-            }
-            .current-room-header__top__light-button__circle {
+        & .on {
               margin-left: 5px;
-            }
+              margin-right: auto;
           }
           
-        &.lights-off {
-            /* Styles when lights are off */
-            .current-room-header__top__light-button {
-              justify-content: right;
-              transition: justify-content 0.3s;
-            }
-            .current-room-header__top__light-button__circle {
+        & .off {
               margin-right: 5px;
+              margin-left: auto;
             }
-          }
     }
 }

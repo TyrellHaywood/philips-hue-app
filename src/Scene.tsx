@@ -50,11 +50,11 @@ const Scene: React.FC<SceneProps> = ({
       <div className="scene-component__button">
         <div
           className="scene-component__button__color"
-          style={{
-            background: `linear-gradient(90deg, ${
-              lightsData[0]?.hexValue ?? "#ffffff"
-            } 28.79%, ${lightsData[1]?.hexValue ?? "#ffffff"} 88.97%)`,
-          }}
+          // style={{
+          //   background: `linear-gradient(90deg, ${
+          //     lightsData[0]?.hexValue ?? "#ffffff"
+          //   } 28.79%, ${lightsData[1]?.hexValue ?? "#ffffff"} 88.97%)`,
+          // }}
         ></div>
         <p>{sceneName}</p>
       </div>

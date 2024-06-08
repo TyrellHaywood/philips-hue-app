@@ -18,16 +18,6 @@ $button-blue : #408CFF;
     margin-bottom: 25px;
     display: flex;
     background-color: transparent;
-    // background-position: 45% 0; /* Initially, the gradient is shifted to the right */
-    // transform: translateX(0); /* Initial scale: no scaling */
-    // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle box shadow */
-
-
-    // &:hover {
-    //     background-position: 0 0; /* On hover, shift the gradient to the left */
-    //     transform: translateX(10px); /* Increase the scale slightly to make it pop out */
-    //     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Increase the shadow for the pop-out effect */
-    //   }
 
     &__button{
         width: 225px;
@@ -55,6 +45,7 @@ $button-blue : #408CFF;
             & :hover {
                 color: rgba(255, 255, 255, 0.75);
                 transition: 0.2s;
+                transform: translateY(-1.5px);
             }
     }
 
@@ -90,6 +81,12 @@ $button-blue : #408CFF;
         justify-content: center;
         background-color: #292929;
         border: none;
+
+        & :hover {
+            color: rgba(255, 255, 255, 0.75);
+            transition: 0.2s;
+            transform: translateY(-1.5px);
+        }
     }
 
 
@@ -107,6 +104,12 @@ $button-blue : #408CFF;
         padding-left: 0;
         background-color: #292929;
         border: none;
+
+        & :hover {
+            color: rgba(255, 255, 255, 0.75);
+            transition: 0.2s;
+            transform: translateY(-1.5px);
+        }
 
         // styles for more options icons on edit button
         &__more-options {
