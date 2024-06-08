@@ -610,6 +610,7 @@ const updateLightColors = async () => {
             scenesData={scenesData}
             lightsData={lightsData}
             lightsValueData={lightsValueData} // fixes lightsData not rendering properly
+            lightColors={lightColors}
             toggleSingleLightPower={toggleSingleLightPower}
             adjustLightsBrightness={adjustLightsBrightness}
             selectedScene={selectedScene}
