@@ -17,7 +17,7 @@ interface CurrentRoomProps {
   scenesData: Array<{
     id: string;
     name: string;
-    lightsData: Array<{
+    myLights: Array<{
       id: string;
       name: string;
       on: boolean;
@@ -186,9 +186,10 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
               scenesData.map((scene) => {
                 const isSelected =
                   selectedScene && (selectedScene as any).id === scene.id;
-                console.log(
-                  `Scene ${scene.id} is selected: ${isSelected}. lightsData: ${scene.lightsData[0].hexValue}`
-                );
+                console
+                  .log
+                  // `Scene ${scene.id} is selected: ${isSelected}. lightsData: ${scene.lightsData[0].hexValue}`
+                  ();
                 return isSelected ? (
                   <SceneTarget
                     key={scene.id}
@@ -205,7 +206,7 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     sceneId={scene.id}
                     sceneName={scene.name}
                     scenesData={scenesData}
-                    lightsData={scene.lightsData}
+                    // lightsData={scene.lightsData}
                     handleSelectScene={handleSelectScene}
                     handleEditScene={handleEditScene}
                     lightColors={lightColors}

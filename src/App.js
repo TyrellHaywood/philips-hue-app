@@ -8,10 +8,6 @@ import WelcomeScreen from './WelcomeScreen';
 import Room from './Room';
 import CurrentRoom from './CurrentRoom';
 import EditMenu from './EditMenu';
-
-let ipAddress = ''
-let idKey = ''
-
 const App = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,6 +21,7 @@ const App = () => {
   const [idKey, setIdKey] = useState(""); // define idKey state
   const [defaultBrightness, setDefaultBrightness] = useState(0);
   const [scenesArray, setScenesArray] = useState([]);
+  const [currentScene, setCurrentScene] = useState(0)
   const [searchValue, setSearchValue] = useState(""); // search bar text onChange
   const [selectedScene, setSelectedScene] = useState(null);
   const [sceneNameEdit, setSceneNameEdit] = useState("");
@@ -115,9 +112,13 @@ const App = () => {
 
       //loop thru scenes and store them in scenesById variable
       for (const sceneId in sceneData) {
+
+        const currentScene = 0;
+
         if (sceneData.hasOwnProperty(sceneId)) {
           scenesById[sceneId] = sceneData[sceneId];
 
+          console.log("scenesById: ", scenesById)
         try {
           const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
           const response = await fetch(APPLY_SCENE_API_URL, {
@@ -162,19 +163,55 @@ const App = () => {
               // loop through all lights in the lightsArray
               try {
                 colorConversion(lightsArray)
+                setLightsData(lightsValueData)
+                
+                const lightsHexValues = lightsArray;
+                console.log("testing lightsHexValues state: ", lightsHexValues)
+                console.log("testing scenesById *name* state: ", scenesById[sceneId].name)
+
                 // create an array of scene objects
                 const scenesArray = Object.keys(scenesById).map((sceneId) => {
                   const { name, lights } = sceneData[sceneId]; 
-                  const lightsData = lights.map((lightId) => lightsArray[lightId]);
+                  const myLights = [];
                   return {
                     id: sceneId,
                     name,
-                    lightsData
+                    myLights
                   };
                 });
-                setScenesData(scenesArray);
+                const nextScene = scenesArray.length - 1;
+                setCurrentScene(nextScene);
+
+                const scenesKeys = Object.keys(scenesById);
+
+                console.log("scenesKeys testing state: ", scenesKeys)
+
+                const key = scenesKeys[nextScene];
+
+                scenesById[key].myLights = lightsHexValues; 
+
+                const scenesByIdArray = Object.entries(scenesById);
+                const transformedScenes = scenesByIdArray.map(([id, scene]) => {
+                  return {
+                    id,
+                    name: scene.name,
+                    myLights: scene.myLights,
+                  };
+                });
+
+                //'myLights' is reset during each iteration
+                // we're adding values for that current iteration, but then its wiped for the next
+                // each time im recreating the array, which resets EVERYTHING
+                // need to establish array, -> then iterate and increment
+
+                // console.log(sceneId, ": ", lightsValueData);
+                console.log("scenesArray id testing state: ", scenesArray[nextScene].id)
+                console.log("currentScene testing state: ", nextScene)
+                console.log("ScenesByIdArray testing state: ", scenesByIdArray)
+                // setScenesData(scenesArray);
+                setScenesData(transformedScenes);
                 setIsLoggedIn(true);
-                // console.log("scenesArray: ", scenesArray, "scenesData: ", scenesData); // log entire array     
+                console.log("scenesArray testing state: ", scenesArray)
                 
               }catch (error) {
                 console.error("Error converting xy to RGB:", error)
@@ -195,51 +232,6 @@ const App = () => {
   } catch (error) {
     console.error('Error fetching scenes data:', error);
   }
-
-  // fetch and store lights data
-    try {
-      // fetch lights
-      const lightResponse = await fetch(LIGHT_API_URL);
-      const lightData = await lightResponse.json();
-      const lightsById = {} // create an empty object to store lights by id
-      setLightsData(lightData);
-      // console.log("lights Data initial: ", lightData);
-
-      // loop thru lights and store them in lightsById variable
-      for(const lightId in lightData) {
-        if (lightData.hasOwnProperty(lightId)) {
-          lightsById[lightId] = lightData[lightId];
-        }
-      }
-      
-      // Create an array of light objects
-      const lightsArray = Object.keys(lightsById).map((lightId) => {
-        const {name, state} = lightsById[lightId]; // destructure name and state
-        return {
-          id: lightId,
-          name,
-          on: state.on,
-          ct: state.ct, // ct value
-          xy: state.xy, // xy coordinate in [x, y]
-          bri: state.bri // brightness, 0-500
-        };
-      });
-      setLightsData(lightsArray);
-      // console.log("lights data, lights array: ", lightsData, lightsArray); // log entire array
-
-      // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
-      
-      // loop through all lights in the lightsArray
-      try {
-      colorConversion(lightsArray)
-      }catch (error) {
-        console.error("Error converting xy to RGB:", error)
-      }
-      
-
-      }catch (error) {
-            console.error("Error mapping lights array:", error);
-          }
 
     const LIGHTS_API_URL = `https://${ipAddress}/api/${idKey}/lights`;
     const lightsResponse = await fetch(LIGHTS_API_URL);
@@ -278,7 +270,8 @@ useEffect(() => {
   }
 
   console.log("scenesData updated: ", scenesData);
-  console.log("scenesData, ", scenesData)
+  // console.log("scenesData, ", scenesData)
+  console.log("new colors: ", lightColors)
 }, [lightsValueData, scenesData]);
 
 const updateLightColors = async () => {
@@ -657,6 +650,7 @@ const updateLightColors = async () => {
             adjustLightsBrightness={adjustLightsBrightness}
             handleBackClick={handleBackClick}
             scenesData={scenesData}
+            // scenesById={scenesById}
             lightsData={lightsData}
             lightsValueData={lightsValueData} // fixes lightsData not rendering properly
             lightColors={lightColors}

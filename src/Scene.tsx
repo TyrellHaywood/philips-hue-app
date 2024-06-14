@@ -8,19 +8,19 @@ interface SceneProps {
   handleSelectScene: (sceneId: string) => void;
   handleEditScene: () => void;
   lightColors: { [key: string]: string };
-  lightsData: {
-    id: string;
-    name: string;
-    on: boolean;
-    bri: number;
-    ct: number;
-    hexValue: string;
-    xy: number[];
-  }[];
+  // lightsData: {
+  //   id: string;
+  //   name: string;
+  //   on: boolean;
+  //   bri: number;
+  //   ct: number;
+  //   hexValue: string;
+  //   xy: number[];
+  // }[];
   scenesData: Array<{
     id: string;
     name: string;
-    lightsData: Array<{
+    myLights: Array<{
       id: string;
       name: string;
       on: boolean;
@@ -36,7 +36,7 @@ const Scene: React.FC<SceneProps> = ({
   sceneId,
   sceneName,
   lightColors,
-  lightsData,
+  // lightsData,
   scenesData,
   handleSelectScene,
   handleEditScene,
@@ -44,17 +44,20 @@ const Scene: React.FC<SceneProps> = ({
   const handleClick = () => {
     handleSelectScene(sceneId);
   };
+  const scene = scenesData.find((scene) => scene.id === sceneId);
+  const lightsData = scene?.myLights ?? [];
+
+  const color1 = lightsData[0]?.hexValue ?? "#ffffff";
+  const color2 = lightsData[1]?.hexValue ?? "#ffffff";
 
   return (
     <button className="scene-component" onClick={handleClick}>
       <div className="scene-component__button">
         <div
           className="scene-component__button__color"
-          // style={{
-          //   background: `linear-gradient(90deg, ${
-          //     lightsData[0]?.hexValue ?? "#ffffff"
-          //   } 28.79%, ${lightsData[1]?.hexValue ?? "#ffffff"} 88.97%)`,
-          // }}
+          style={{
+            background: `linear-gradient(90deg, ${color1} 28.79%, ${color2} 88.97%)`,
+          }}
         ></div>
         <p>{sceneName}</p>
       </div>
