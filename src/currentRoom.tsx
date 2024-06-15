@@ -6,7 +6,6 @@ import Scene from "./Scene";
 import Light from "./Light";
 import SceneTarget from "./SceneTarget";
 
-//define type for props (avoid typescript errors)
 interface CurrentRoomProps {
   toggleLightsPower: () => void;
   toggleDynamicScene: () => void;
@@ -206,10 +205,8 @@ const CurrentRoom: React.FC<CurrentRoomProps> = ({
                     sceneId={scene.id}
                     sceneName={scene.name}
                     scenesData={scenesData}
-                    // lightsData={scene.lightsData}
                     handleSelectScene={handleSelectScene}
                     handleEditScene={handleEditScene}
-                    lightColors={lightColors}
                   />
                 );
               })}

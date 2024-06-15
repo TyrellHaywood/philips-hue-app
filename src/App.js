@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useState, useEffect } from 'react';
 
@@ -13,16 +12,16 @@ const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [roomSelected, setRoomSelected] = useState(false);
   const [editMenu, SetEditMenu] = useState(false);
-  const [scenesData, setScenesData] = useState([]); // initialize as an empty array 
+  const [scenesData, setScenesData] = useState([]);
   const [groupData, setGroupData] = useState(null);
-  const [lightsData, setLightsData] = useState([]); // initialize as an empty array 
-  const [lightsValueData, setLightsValueData] = useState([]); // initialize as an empty array 
-  const [ipAddress, setIpAddress] = useState(""); // define ipAddress state
-  const [idKey, setIdKey] = useState(""); // define idKey state
+  const [lightsData, setLightsData] = useState([]);
+  const [lightsValueData, setLightsValueData] = useState([]); 
+  const [ipAddress, setIpAddress] = useState("");
+  const [idKey, setIdKey] = useState("");
   const [defaultBrightness, setDefaultBrightness] = useState(0);
   const [scenesArray, setScenesArray] = useState([]);
   const [currentScene, setCurrentScene] = useState(0)
-  const [searchValue, setSearchValue] = useState(""); // search bar text onChange
+  const [searchValue, setSearchValue] = useState("");
   const [selectedScene, setSelectedScene] = useState(null);
   const [sceneNameEdit, setSceneNameEdit] = useState("");
   const [readOnlyChange, setReadOnlyChange] = useState(true);
@@ -66,21 +65,19 @@ const App = () => {
       b = b * 255;   if (b < 0) { b = 255 }
 
       const rgbInt = {r:Math.round(r), g:Math.round(g), b:Math.round(b)};
-      // console.log(rgbInt)
       // convert RGB to hex
       const clamp = (value) => Math.max(0, Math.min(255, Math.round(value)));
       const rHex = clamp(rgbInt.r).toString(16).padStart(2, '0');
       const gHex = clamp(rgbInt.g).toString(16).padStart(2, '0');
       const bHex = clamp(rgbInt.b).toString(16).padStart(2, '0');
       const hexValue = `#${rHex}${gHex}${bHex}`;
-      // console.log(hexValue)
       // add hexValue as property for each light
       light.hexValue = hexValue;
       setLightsValueData(array); // update lightsData state
       })
   }
 
-  //login authentication, talks to bridge and fetches data on scenes
+  //login authentication, fetches data on scenes & their lights to populate app
   const handleLoginClick = async () => {
     const SCENE_API_URL = `https://${ipAddress}/api/${idKey}/scenes`;
     const GROUP_API_URL = `https://${ipAddress}/api/${idKey}/groups`;
@@ -118,7 +115,7 @@ const App = () => {
         if (sceneData.hasOwnProperty(sceneId)) {
           scenesById[sceneId] = sceneData[sceneId];
 
-          console.log("scenesById: ", scenesById)
+          // console.log("scenesById: ", scenesById)
         try {
           const APPLY_SCENE_API_URL = `https://${ipAddress}/api/${idKey}/groups/1/action`; 
           const response = await fetch(APPLY_SCENE_API_URL, {
@@ -143,7 +140,7 @@ const App = () => {
                 }
               }
               
-              // Create an array of light objects
+              // create an array of light objects
               const lightsArray = Object.keys(lightsById).map((lightId) => {
                 const {name, state} = lightsById[lightId]; // destructure name and state
                 return {
@@ -156,7 +153,7 @@ const App = () => {
                 };
               });
               setLightsData(lightsArray);
-              console.log("lights data, lights array: ", lightsData, lightsArray); // log entire array
+              // console.log("lights data, lights array: ", lightsData, lightsArray); // log entire array
 
               // //-.---O--------*OoO* XY TO RGB COLOR CONVERSIONS *--Oo-0-------.--
               
@@ -166,8 +163,8 @@ const App = () => {
                 setLightsData(lightsValueData)
                 
                 const lightsHexValues = lightsArray;
-                console.log("testing lightsHexValues state: ", lightsHexValues)
-                console.log("testing scenesById *name* state: ", scenesById[sceneId].name)
+                // console.log("testing lightsHexValues state: ", lightsHexValues)
+                // console.log("testing scenesById *name* state: ", scenesById[sceneId].name)
 
                 // create an array of scene objects
                 const scenesArray = Object.keys(scenesById).map((sceneId) => {
@@ -184,7 +181,7 @@ const App = () => {
 
                 const scenesKeys = Object.keys(scenesById);
 
-                console.log("scenesKeys testing state: ", scenesKeys)
+                // console.log("scenesKeys testing state: ", scenesKeys)
 
                 const key = scenesKeys[nextScene];
 
@@ -198,20 +195,12 @@ const App = () => {
                     myLights: scene.myLights,
                   };
                 });
-
-                //'myLights' is reset during each iteration
-                // we're adding values for that current iteration, but then its wiped for the next
-                // each time im recreating the array, which resets EVERYTHING
-                // need to establish array, -> then iterate and increment
-
-                // console.log(sceneId, ": ", lightsValueData);
-                console.log("scenesArray id testing state: ", scenesArray[nextScene].id)
-                console.log("currentScene testing state: ", nextScene)
-                console.log("ScenesByIdArray testing state: ", scenesByIdArray)
-                // setScenesData(scenesArray);
+                // console.log("scenesArray id testing state: ", scenesArray[nextScene].id)
+                // console.log("currentScene testing state: ", nextScene)
+                // console.log("ScenesByIdArray testing state: ", scenesByIdArray)
                 setScenesData(transformedScenes);
                 setIsLoggedIn(true);
-                console.log("scenesArray testing state: ", scenesArray)
+                // console.log("scenesArray testing state: ", scenesArray)
                 
               }catch (error) {
                 console.error("Error converting xy to RGB:", error)
@@ -237,7 +226,7 @@ const App = () => {
     const lightsResponse = await fetch(LIGHTS_API_URL);
     const fetchedLightsData = await lightsResponse.json();
 
-    // Calculate the average brightness of the on lights
+    // calculate the average brightness of the on lights
     let totalBrightness = 0;
     let onLightsCount = 0;
 
@@ -251,11 +240,11 @@ const App = () => {
       }
     }
 
-    // Calculate the average brightness
+    // calculate the average brightness
     const averageBrightness =
       onLightsCount > 0 ? Math.round(totalBrightness / onLightsCount) : 0;
 
-    // Set the default brightness in the state
+    // set the default brightness in the state
     setDefaultBrightness(averageBrightness);
   };
 
@@ -371,7 +360,7 @@ const updateLightColors = async () => {
       .catch(error => console.error('Error fetching lights', error));
   };
 
-  // controls on/off power button for each individual light rendered in CurrentRoom.tsx
+  // controls on/off power button for each individual light rendered in other components
   const toggleSingleLightPower = async (lightId) => {
     try {
       const SINGLE_LIGHT_API_URL = `https://${ipAddress}/api/${idKey}/lights/${lightId}`;

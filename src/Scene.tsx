@@ -1,5 +1,5 @@
 import React from "react";
-import "./Scene.scss"; // imports stylesheet;
+import "./Scene.scss";
 import { useState, useEffect } from "react";
 
 interface SceneProps {
@@ -7,16 +7,6 @@ interface SceneProps {
   sceneName: string;
   handleSelectScene: (sceneId: string) => void;
   handleEditScene: () => void;
-  lightColors: { [key: string]: string };
-  // lightsData: {
-  //   id: string;
-  //   name: string;
-  //   on: boolean;
-  //   bri: number;
-  //   ct: number;
-  //   hexValue: string;
-  //   xy: number[];
-  // }[];
   scenesData: Array<{
     id: string;
     name: string;
@@ -35,8 +25,6 @@ interface SceneProps {
 const Scene: React.FC<SceneProps> = ({
   sceneId,
   sceneName,
-  lightColors,
-  // lightsData,
   scenesData,
   handleSelectScene,
   handleEditScene,
