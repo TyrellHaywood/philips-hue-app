@@ -104,7 +104,7 @@ To get a local copy up and running follow these simple example steps.
    ```sh
    git clone https://github.com/TyrellHaywood/philips-hue-app.git
    ```
-4. Install Relative Packages packages
+4. Install Relative Packages
    ```sh
    npm install
    ```
