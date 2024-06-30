@@ -204,4 +204,6 @@ Project Link: [https://github.com/TyrellHaywood/philips-hue-app](https://github.
 [product-screenshot]: images/screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
+[TypeScript.js]: https://img.shields.io/badge/TypeScript-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[TypeScript-url]: [https://reactjs.org/](https://www.typescriptlang.org/)
 
