@@ -79,7 +79,7 @@ Here's a blank template to get started: To avoid retyping too much info. Do a se
 
 * [![React][React.js]][React-url]
 * [![TypeScript][TypeScript]][TypeScript-url]
-* [![SCSS][SCSS]][SCSS-url]
+* [![SASS][SASS]][SASS-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -204,6 +204,8 @@ Project Link: [https://github.com/TyrellHaywood/philips-hue-app](https://github.
 [product-screenshot]: images/screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
-[TypeScript]: https://img.shields.io/badge/TypeScript-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[TypeScript-url]: [https://reactjs.org/](https://www.typescriptlang.org/)
+[TypeScript]: https://shields.io/badge/TypeScript-3178C6?logo=TypeScript&logoColor=FFF&style=flat-square
+[TypeScript-url]: https://www.typescriptlang.org/
+[SASS]: https://img.shields.io/badge/-Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white
+[SASS-url]: https://sass-lang.com/documentation/syntax/
 
